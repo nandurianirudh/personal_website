@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,32 +19,103 @@
         - NO SVG/Mermaid used. All visuals are achieved via Tailwind CSS and Unicode. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #F8F7F4;
-            color: #3D3D3D;
+            background-color: #f8fafc;
+            color: #1e293b;
+            scroll-behavior: smooth;
         }
-        .section-title {
-            color: #2c3e50;
+
+        /* Utilities */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
         }
+
+        .gradient-text {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .animate-delay-100 {
+            animation-delay: 0.1s;
+        }
+
+        .animate-delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        .animate-delay-300 {
+            animation-delay: 0.3s;
+        }
+
+        /* Navigation */
         .nav-link {
-            transition: color 0.3s ease, border-bottom-color 0.3s ease;
-            border-bottom: 2px solid transparent;
+            position: relative;
+            font-weight: 500;
         }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: var(--primary-gradient);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
         .nav-link.active {
-            color: #3498db;
-            border-bottom-color: #3498db;
+            color: #1e3a8a;
         }
+
+        /* Components */
         .cta-button {
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            background: var(--primary-gradient);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .cta-button:hover {
             transform: translateY(-2px);
+            box-shadow: 0 10px 20px -10px rgba(37, 99, 235, 0.5);
         }
-        .tab.active {
-            border-bottom-color: #3498db;
-            color: #3498db;
-        }
+
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -52,48 +124,102 @@
             top: 0;
             width: 100%;
             height: 100%;
-            overflow: auto;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.4);
+            background-color: rgba(15, 23, 42, 0.6);
+            /* Slate-900 with opacity */
+            backdrop-filter: blur(4px);
             justify-content: center;
             align-items: center;
         }
+
         .modal-content {
-            background-color: #fefefe;
+            background: rgba(255, 255, 255, 0.95);
             margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 600px;
-            border-radius: 8px;
+            padding: 24px;
+            border-radius: 16px;
             position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            animation: fadeInUp 0.3s ease-out;
         }
-        .close-button {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
+
+        /* Experience Tabs (Pill Switcher) */
+
+        /* Experience Tabs (Pill Switcher) */
+        .tab {
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 10;
         }
-        .close-button:hover,
-        .close-button:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
+
+        .tab-indicator {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
+        /* Filter Pills */
+        .filter-button {
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .filter-button:hover {
+            border-color: #cbd5e1;
+        }
+
         .filter-button.active {
-            background-color: #2c3e50;
-            color: #fff;
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        @media print {
+            body {
+                visibility: hidden !important;
+                height: 100vh;
+                overflow: hidden;
+            }
+
+            .modal,
+            header,
+            main,
+            footer {
+                display: none !important;
+            }
+
+            body::after {
+                content: "Printing is disabled for this document.";
+                visibility: visible !important;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 24px;
+                font-weight: bold;
+                color: #333;
+                background: white;
+                padding: 20px;
+                z-index: 9999;
+            }
         }
     </style>
 </head>
-<body class="antialiased">
 
-    <header id="header" class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+<body class="antialiased" oncontextmenu="return false;">
+
+    <header id="header"
+        class="glass-panel sticky top-4 mx-4 md:mx-auto max-w-7xl z-50 rounded-2xl transition-all duration-300">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-gray-800 flex items-center space-x-2">
-                <!-- Add your personal logo here -->
-                <img src="assets/mylogo/logo.png" alt="Personal Logo" class="h-8">
-                <span>Anirudh Nanduri</span>
+            <a href="#" class="text-2xl font-bold flex items-center space-x-2">
+                <img src="assets/mylogo/logo.png" alt="Personal Logo"
+                    class="h-10 w-10 object-contain hover:scale-110 transition-transform">
+                <span class="gradient-text font-extrabold tracking-tight">Anirudh Nanduri</span>
             </a>
             <div class="hidden md:flex space-x-8">
                 <a href="#about" class="nav-link text-gray-600 pb-1">About</a>
@@ -105,7 +231,10 @@
                 <a href="#contact" class="nav-link text-gray-600 pb-1">Contact</a>
             </div>
             <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
+                    </path>
+                </svg>
             </button>
         </nav>
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
@@ -119,53 +248,232 @@
         </div>
     </header>
 
-    <main>
-        <section id="about" class="py-20 md:py-32">
-            <div class="container mx-auto px-6 text-center flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-12">
-                <img class="w-40 h-40 rounded-full object-cover shadow-lg" src="assets/profile/pic.webp" alt="Anirudh Nanduri Profile Picture">
-                <div>
-                    <h1 class="text-4xl md:text-6xl font-bold text-gray-800 leading-tight">Anirudh Nanduri</h1>
-                    <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">Specialist Data Scientist with a passion for building impactful products and a drive for excellence, currently pursuing an MBA at BITS School of Management.</p>
-                    <div class="mt-8 flex justify-center space-x-4">
-                        <a href="https://www.linkedin.com/in/anirudh-nanduri/" target="_blank" class="cta-button bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg">Connect on LinkedIn</a>
-                        <a href="assets/resume/Nanduri_Anirdh.pdf" id="download-resume" class="cta-button bg-gray-700 hover:bg-gray-800 text-white font-bold py-3 px-6 rounded-lg shadow-lg">Download Resume</a>
+    <main class="space-y-20 md:space-y-32 pb-20">
+        <!-- Hero Section -->
+        <section id="about" class="min-h-screen flex items-center pt-24 pb-12 relative overflow-hidden">
+            <!-- Background Elements -->
+            <div
+                class="absolute -top-20 -left-20 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob">
+            </div>
+            <div
+                class="absolute top-40 -right-20 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000">
+            </div>
+            <div
+                class="absolute -bottom-32 left-20 w-96 h-96 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000">
+            </div>
+
+            <div class="container mx-auto px-6 z-10">
+                <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-12">
+
+                    <!-- Text Content (Left) -->
+                    <div class="w-full md:w-1/2 text-center md:text-left space-y-6 animate-fade-in-up">
+                        <div
+                            class="inline-block px-4 py-2 bg-blue-50 text-blue-600 font-bold rounded-full text-sm mb-2 shadow-sm border border-blue-100">
+                            🚀 Welcome to my portfolio
+                        </div>
+                        <h1 class="text-5xl md:text-7xl font-extrabold leading-tight text-gray-900">
+                            Hi, I'm <br>
+                            <span class="gradient-text">Anirudh Nanduri</span>
+                        </h1>
+                        <p class="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-lg mx-auto md:mx-0">
+                            Specialist Data Scientist & Product Strategist transforming complex data into
+                            <span class="font-bold text-gray-800">business impact</span>.
+                        </p>
+
+                        <!-- Quick Stats Pills -->
+                        <div class="flex flex-wrap justify-center md:justify-start gap-3 py-2">
+                            <span
+                                class="px-4 py-2 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-lg text-sm font-semibold text-gray-700 shadow-sm">🎓
+                                MBA Candidate @ BITSoM</span>
+                            <span
+                                class="px-4 py-2 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-lg text-sm font-semibold text-gray-700 shadow-sm">💼
+                                Ex-Accenture Specialist</span>
+                            <span
+                                class="px-4 py-2 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-lg text-sm font-semibold text-gray-700 shadow-sm">🏆
+                                Merit List Holder</span>
+                            <span
+                                class="px-4 py-2 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-lg text-sm font-semibold text-gray-700 shadow-sm">🤖
+                                GenAI Expert</span>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start">
+                            <a href="https://www.linkedin.com/in/anirudh-nanduri/" target="_blank"
+                                class="cta-button text-white font-bold py-4 px-8 rounded-full shadow-xl hover:shadow-blue-500/30 flex items-center justify-center gap-2 group">
+                                <span>Connect on LinkedIn</span>
+                                <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 8l4 4m0 0l-4 4m0-4H3"></path>
+                                </svg>
+                            </a>
+                            <a href="assets/resume/Nanduri_Anirudh.pdf" id="download-resume"
+                                download="Nanduri_Anirudh_Resume.pdf"
+                                class="bg-white text-gray-800 hover:bg-gray-50 border border-gray-200 font-bold py-4 px-8 rounded-full shadow-lg transition-all hover:-translate-y-1 flex items-center justify-center gap-2">
+                                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                </svg>
+                                <span>Download Resume</span>
+                            </a>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-4">* Top 20% of Data Scientists at Accenture (as of 2022).
+                        </p>
                     </div>
+
+                    <!-- Hero Image (Right) -->
+                    <div
+                        class="w-full md:w-1/2 flex justify-center md:justify-end relative animate-fade-in-up animation-delay-200">
+                        <div class="relative w-72 h-72 md:w-[500px] md:h-[500px]">
+                            <!-- Abstract Shapes -->
+                            <div
+                                class="absolute inset-0 bg-gradient-to-tr from-blue-100 to-purple-100 rounded-[3rem] rotate-6 transform transition-transform hover:rotate-3 duration-500">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-white rounded-[2.5rem] shadow-2xl rotate-3 overflow-hidden transform transition-transform hover:rotate-0 duration-500 border-4 border-white ml-2 mt-2">
+                                <img class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
+                                    src="assets/profile/pic.webp" alt="Anirudh Nanduri">
+                            </div>
+
+                            <!-- Floating Badge -->
+                            <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl border border-gray-100 animate-bounce"
+                                style="animation-duration: 3s;">
+                                <div class="flex items-center gap-3">
+                                    <div class="bg-blue-100 p-2 rounded-full text-blue-600 font-bold text-xl">Top</div>
+                                    <div class="text-left">
+                                        <p class="text-xs text-gray-500 font-bold uppercase">Ranked</p>
+                                        <p class="font-bold text-gray-800">Top 20%*</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
 
-        <section id="experience" class="py-20 bg-white">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-center section-title mb-12">Professional Journey</h2>
-                <div class="max-w-4xl mx-auto">
-                    <div class="flex border-b border-gray-300 mb-8">
-                        <button class="tab active text-lg font-medium py-3 px-6 text-gray-600" onclick="showTab('accenture')">Accenture</button>
-                        <button class="tab text-lg font-medium py-3 px-6 text-gray-600" onclick="showTab('bridgei2i')">BRIDGEi2i</button>
+        <!-- Experience Section -->
+        <section id="experience" class="py-10">
+            <div class="container mx-auto px-6 max-w-5xl">
+                <h2 class="text-4xl font-bold text-center mb-16"><span class="gradient-text">Professional Journey</span>
+                </h2>
+
+                <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
+                    <!-- Tabs -->
+                    <div class="flex border-b border-gray-100 bg-gray-50/50 p-2 gap-2">
+                        <button
+                            class="tab active flex-1 py-4 rounded-xl font-bold text-lg transition-all text-gray-500 hover:bg-white hover:shadow-sm data-[active=true]:bg-white data-[active=true]:text-blue-600 data-[active=true]:shadow-md"
+                            onclick="showTab('accenture')">
+                            Accenture
+                        </button>
+                        <button
+                            class="tab flex-1 py-4 rounded-xl font-bold text-lg transition-all text-gray-500 hover:bg-white hover:shadow-sm"
+                            onclick="showTab('bridgei2i')">
+                            BRIDGEi2i
+                        </button>
                     </div>
-                    <div id="accenture" class="tab-content">
-                        <h3 class="text-2xl font-bold text-gray-800">Specialist Data Scientist</h3>
-                        <p class="text-gray-500 mb-4">Accenture Solutions Pvt Ltd | May 2022 - May 2024</p>
-                        <p class="text-gray-700 mb-6">Promoted to Specialist, recognized among the top 20% of data scientists globally. Led development on key AI/ML projects, translating proof-of-concepts into significant revenue-generating solutions and enhancing user experiences through data-driven insights.</p>
-                        <ul class="list-disc list-inside space-y-2 text-gray-600">
-                            <li>Owned the development of a recommender algorithm, reducing product selection time by ~65%.</li>
-                            <li>Built a high-accuracy (~90%) ML model to predict switch user count for power savings, contributing to ESG goals.</li>
-                            <li>Developed an AI-chatbot for faster product recommendations, improving user experience by ~85%.</li>
-                            <li>Boosted new product adoption by ~20% by creating a risk framework using warranty, vulnerability, etc.</li>
-                            <li>Converted 4+ PoCs into a ~$0.4M project through successful client demonstrations and strategic planning.</li>
-                            <li>Received 11 awards including the coveted STAR award and IS Elite Advocate for consistent high performance.</li>
-                        </ul>
-                    </div>
-                    <div id="bridgei2i" class="tab-content hidden">
-                        <h3 class="text-2xl font-bold text-gray-800">Senior Consultant</h3>
-                        <p class="text-gray-500 mb-4">BRIDGEi2i Analytics Solutions (An Accenture Company) | Aug 2018 - Apr 2022</p>
-                        <p class="text-gray-700 mb-6">Progressed from Analyst to Senior Consultant, leading teams and projects across various domains. Drove significant business impact through analytics, automation, and client engagement, while also mentoring and training junior colleagues.</p>
-                        <ul class="list-disc list-inside space-y-2 text-gray-600">
-                            <li>Achieved a 35% increase in lead generation for a major tech client through a propensity-to-buy model.</li>
-                            <li>Automated reporting processes, saving over 200 person-hours monthly.</li>
-                            <li>Led a team of 4 to develop a customer segmentation model, improving marketing campaign targeting.</li>
-                            <li>Recognized as an "AI2i Icon" with a significant bonus for outstanding contributions.</li>
-                            <li>Trained over 90 employees in SQL and 45+ in machine learning concepts and predictive modeling.</li>
-                        </ul>
+
+                    <!-- Content -->
+                    <div class="p-8 md:p-12 min-h-[500px]">
+                        <div id="accenture" class="tab-content animate-fade-in-up">
+                            <div
+                                class="flex flex-col md:flex-row justify-between items-start mb-8 border-b border-gray-100 pb-6">
+                                <div>
+                                    <h3 class="text-3xl font-bold text-gray-800 mb-2">Specialist Data Scientist</h3>
+                                    <p class="text-blue-600 font-medium">Accenture Solutions Pvt Ltd</p>
+                                </div>
+                                <span
+                                    class="bg-blue-100 text-blue-800 text-sm font-bold px-4 py-2 rounded-full mt-2 md:mt-0">May
+                                    2022 - May 2024</span>
+                            </div>
+
+                            <p
+                                class="text-lg text-gray-600 mb-8 leading-relaxed italic border-l-4 border-blue-500 pl-4">
+                                "Specialist Data Scientist recognized among the top 20% of data scientists globally."
+                            </p>
+
+                            <div class="space-y-6">
+                                <h4 class="text-sm uppercase tracking-wider text-gray-400 font-bold">Key Achievements
+                                </h4>
+                                <ul class="space-y-4">
+                                    <li class="flex items-start">
+                                        <span
+                                            class="flex-shrink-0 w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center mr-3 mt-1">✓</span>
+                                        <span class="text-gray-700"><strong>Counterfeit Detection:</strong> Led
+                                            development of AI-ML model preventing ~$1B+ business loss. Reduced manual ID
+                                            time by ~90%.</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span
+                                            class="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mr-3 mt-1">✓</span>
+                                        <span class="text-gray-700"><strong>Product Rec Engine:</strong> Reduced product
+                                            selection time by ~65%, enhancing UX.</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span
+                                            class="flex-shrink-0 w-6 h-6 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center mr-3 mt-1">✓</span>
+                                        <span class="text-gray-700"><strong>AI Chatbot:</strong> Improved response time
+                                            by ~85% with intelligent recommendations.</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span
+                                            class="flex-shrink-0 w-6 h-6 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center mr-3 mt-1">🏆</span>
+                                        <span class="text-gray-700"><strong>Recognition:</strong> 11 awards including
+                                            STAR Award & IS Elite Advocate.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div id="bridgei2i" class="tab-content hidden animate-fade-in-up">
+                            <div
+                                class="flex flex-col md:flex-row justify-between items-start mb-8 border-b border-gray-100 pb-6">
+                                <div>
+                                    <h3 class="text-3xl font-bold text-gray-800 mb-2">Senior Analytics Consultant</h3>
+                                    <p class="text-teal-600 font-medium">BRIDGEi2i Analytics Solutions</p>
+                                </div>
+                                <span
+                                    class="bg-teal-100 text-teal-800 text-sm font-bold px-4 py-2 rounded-full mt-2 md:mt-0">Jun
+                                    2018 - Apr 2022</span>
+                            </div>
+
+                            <p
+                                class="text-lg text-gray-600 mb-8 leading-relaxed italic border-l-4 border-teal-500 pl-4">
+                                "Recognized as 'Ai2i Icon' for excellence in AI/ML skills and capability development."
+                            </p>
+
+                            <div class="space-y-6">
+                                <h4 class="text-sm uppercase tracking-wider text-gray-400 font-bold">Key Achievements
+                                </h4>
+                                <ul class="space-y-4">
+                                    <li class="flex items-start">
+                                        <span
+                                            class="flex-shrink-0 w-6 h-6 rounded-full bg-teal-100 text-teal-600 flex items-center justify-center mr-3 mt-1">✓</span>
+                                        <span class="text-gray-700"><strong>Investment Optimizer:</strong> Boosted
+                                            marketing profits by ~6% for Fortune 500 client.</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span
+                                            class="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mr-3 mt-1">✓</span>
+                                        <span class="text-gray-700"><strong>Sales Target Estimation:</strong> Reduced
+                                            target gap by ~30% via life cycle analysis.</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span
+                                            class="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center mr-3 mt-1">✓</span>
+                                        <span class="text-gray-700"><strong>Market Mix Modelling:</strong> Justified
+                                            $20M+ marketing spend through attribution modeling.</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span
+                                            class="flex-shrink-0 w-6 h-6 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center mr-3 mt-1">👥</span>
+                                        <span class="text-gray-700"><strong>Mentorship:</strong> Trained ~450+
+                                            individuals in AI/ML & SQL. Led SCaLa training.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -174,32 +482,97 @@
         <section id="skills" class="py-20">
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl font-bold text-center section-title mb-4">Core Competencies</h2>
-                <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">A blend of technical expertise and strategic thinking, enabling data-driven solutions and effective product management.</p>
-                
-                <div class="grid md:grid-cols-2 gap-16 items-start">
-                    <div>
-                        <h3 class="text-2xl font-bold text-center text-gray-800 mb-6">Technical Skills</h3>
-                        <div class="flex flex-wrap justify-center gap-2">
-                            <span class="bg-gray-200 text-gray-700 text-sm font-medium px-4 py-2 rounded-full">Python</span>
-                            <span class="bg-gray-200 text-gray-700 text-sm font-medium px-4 py-2 rounded-full">SQL</span>
-                            <span class="bg-gray-200 text-gray-700 text-sm font-medium px-4 py-2 rounded-full">Machine Learning</span>
-                            <span class="bg-gray-200 text-gray-700 text-sm font-medium px-4 py-2 rounded-full">Artificial Intelligence</span>
-                            <span class="bg-gray-200 text-gray-700 text-sm font-medium px-4 py-2 rounded-full">LLMs</span>
-                            <span class="bg-gray-200 text-gray-700 text-sm font-medium px-4 py-2 rounded-full">Tableau</span>
-                            <span class="bg-gray-200 text-gray-700 text-sm font-medium px-4 py-2 rounded-full">Excel</span>
-                            <span class="bg-gray-200 text-gray-700 text-sm font-medium px-4 py-2 rounded-full">Product Analytics</span>
-                            <span class="bg-gray-200 text-gray-700 text-sm font-medium px-4 py-2 rounded-full">Data Storytelling</span>
+                <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">A blend of technical expertise and
+                    strategic thinking, enabling data-driven solutions and effective product management.</p>
+
+                <div class="grid lg:grid-cols-2 gap-12 items-stretch">
+                    <!-- Technical Skills -->
+                    <div class="glass-panel p-8 rounded-3xl animate-fade-in-up">
+                        <div class="flex items-center mb-8">
+                            <div
+                                class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-2xl mr-4">
+                                💻</div>
+                            <h3 class="text-2xl font-bold text-gray-800">Technical Arsenal</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-3">
+                            <span
+                                class="px-4 py-2 rounded-xl bg-white border border-gray-200 text-gray-700 font-medium shadow-sm hover:shadow-md hover:border-blue-400 hover:text-blue-600 transition-all cursor-default transform hover:-translate-y-1">Python</span>
+                            <span
+                                class="px-4 py-2 rounded-xl bg-white border border-gray-200 text-gray-700 font-medium shadow-sm hover:shadow-md hover:border-blue-400 hover:text-blue-600 transition-all cursor-default transform hover:-translate-y-1">SQL</span>
+                            <span
+                                class="px-4 py-2 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-medium shadow-lg transform hover:scale-105 transition-all cursor-default">Machine
+                                Learning</span>
+                            <span
+                                class="px-4 py-2 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-medium shadow-lg transform hover:scale-105 transition-all cursor-default">GenAI</span>
+                            <span
+                                class="px-4 py-2 rounded-xl bg-white border border-gray-200 text-gray-700 font-medium shadow-sm hover:shadow-md hover:border-blue-400 hover:text-blue-600 transition-all cursor-default transform hover:-translate-y-1">Artificial
+                                Intelligence</span>
+                            <span
+                                class="px-4 py-2 rounded-xl bg-white border border-gray-200 text-gray-700 font-medium shadow-sm hover:shadow-md hover:border-blue-400 hover:text-blue-600 transition-all cursor-default transform hover:-translate-y-1">LLMs</span>
+                            <span
+                                class="px-4 py-2 rounded-xl bg-white border border-gray-200 text-gray-700 font-medium shadow-sm hover:shadow-md hover:border-blue-400 hover:text-blue-600 transition-all cursor-default transform hover:-translate-y-1">Tableau</span>
+                            <span
+                                class="px-4 py-2 rounded-xl bg-white border border-gray-200 text-gray-700 font-medium shadow-sm hover:shadow-md hover:border-blue-400 hover:text-blue-600 transition-all cursor-default transform hover:-translate-y-1">Excel</span>
+                            <span
+                                class="px-4 py-2 rounded-xl bg-white border border-gray-200 text-gray-700 font-medium shadow-sm hover:shadow-md hover:border-blue-400 hover:text-blue-600 transition-all cursor-default transform hover:-translate-y-1">Product
+                                Analytics</span>
+                            <span
+                                class="px-4 py-2 rounded-xl bg-white border border-gray-200 text-gray-700 font-medium shadow-sm hover:shadow-md hover:border-blue-400 hover:text-blue-600 transition-all cursor-default transform hover:-translate-y-1">Data
+                                Storytelling</span>
                         </div>
                     </div>
-                    <div>
-                        <h3 class="text-2xl font-bold text-center text-gray-800 mb-6">Professional Skills</h3>
+
+                    <!-- Professional Skills -->
+                    <div class="glass-panel p-8 rounded-3xl animate-fade-in-up animation-delay-200">
+                        <div class="flex items-center mb-8">
+                            <div
+                                class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-2xl mr-4">
+                                🚀</div>
+                            <h3 class="text-2xl font-bold text-gray-800">Professional Superpowers</h3>
+                        </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div class="flex items-center space-x-3 text-gray-700"><span class="text-2xl">✨</span><span class="font-medium">Product Management</span></div>
-                            <div class="flex items-center space-x-3 text-gray-700"><span class="text-2xl">🤝</span><span class="font-medium">Client Engagement</span></div>
-                            <div class="flex items-center space-x-3 text-gray-700"><span class="text-2xl">🚀</span><span class="font-medium">Strategic Planning</span></div>
-                            <div class="flex items-center space-x-3 text-gray-700"><span class="text-2xl">🧠</span><span class="font-medium">Problem Solving</span></div>
-                            <div class="flex items-center space-x-3 text-gray-700"><span class="text-2xl">🗣️</span><span class="font-medium">Communication</span></div>
-                            <div class="flex items-center space-x-3 text-gray-700"><span class="text-2xl">📈</span><span class="font-medium">Leadership</span></div>
+                            <div
+                                class="p-4 rounded-xl bg-white/50 border border-gray-100 hover:bg-white hover:shadow-lg transition-all group">
+                                <div class="flex items-center space-x-3 mb-1">
+                                    <span class="text-xl group-hover:scale-125 transition-transform">✨</span>
+                                    <span class="font-bold text-gray-800">Product Management</span>
+                                </div>
+                            </div>
+                            <div
+                                class="p-4 rounded-xl bg-white/50 border border-gray-100 hover:bg-white hover:shadow-lg transition-all group">
+                                <div class="flex items-center space-x-3 mb-1">
+                                    <span class="text-xl group-hover:scale-125 transition-transform">🤝</span>
+                                    <span class="font-bold text-gray-800">Client Engagement</span>
+                                </div>
+                            </div>
+                            <div
+                                class="p-4 rounded-xl bg-white/50 border border-gray-100 hover:bg-white hover:shadow-lg transition-all group">
+                                <div class="flex items-center space-x-3 mb-1">
+                                    <span class="text-xl group-hover:scale-125 transition-transform">📈</span>
+                                    <span class="font-bold text-gray-800">Strategic Planning</span>
+                                </div>
+                            </div>
+                            <div
+                                class="p-4 rounded-xl bg-white/50 border border-gray-100 hover:bg-white hover:shadow-lg transition-all group">
+                                <div class="flex items-center space-x-3 mb-1">
+                                    <span class="text-xl group-hover:scale-125 transition-transform">🧠</span>
+                                    <span class="font-bold text-gray-800">Problem Solving</span>
+                                </div>
+                            </div>
+                            <div
+                                class="p-4 rounded-xl bg-white/50 border border-gray-100 hover:bg-white hover:shadow-lg transition-all group">
+                                <div class="flex items-center space-x-3 mb-1">
+                                    <span class="text-xl group-hover:scale-125 transition-transform">🗣️</span>
+                                    <span class="font-bold text-gray-800">Communication</span>
+                                </div>
+                            </div>
+                            <div
+                                class="p-4 rounded-xl bg-white/50 border border-gray-100 hover:bg-white hover:shadow-lg transition-all group">
+                                <div class="flex items-center space-x-3 mb-1">
+                                    <span class="text-xl group-hover:scale-125 transition-transform">♔</span>
+                                    <span class="font-bold text-gray-800">Leadership</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -207,60 +580,71 @@
         </section>
 
         <section id="projects" class="py-20 bg-white">
-            <div class="container mx-auto px-6">
+            <div class="container mx-auto px-6 relative">
                 <h2 class="text-3xl font-bold text-center section-title mb-12">Impactful Projects</h2>
-                <div class="flex flex-wrap justify-center space-x-2 mb-8">
-                    <button data-tag="all" class="filter-button active bg-gray-200 text-gray-700 hover:bg-gray-300 text-sm font-medium py-2 px-4 rounded-full transition-colors duration-200">All</button>
-                    <button data-tag="AI" class="filter-button bg-gray-200 text-gray-700 hover:bg-gray-300 text-sm font-medium py-2 px-4 rounded-full transition-colors duration-200">AI</button>
-                    <button data-tag="ML" class="filter-button bg-gray-200 text-gray-700 hover:bg-gray-300 text-sm font-medium py-2 px-4 rounded-full transition-colors duration-200">ML</button>
-                    <button data-tag="Product" class="filter-button bg-gray-200 text-gray-700 hover:bg-gray-300 text-sm font-medium py-2 px-4 rounded-full transition-colors duration-200">Product</button>
-                    <button data-tag="Training" class="filter-button bg-gray-200 text-gray-700 hover:bg-gray-300 text-sm font-medium py-2 px-4 rounded-full transition-colors duration-200">Training</button>
-                    <button data-tag="Analytics" class="filter-button bg-gray-200 text-gray-700 hover:bg-gray-300 text-sm font-medium py-2 px-4 rounded-full transition-colors duration-200">Analytics</button>
+                <div class="flex flex-wrap justify-center gap-3 mb-12 animate-fade-in-up">
+                    <button data-tag="all"
+                        class="filter-button active px-6 py-2 rounded-full text-sm font-bold transition-all bg-white text-gray-600 hover:bg-blue-50 border border-gray-200">All</button>
+                    <button data-tag="AI"
+                        class="filter-button px-6 py-2 rounded-full text-sm font-bold transition-all bg-white text-gray-600 hover:bg-blue-50 border border-gray-200">AI</button>
+                    <button data-tag="ML"
+                        class="filter-button px-6 py-2 rounded-full text-sm font-bold transition-all bg-white text-gray-600 hover:bg-blue-50 border border-gray-200">ML</button>
+                    <button data-tag="Product"
+                        class="filter-button px-6 py-2 rounded-full text-sm font-bold transition-all bg-white text-gray-600 hover:bg-blue-50 border border-gray-200">Product</button>
+                    <button data-tag="Training"
+                        class="filter-button px-6 py-2 rounded-full text-sm font-bold transition-all bg-white text-gray-600 hover:bg-blue-50 border border-gray-200">Training</button>
+                    <button data-tag="Analytics"
+                        class="filter-button px-6 py-2 rounded-full text-sm font-bold transition-all bg-white text-gray-600 hover:bg-blue-50 border border-gray-200">Analytics</button>
                 </div>
-                <div id="projects-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <div class="relative group px-4 md:px-12">
+                    <!-- Project Nav Buttons -->
+                    <button id="prev-project"
+                        class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg z-20 transition-all opacity-0 group-hover:opacity-100 disabled:opacity-0 focus:outline-none border border-gray-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                    <button id="next-project"
+                        class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg z-20 transition-all opacity-0 group-hover:opacity-100 disabled:opacity-0 focus:outline-none border border-gray-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+
+                    <div id="projects-container"
+                        class="grid grid-flow-col auto-cols-[320px] gap-6 px-4 pb-8 pt-2 no-scrollbar scroll-smooth snap-x snap-mandatory items-stretch overflow-x-auto">
+                    </div>
                 </div>
             </div>
         </section>
-        
-        <section id="accolades" class="py-20">
-            <div class="container mx-auto px-6">
+
+        <section id="accolades" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6 relative">
                 <h2 class="text-3xl font-bold text-center section-title mb-12">Recognition & Achievements</h2>
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 text-center">
-                    <div class="bg-white p-6 rounded-lg shadow-md cursor-pointer" onclick="showModal('acn-ds-star')">
-                        <!-- Replace this placeholder URL with a URL to your Accenture logo -->
-                        <img src="assets/generic_logos/acn_logo.png" alt="Accenture Logo" class="w-12 h-12 rounded-sm mx-auto mb-2">
-                        <h3 class="font-bold text-lg">Top 20% Data Scientist</h3>
-                        <p class="text-sm text-gray-500">Accenture</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md cursor-pointer" onclick="showModal('bridgei2i-ai2i')">
-                         <!-- Replace this placeholder URL with a URL to your BRIDGEi2i logo -->
-                        <img src="assets/generic_logos/bridgei2i_logo.jpeg" alt="BRIDGEi2i Logo" class="w-20 h-20 rounded-sm mx-auto mb-2">
-                        <h3 class="font-bold text-lg">Ai2i Icon Award</h3>
-                        <p class="text-sm text-gray-500">BRIDGEi2i</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <!-- Replace this placeholder URL with a URL to your BITSOM logo -->
-                        <img src="assets/generic_logos/bitsom_logo.png" alt="BITSoM Logo" class="w-12 h-18 rounded-sm mx-auto mb-2">
-                        <h3 class="font-bold text-lg">1st Rank in MBA Cohort</h3>
-                        <p class="text-sm text-gray-500">BITS School of Management</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <!-- Replace this placeholder URL with a URL to your IJMERT logo -->
-                        <img src="https://placehold.co/48x48/F8F7F4/2c3e50?text=I" alt="IJMERT Logo" class="w-12 h-12 rounded-full mx-auto mb-2">
-                        <h3 class="font-bold text-lg">Published Research Paper</h3>
-                        <p class="text-sm text-gray-500">IJMERT International Journal</p>
-                    </div>
-                     <div class="bg-white p-6 rounded-lg shadow-md cursor-pointer" onclick="showModal('bridgei2i-awards')">
-                        <!-- Replace this placeholder URL with a URL to your BRIDGEi2i logo -->
-                        <img src="assets/generic_logos/bridgei2i_logo.jpeg" alt="BRIDGEi2i Logo" class="w-20 h-20 rounded-sm mx-auto mb-2">
-                        <h3 class="font-bold text-lg">Team & Torch Bearer Award</h3>
-                        <p class="text-sm text-gray-500">BRIDGEi2i</p>
-                    </div>
-                     <div class="bg-white p-6 rounded-lg shadow-md">
-                        <!-- Replace this placeholder URL with a URL to your MUN logo -->
-                        <img src="https://placehold.co/48x48/F8F7F4/2c3e50?text=M" alt="Model UN Logo" class="w-12 h-12 rounded-full mx-auto mb-2">
-                        <h3 class="font-bold text-lg">Model UN Champion</h3>
-                        <p class="text-sm text-gray-500">6+ Awards as Delegate</p>
+
+                <div class="relative group px-4 md:px-12">
+                    <!-- Navigation Buttons -->
+                    <button id="prev-accolade"
+                        class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg z-20 transition-all opacity-0 group-hover:opacity-100 disabled:opacity-0 focus:outline-none border border-gray-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                    <button id="next-accolade"
+                        class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg z-20 transition-all opacity-0 group-hover:opacity-100 disabled:opacity-0 focus:outline-none border border-gray-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+
+                    <div id="accolades-container"
+                        class="grid grid-flow-col auto-cols-[280px] gap-6 px-4 pb-8 pt-2 no-scrollbar scroll-smooth snap-x snap-mandatory items-stretch overflow-x-auto">
+                        <!-- Dynamically populated via JS -->
                     </div>
                 </div>
             </div>
@@ -271,24 +655,36 @@
                 <h2 class="text-3xl font-bold text-center section-title mb-12">Endorsements & Testimonials</h2>
                 <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                     <div class="bg-gray-50 p-6 rounded-lg shadow-md border-l-4 border-blue-500">
-                        <p class="text-gray-700 mb-4 italic">"Anirudh is an excellent collaborator and communicator... he has consistently demonstrated a strong sense of teamwork, actively contributing to a positive and collaborative work environment."</p>
+                        <p class="text-gray-700 mb-4 italic">"Anirudh is an excellent collaborator and communicator...
+                            he has consistently demonstrated a strong sense of teamwork, actively contributing to a
+                            positive and collaborative work environment."</p>
                         <p class="text-gray-900 font-bold">- Akanksha Jain, Manager - Infosys</p>
                     </div>
                     <div class="bg-gray-50 p-6 rounded-lg shadow-md border-l-4 border-blue-500">
-                        <p class="text-gray-700 mb-4 italic">"He is a highly skilled data scientist at asking pertinent questions and eliminating noise. He excels in detail and oriented explanation of any problem and its solution. He has an exceptional grasp of applied mathematics..."</p>
+                        <p class="text-gray-700 mb-4 italic">"He is a highly skilled data scientist at asking pertinent
+                            questions and eliminating noise. He excels in detail and oriented explanation of any problem
+                            and its solution. He has an exceptional grasp of applied mathematics..."</p>
                         <p class="text-gray-900 font-bold">- Hemanshu Saraf, Data Scientist - EPAM</p>
                     </div>
-                     <div class="bg-gray-50 p-6 rounded-lg shadow-md border-l-4 border-blue-500">
-                        <p class="text-gray-700 mb-4 italic">"I admire his thought leadership and structured approach towards any business problem. He is equally well-equipped with technical excellence, which has helped him prove himself to be a very big asset to the company."</p>
-                        <p class="text-gray-900 font-bold">- Ashmita Sen Gupta, Associate Manager Data Science - Accenture</p>
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border-l-4 border-blue-500">
+                        <p class="text-gray-700 mb-4 italic">"I admire his thought leadership and structured approach
+                            towards any business problem. He is equally well-equipped with technical excellence, which
+                            has helped him prove himself to be a very big asset to the company."</p>
+                        <p class="text-gray-900 font-bold">- Ashmita Sen Gupta, Associate Manager Data Science -
+                            Accenture</p>
                     </div>
-                     <div class="bg-gray-50 p-6 rounded-lg shadow-md border-l-4 border-blue-500">
-                        <p class="text-gray-700 mb-4 italic">"I've teamed up with Aniruddh for over 2 years... he's consistently wowed the senior leadership with his relentless pursuit of client satisfaction and top-tier delivery... he's the ultimate team player."</p>
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border-l-4 border-blue-500">
+                        <p class="text-gray-700 mb-4 italic">"I've teamed up with Aniruddh for over 2 years... he's
+                            consistently wowed the senior leadership with his relentless pursuit of client satisfaction
+                            and top-tier delivery... he's the ultimate team player."</p>
                         <p class="text-gray-900 font-bold">- Subhajit Debnath, Project Manager - Munich Re</p>
                     </div>
                 </div>
                 <div class="mt-8 text-center">
-                    <a href="https://www.linkedin.com/in/anirudh-nanduri/details/recommendations/?detailScreenTabIndex=0" target="_blank" class="cta-button inline-block bg-gray-700 hover:bg-gray-800 text-white font-bold py-3 px-6 rounded-lg shadow-lg">View All Recommendations on LinkedIn</a>
+                    <a href="https://www.linkedin.com/in/anirudh-nanduri/details/recommendations/?detailScreenTabIndex=0"
+                        target="_blank"
+                        class="cta-button inline-block bg-gray-700 hover:bg-gray-800 text-white font-bold py-3 px-6 rounded-lg shadow-lg">View
+                        All Recommendations on LinkedIn</a>
                 </div>
             </div>
         </section>
@@ -296,15 +692,20 @@
         <section id="contact" class="py-20 bg-gray-800 text-white">
             <div class="container mx-auto px-6 text-center">
                 <h2 class="text-3xl font-bold mb-4">Let's Connect</h2>
-                <p class="text-lg text-gray-300 max-w-xl mx-auto mb-8">I'm always open to discussing new projects, creative ideas, or opportunities to be part of an ambitious team. Feel free to reach out directly or connect with me on LinkedIn.</p>
+                <p class="text-lg text-gray-300 max-w-xl mx-auto mb-8">I'm always open to discussing new projects,
+                    creative ideas, or opportunities to be part of an ambitious team. Feel free to reach out directly or
+                    connect with me on LinkedIn.</p>
                 <div class="flex justify-center space-x-4">
-                    <a href="mailto:nvpsani@gmail.com" class="cta-button bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-8 rounded-lg text-lg shadow-lg">Direct Email</a>
-                    <a href="https://www.linkedin.com/in/anirudh-nanduri/" target="_blank" class="cta-button bg-gray-700 hover:bg-gray-800 text-white font-bold py-4 px-8 rounded-lg text-lg shadow-lg">LinkedIn</a>
+                    <a href="mailto:nvpsani@gmail.com"
+                        class="cta-button bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-8 rounded-lg text-lg shadow-lg">Direct
+                        Email</a>
+                    <a href="https://www.linkedin.com/in/anirudh-nanduri/" target="_blank"
+                        class="cta-button bg-gray-700 hover:bg-gray-800 text-white font-bold py-4 px-8 rounded-lg text-lg shadow-lg">LinkedIn</a>
                 </div>
             </div>
         </section>
     </main>
-    
+
     <footer class="bg-gray-900 text-gray-400 py-6">
         <div class="container mx-auto px-6 text-center">
             <p>&copy; 2025 Anirudh Nanduri. All Rights Reserved.</p>
@@ -312,16 +713,27 @@
     </footer>
 
     <div id="modal" class="modal">
-      <div class="modal-content">
-        <span class="close-button">&times;</span>
-        <h3 id="modal-title" class="text-2xl font-bold mb-4"></h3>
-        <p id="modal-text" class="text-gray-700 mb-4"></p>
-	<div id="modal-link"></div>
-      </div>
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 id="modal-title" class="text-2xl font-bold mb-4"></h3>
+            <p id="modal-text" class="text-gray-700 mb-4"></p>
+            <div id="modal-link"></div>
+        </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        // Disable Right Click Globally
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        // Disable Ctrl+P / Cmd+P
+        document.addEventListener('keydown', function (e) {
+            if ((e.ctrlKey || e.metaKey) && (e.key === 'p' || e.key === 'P')) {
+                e.preventDefault();
+                alert('Printing is disabled for this website.');
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             const modal = document.getElementById('modal');
@@ -334,47 +746,82 @@
 
             const projects = [
                 {
-                    title: "Product Recommendation Engine",
-                    description: "Developed a recommender system that significantly streamlined the user journey, reducing product selection time by ~65% and enhancing customer satisfaction.",
+                    title: "Counterfeit Detection System",
+                    description: "Led development of AI/ML model preventing ~$1B+ business loss. Created rules engine reducing identification time by Experts by ~90%.",
                     tags: ["AI", "ML", "Product"]
                 },
                 {
-                    title: "ESG Power Savings Model",
-                    description: "Created a high-accuracy ML model (~90%) to predict energy consumption, directly supporting client's ESG initiatives and identifying substantial power savings.",
+                    title: "Product Recommendation Engine",
+                    description: "Owned development of recommender algorithm reducing user product selection time by ~65% and enhancing customer satisfaction.",
+                    tags: ["AI", "ML", "Product"]
+                },
+                {
+                    title: "Investment Budget Optimizer",
+                    description: "Developed B2B budget optimization algorithms boosting marketing profits by ~6% and halving decision-making time for a Fortune 500 client.",
                     tags: ["ML", "Analytics"]
+                },
+                {
+                    title: "ESG Power Savings Model",
+                    description: "Built high-accuracy (~90%) ML model to predict switch user count, directly supporting ESG initiatives and identifying substantial power savings.",
+                    tags: ["ML", "Analytics"]
+                },
+                {
+                    title: "Commercial Excellence Automation",
+                    description: "Accelerated secondary sales validation by 4–5x by automating ERP data extraction, reducing vendor reliance and strengthening governance.",
+                    tags: ["Analytics", "Product"]
                 },
                 {
                     title: "AI-Powered Chatbot",
-                    description: "Built an intelligent chatbot to provide instant product recommendations, resulting in an 85% improvement in response time and a more efficient user experience.",
+                    description: "Built an intelligent chatbot for instant product recommendations, improving response time and user experience by ~85%.",
                     tags: ["AI", "Product"]
                 },
                 {
-                    title: "Lead Generation Model",
-                    description: "Engineered a propensity model that increased qualified lead generation by 35% for a top technology client by identifying high-potential customers.",
+                    title: "Sales Target Estimation",
+                    description: "Analyzed product life cycle for revenue prediction, reducing target gap by ~30%. Developed VBA tool reducing support manpower by ~95%.",
+                    tags: ["Analytics", "Product"]
+                },
+                {
+                    title: "Lead Generation Propensity",
+                    description: "Engineered a propensity model increasing qualified lead generation by 35% for a top technology client.",
                     tags: ["ML", "Analytics"]
                 },
                 {
-                    title: "Product Adoption Risk Framework",
-                    description: "Designed a risk assessment framework based on warranty, vulnerability, and lifecycle data, which led to a 20% increase in the adoption of new products.",
-                    tags: ["Product", "Analytics"]
-                },
-                {
-                    title: "Training & Mentorship Programs",
-                    description: "Led company-wide training initiatives, upskilling over 450 individuals in areas like Excel, SQL, and Machine Learning, fostering a data-literate culture.",
+                    title: "Training & Mentorship",
+                    description: "Led company-wide training initiatives (SCaLa Lead), upskilling over 450+ individuals in AI/ML, Excel, and SQL.",
                     tags: ["Training", "Leadership"]
                 }
             ];
 
             function renderProjects(projectsToRender) {
                 projectsContainer.innerHTML = '';
-                projectsToRender.forEach(project => {
+                projectsToRender.forEach((project, index) => {
                     const card = document.createElement('div');
-                    card.className = 'bg-gray-50 p-6 rounded-lg shadow-md';
+                    // Reformatted for Grid Carousel: Height handled by Grid, Width handled by auto-cols
+                    card.className = `glass-panel p-6 rounded-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl opacity-0 animate-fade-in-up h-full snap-center flex flex-col`;
+                    card.style.animationDelay = `${index * 100}ms`;
+
+                    const tagColors = {
+                        'AI': 'text-purple-600 bg-purple-100',
+                        'ML': 'text-blue-600 bg-blue-100',
+                        'Product': 'text-orange-600 bg-orange-100',
+                        'Analytics': 'text-green-600 bg-green-100',
+                        'Training': 'text-teal-600 bg-teal-100',
+                        'Leadership': 'text-red-600 bg-red-100'
+                    };
+
+                    const defaultColor = 'text-gray-600 bg-gray-100';
+
                     card.innerHTML = `
-                        <h3 class="text-xl font-bold mb-2">${project.title}</h3>
-                        <p class="text-gray-600">${project.description}</p>
-                        <div class="mt-4 flex flex-wrap gap-2">
-                            ${project.tags.map(tag => `<span data-tag="${tag}" class="project-tag bg-gray-200 text-gray-700 text-xs font-medium px-2 py-1 rounded-full cursor-pointer">${tag}</span>`).join('')}
+                        <div class="flex flex-col h-full">
+                            <h3 class="text-lg font-bold mb-2 text-gray-800">${project.title}</h3>
+                            <p class="text-sm text-gray-600 mb-4 flex-grow leading-relaxed">${project.description}</p>
+                            <div class="flex flex-wrap gap-2 mt-auto">
+                                ${project.tags.map(tag => `
+                                    <span data-tag="${tag}" class="project-tag ${tagColors[tag] || defaultColor} text-[10px] font-bold px-2 py-1 rounded-full cursor-pointer hover:opacity-80 transition-opacity">
+                                        ${tag}
+                                    </span>
+                                `).join('')}
+                            </div>
                         </div>
                     `;
                     projectsContainer.appendChild(card);
@@ -411,15 +858,26 @@
 
             renderProjects(projects);
 
+            // Project Scroll Logic
+            const prevProjectBtn = document.getElementById('prev-project');
+            const nextProjectBtn = document.getElementById('next-project');
+
+            prevProjectBtn.addEventListener('click', () => {
+                projectsContainer.scrollBy({ left: -340, behavior: 'smooth' });
+            });
+            nextProjectBtn.addEventListener('click', () => {
+                projectsContainer.scrollBy({ left: 340, behavior: 'smooth' });
+            });
+
 
             mobileMenuButton.addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
             });
 
             const navLinks = document.querySelectorAll('#header a[href^="#"]');
-            
+
             navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
+                link.addEventListener('click', function (e) {
                     e.preventDefault();
                     const targetId = this.getAttribute('href').substring(1);
                     const targetElement = document.getElementById(targetId);
@@ -464,65 +922,293 @@
                 console.log("Resume download functionality would be implemented here.");
             });
 
-            const accoladesData = {
-                'acn-ds-star': {
-                    title: 'Accenture Top Data Scientist & STAR Award',
-                    text: 'Recognition for being among the top 20% of data scientists globally and receiving the coveted STAR award for performance.',
-                    link: 'uploaded:ACN_Certificates_&_Top_Data_Scientist.pdf'
+            const accoladesContainer = document.getElementById('accolades-container');
+            const prevButton = document.getElementById('prev-accolade');
+            const nextButton = document.getElementById('next-accolade');
+
+            // Order: BITSoM -> Accenture -> BRIDGEi2i -> IJMERT
+            const accoladesData = [
+                // BITSoM
+                {
+                    id: 'merit-list',
+                    title: 'Merit List Certificate',
+                    organization: 'BITS School of Management',
+                    logo: 'assets/generic_logos/bitsom_logo.png',
+                    description: 'Awarded for outstanding academic performance (Top Rank).',
+                    file: 'assets/accolades/MERIT_LIST_CERTIFICATE.pdf',
+                    orientation: 'landscape'
                 },
-                'bridgei2i-ai2i': {
-                    title: 'BRIDGEi2i Ai2i Icon Award',
-                    text: 'Recognized as an Ai2i Icon for competence in AI/ML skills and excellence in capability development.',
-                    link: 'assets/accolades/Ai2i_Letter.pdf'
+
+                // Accenture
+                {
+                    id: 'acn-teaching',
+                    title: 'Teaching & Mentoring',
+                    organization: 'Accenture',
+                    logo: 'assets/generic_logos/acn_logo.png',
+                    description: 'Certificate of Appreciation for conducting training sessions.',
+                    file: 'assets/accolades/ACN_Teaching_Certificate.pdf',
+                    orientation: 'landscape'
                 },
-                'bridgei2i-awards': {
-                    title: 'BRIDGEi2i Team & Torch Bearer Awards',
-                    text: 'Received the SPOT, Team, and Torch Bearer awards for outstanding performance and contributions to projects.',
-                    link: 'uploaded:Bi2i_Certificates_&Ai2i_Merged.pdf'
+                {
+                    id: 'spot-award',
+                    title: 'Spot Award',
+                    organization: 'Accenture',
+                    logo: 'assets/generic_logos/acn_logo.png',
+                    description: 'Instant recognition for going above and beyond in delivery.',
+                    file: 'assets/accolades/Spot Award.pdf',
+                    orientation: 'landscape'
+                },
+                {
+                    id: 'innovate-ruchik',
+                    title: 'Actively Innovate Award',
+                    organization: 'Accenture',
+                    logo: 'assets/generic_logos/acn_logo.png',
+                    description: 'Recognition for innovative contributions to projects.',
+                    file: 'assets/accolades/Actively_Innovate_Ruchik.pdf',
+                    orientation: 'landscape'
+                },
+                {
+                    id: 'is-elite',
+                    title: 'IS Elite Certificate',
+                    organization: 'Accenture',
+                    logo: 'assets/generic_logos/acn_logo.png',
+                    description: 'Recognized as an IS Elite Advocate for high performance.',
+                    file: 'assets/accolades/IS Elite Certificate.pdf',
+                    orientation: 'landscape'
+                },
+                {
+                    id: 'ashmita-stewardship',
+                    title: 'Stewardship Award',
+                    organization: 'Accenture',
+                    logo: 'assets/generic_logos/acn_logo.png',
+                    description: 'Recognized for stewardship and fostering a supportive environment.',
+                    file: 'assets/accolades/ashmita_stewardship.pdf',
+                    orientation: 'landscape'
+                },
+                {
+                    id: 'care-deeply',
+                    title: 'Care Deeply Award',
+                    organization: 'Accenture',
+                    logo: 'assets/generic_logos/acn_logo.png',
+                    description: 'Award for demonstrating empathy and deep care for the team.',
+                    file: 'assets/accolades/care_deeply_ruchik.pdf',
+                    orientation: 'landscape'
+                },
+                {
+                    id: 'cool-collaborator',
+                    title: 'Cool Collaborator & Star',
+                    organization: 'Accenture',
+                    logo: 'assets/generic_logos/acn_logo.png',
+                    description: 'Dual recognition for exceptional collaboration and star performance.',
+                    file: 'assets/accolades/cool_collaborator_star_award.pdf',
+                    orientation: 'landscape'
+                },
+
+                // BRIDGEi2i
+                {
+                    id: 'ai2i-icon',
+                    title: 'Ai2i Icon Award',
+                    organization: 'BRIDGEi2i',
+                    logo: 'assets/generic_logos/bridgei2i_logo.jpeg',
+                    description: 'Prestigious award for excellence in AI/ML capabilities.',
+                    file: 'assets/accolades/Ai2i_Letter.pdf',
+                    orientation: 'portrait'
+                },
+                {
+                    id: 'bu-torch-bearer',
+                    title: 'Torch Bearer Award',
+                    organization: 'BRIDGEi2i',
+                    logo: 'assets/generic_logos/bridgei2i_logo.jpeg',
+                    description: 'Awarded for exemplary leadership and guidance.',
+                    file: 'assets/accolades/BU_Torch_Bearer.pdf',
+                    orientation: 'landscape'
+                },
+                {
+                    id: 'scala-annual',
+                    title: 'ScaLa Annual Award',
+                    organization: 'BRIDGEi2i',
+                    logo: 'assets/generic_logos/bridgei2i_logo.jpeg',
+                    description: 'Annual recognition for significant contributions.',
+                    file: 'assets/accolades/ScaLa_Annual_Award.pdf',
+                    orientation: 'landscape'
+                },
+                {
+                    id: 'client-value',
+                    title: 'Client Value Creation',
+                    organization: 'BRIDGEi2i',
+                    logo: 'assets/generic_logos/bridgei2i_logo.jpeg',
+                    description: 'Recognition for delivering significant value to the client.',
+                    file: 'assets/accolades/Client_Value_Creation_Sanjeev.pdf',
+                    orientation: 'landscape'
+                },
+                {
+                    id: 'senior-appreciation',
+                    title: 'Senior Appreciation',
+                    organization: 'BRIDGEi2i',
+                    logo: 'assets/generic_logos/bridgei2i_logo.jpeg',
+                    description: 'Special appreciation from senior leadership for project impact.',
+                    file: 'assets/accolades/Hemanshu_Senior_Appreciation_Award.pdf',
+                    orientation: 'portrait'
+                },
+                {
+                    id: 'mmm-team',
+                    title: 'MMM Team Award',
+                    organization: 'BRIDGEi2i',
+                    logo: 'assets/generic_logos/bridgei2i_logo.jpeg',
+                    description: 'Team award for successful project delivery and collaboration.',
+                    file: 'assets/accolades/MMM_Team_Award.pdf',
+                    orientation: 'landscape'
+                },
+
+                // Research
+                {
+                    id: 'research-paper',
+                    title: 'Published Research Paper',
+                    organization: 'IJMERT',
+                    logo: 'https://placehold.co/48x48/F8F7F4/2c3e50?text=I',
+                    description: 'Research publication in International Journal of Engineering Research & Technology.',
+                    file: 'assets/accolades/Research_Paper.pdf',
+                    orientation: 'portrait'
                 }
+            ];
+
+
+
+            function renderAccolades() {
+                accoladesContainer.innerHTML = '';
+                // Render ALL items for carousel
+                accoladesData.forEach((item, index) => {
+                    const card = document.createElement('div');
+                    // Reformatted for Grid Carousel: Width handled by auto-cols
+                    card.className = 'glass-panel p-6 rounded-2xl cursor-pointer hover:shadow-2xl hover:bg-white transition-all duration-500 transform hover:-translate-y-2 flex flex-col items-center justify-between h-full group relative overflow-hidden snap-center';
+                    card.style.animation = `fadeInUp 0.5s ease-out forwards ${index * 100}ms`;
+                    card.onclick = () => showModal(item.id);
+
+                    // Glossy overlay
+                    const gloss = document.createElement('div');
+                    gloss.className = 'absolute inset-0 bg-gradient-to-tr from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none duration-500';
+                    card.appendChild(gloss);
+
+                    const logoImg = item.logo ? `<img src="${item.logo}" alt="${item.organization} Logo" class="h-10 w-auto object-contain mb-4 filter grayscale group-hover:grayscale-0 transition-all duration-300">` : '';
+
+                    card.innerHTML += `
+                        <div class="flex flex-col items-center text-center w-full z-10">
+                            <div class="h-12 flex items-center justify-center mb-2 w-full">
+                                ${logoImg}
+                            </div>
+                            <h3 class="font-bold text-lg text-gray-800 mb-2 leading-tight group-hover:text-blue-600 transition-colors">${item.title}</h3>
+                            <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">${item.organization}</p>
+                            <p class="text-sm text-gray-500 line-clamp-3 leading-relaxed">${item.description}</p>
+                        </div>
+                        <div class="mt-4 inline-flex items-center text-blue-600 text-sm font-bold opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-10">
+                            View Proof <span class="ml-1">→</span>
+                        </div>
+                    `;
+                    accoladesContainer.appendChild(card);
+                });
+            }
+
+            prevButton.addEventListener('click', () => {
+                accoladesContainer.scrollBy({ left: -300, behavior: 'smooth' });
+            });
+
+            nextButton.addEventListener('click', () => {
+                accoladesContainer.scrollBy({ left: 300, behavior: 'smooth' });
+            });
+
+            window.showModal = function (id) {
+                const item = accoladesData.find(d => d.id === id);
+                if (!item) return;
+
+                modalTitle.textContent = item.title;
+                modalText.textContent = item.description;
+
+                // Consistent Sizing with Compact Layout
+                const isMobile = window.innerWidth < 768;
+                const modalContent = document.querySelector('.modal-content');
+                modalContent.style.width = isMobile ? '95vw' : '80vw'; // 95% on mobile, 80% on desktop
+                modalContent.style.maxWidth = '1000px';
+                modalContent.style.height = isMobile ? '90vh' : '80vh'; // More height on mobile
+                modalContent.style.maxHeight = isMobile ? '90vh' : '80vh';
+                modalContent.style.display = 'flex';
+                modalContent.style.flexDirection = 'column';
+                modalContent.style.padding = '1.5rem';
+                modalContent.style.borderRadius = '1rem';
+                modalContent.style.overflow = 'hidden';
+
+                // Standard, Clean Header with Prominent Close Button
+                const headerHTML = `
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="pr-8">
+                            <h3 id="modal-title" class="text-xl font-bold text-gray-800 leading-tight">${item.title}</h3>
+                            <p id="modal-text" class="text-sm text-gray-600 mt-1">${item.description}</p>
+                        </div>
+                        <button class="modal-close-btn flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-500 hover:bg-red-100 hover:text-red-600 transition-all focus:outline-none shadow-sm hover:shadow-md" aria-label="Close Modal">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                `;
+
+                // Clear existing content and set new structure
+                modalContent.innerHTML = headerHTML + '<div id="modal-link"></div>';
+
+                // Re-bind close button
+                modalContent.querySelector('.modal-close-btn').onclick = function () {
+                    modal.style.display = "none";
+                };
+
+                const modalLinkDiv = modalContent.querySelector('#modal-link');
+                modalLinkDiv.style.flex = '1';
+                modalLinkDiv.style.display = 'flex';
+                modalLinkDiv.style.flexDirection = 'column';
+                modalLinkDiv.style.overflow = 'hidden';
+                modalLinkDiv.style.margin = '0'; // No margin for iframe container
+                modalLinkDiv.style.borderRadius = '0.5rem'; // Slight rounding for the viewer
+                modalLinkDiv.style.border = '1px solid #e5e7eb'; // Subtle border
+                modalLinkDiv.style.backgroundColor = 'white'; // White bg to reduce 'grey space' perception
+
+                // Use #view=FitH to fill width and reduce grey bars
+                modalLinkDiv.innerHTML = `
+                    <div class="relative w-full h-full">
+                         <iframe 
+                            src="${item.file}#toolbar=0&navpanes=0&scrollbar=0&view=FitH" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:none;"
+                            oncontextmenu="return false;"
+                        >
+                        </iframe>
+                        <div 
+                            class="absolute inset-0 z-20 bg-transparent" 
+                            style="pointer-events: none;" 
+                            oncontextmenu="return false;"
+                        ></div> 
+                    </div>
+                `;
+
+                const note = document.createElement('p');
+                note.className = 'text-xs text-center text-gray-400 mt-2 italic';
+                note.textContent = 'Document is in view-only mode.';
+                modalLinkDiv.appendChild(note);
+
+
+
+                modal.style.display = "flex";
             };
 
-            window.showModal = function(awardId) {
-                const data = accoladesData[awardId];
-		
-		if (data) {
-        		modalTitle.textContent = data.title;
-        		modalText.textContent = data.text;
+            // Initial component rendering
+            renderAccolades();
 
-        		if (data.link.toLowerCase().endsWith(".pdf")) {
-           		 // Show PDF inline
-           		 modalLink.innerHTML = `
-              		  <iframe 
-				src="${data.link.replace('uploaded:', 'uploaded/')}#toolbar=0&navpanes=0&scrollbar=1&view=FitH&zoom=100" 
-            			width="100%" 
-            			height="500px" 
-            			style="border:none;"
-            			oncontextmenu="return false;"
-            			ondragstart="return false;"
-            			onselectstart="return false;"
-            			onmousedown="return false;">
-                		</iframe>
-            		`;
-        		} else {
-            		// Show normal link
-            		modalLink.innerHTML = `
-                		<a href="${data.link}" target="_blank" class="text-blue-500 hover:underline">
-                    		View Proof
-                		</a>
-           		 `;
-        		}
 
-        		modal.style.display = "flex";
-    		}
-	    };
-		
-               
 
-            closeButton.onclick = function() {
-                modal.style.display = "none";
-            };
+            // Re-attached inside showModal
+            // closeButton.onclick = function () {
+            //     modal.style.display = "none";
+            // };
 
-            window.onclick = function(event) {
+            window.onclick = function (event) {
                 if (event.target == modal) {
                     modal.style.display = "none";
                 }
@@ -545,4 +1231,5 @@
         }
     </script>
 </body>
+
 </html>
