@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anirudh Nanduri - Data Scientist & Product Enthusiast</title>
+    <title>Anirudh Nanduri | Portfolio</title>
+    <link rel="icon" type="image/png" href="assets/mylogo/logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -360,8 +361,10 @@
         <!-- Experience Section -->
         <section id="experience" class="py-10">
             <div class="container mx-auto px-6 max-w-5xl">
-                <h2 class="text-4xl font-bold text-center mb-16"><span class="gradient-text">Professional Journey</span>
+                <h2 class="text-4xl font-bold text-center mb-2"><span class="gradient-text">Professional Journey</span>
                 </h2>
+                <p class="text-center text-lg text-gray-500 font-medium mb-12">Total 6 Years of Professional Experience
+                </p>
 
                 <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
                     <!-- Tabs -->
@@ -627,7 +630,13 @@
 
         <section id="accolades" class="py-20 bg-gray-50">
             <div class="container mx-auto px-6 relative">
-                <h2 class="text-3xl font-bold text-center section-title mb-12">Recognition & Achievements</h2>
+                <div class="flex flex-col items-center mb-12 relative">
+                    <h2 class="text-3xl font-bold text-center section-title">Recognition & Achievements</h2>
+                    <a href="certificates.html"
+                        class="mt-4 text-blue-600 font-bold hover:text-blue-700 hover:underline flex items-center transition-colors">
+                        View All Certificates <span class="ml-1">→</span>
+                    </a>
+                </div>
 
                 <div class="relative group px-4 md:px-12">
                     <!-- Navigation Buttons -->
@@ -928,8 +937,9 @@
             const nextButton = document.getElementById('next-accolade');
 
             // Order: BITSoM -> Accenture -> BRIDGEi2i -> IJMERT
+            // Order: BITSoM -> Accenture -> BRIDGEi2i -> IJMERT
             const accoladesData = [
-                // BITSoM
+                // Accolades (Main Page = 1)
                 {
                     id: 'merit-list',
                     title: 'Merit List Certificate',
@@ -939,8 +949,6 @@
                     file: 'assets/accolades/MERIT_LIST_CERTIFICATE.pdf',
                     orientation: 'landscape'
                 },
-
-                // Accenture
                 {
                     id: 'acn-teaching',
                     title: 'Teaching & Mentoring',
@@ -948,15 +956,6 @@
                     logo: 'assets/generic_logos/acn_logo.png',
                     description: 'Certificate of Appreciation for conducting training sessions.',
                     file: 'assets/accolades/ACN_Teaching_Certificate.pdf',
-                    orientation: 'landscape'
-                },
-                {
-                    id: 'spot-award',
-                    title: 'Spot Award',
-                    organization: 'Accenture',
-                    logo: 'assets/generic_logos/acn_logo.png',
-                    description: 'Instant recognition for going above and beyond in delivery.',
-                    file: 'assets/accolades/Spot Award.pdf',
                     orientation: 'landscape'
                 },
                 {
@@ -969,33 +968,6 @@
                     orientation: 'landscape'
                 },
                 {
-                    id: 'is-elite',
-                    title: 'IS Elite Certificate',
-                    organization: 'Accenture',
-                    logo: 'assets/generic_logos/acn_logo.png',
-                    description: 'Recognized as an IS Elite Advocate for high performance.',
-                    file: 'assets/accolades/IS Elite Certificate.pdf',
-                    orientation: 'landscape'
-                },
-                {
-                    id: 'ashmita-stewardship',
-                    title: 'Stewardship Award',
-                    organization: 'Accenture',
-                    logo: 'assets/generic_logos/acn_logo.png',
-                    description: 'Recognized for stewardship and fostering a supportive environment.',
-                    file: 'assets/accolades/ashmita_stewardship.pdf',
-                    orientation: 'landscape'
-                },
-                {
-                    id: 'care-deeply',
-                    title: 'Care Deeply Award',
-                    organization: 'Accenture',
-                    logo: 'assets/generic_logos/acn_logo.png',
-                    description: 'Award for demonstrating empathy and deep care for the team.',
-                    file: 'assets/accolades/care_deeply_ruchik.pdf',
-                    orientation: 'landscape'
-                },
-                {
                     id: 'cool-collaborator',
                     title: 'Cool Collaborator & Star',
                     organization: 'Accenture',
@@ -1004,8 +976,6 @@
                     file: 'assets/accolades/cool_collaborator_star_award.pdf',
                     orientation: 'landscape'
                 },
-
-                // BRIDGEi2i
                 {
                     id: 'ai2i-icon',
                     title: 'Ai2i Icon Award',
@@ -1025,6 +995,15 @@
                     orientation: 'landscape'
                 },
                 {
+                    id: 'mmm-team',
+                    title: 'MMM Team Award',
+                    organization: 'BRIDGEi2i',
+                    logo: 'assets/generic_logos/bridgei2i_logo.jpeg',
+                    description: 'Team award for successful project delivery and collaboration.',
+                    file: 'assets/accolades/MMM_Team_Award.pdf',
+                    orientation: 'landscape'
+                },
+                {
                     id: 'scala-annual',
                     title: 'ScaLa Annual Award',
                     organization: 'BRIDGEi2i',
@@ -1034,34 +1013,14 @@
                     orientation: 'landscape'
                 },
                 {
-                    id: 'client-value',
-                    title: 'Client Value Creation',
+                    id: 'spot-award',
+                    title: 'Spot Award',
                     organization: 'BRIDGEi2i',
                     logo: 'assets/generic_logos/bridgei2i_logo.jpeg',
-                    description: 'Recognition for delivering significant value to the client.',
-                    file: 'assets/accolades/Client_Value_Creation_Sanjeev.pdf',
+                    description: 'Instant recognition for going above and beyond in delivery.',
+                    file: 'assets/accolades/Spot Award.pdf',
                     orientation: 'landscape'
                 },
-                {
-                    id: 'senior-appreciation',
-                    title: 'Senior Appreciation',
-                    organization: 'BRIDGEi2i',
-                    logo: 'assets/generic_logos/bridgei2i_logo.jpeg',
-                    description: 'Special appreciation from senior leadership for project impact.',
-                    file: 'assets/accolades/Hemanshu_Senior_Appreciation_Award.pdf',
-                    orientation: 'portrait'
-                },
-                {
-                    id: 'mmm-team',
-                    title: 'MMM Team Award',
-                    organization: 'BRIDGEi2i',
-                    logo: 'assets/generic_logos/bridgei2i_logo.jpeg',
-                    description: 'Team award for successful project delivery and collaboration.',
-                    file: 'assets/accolades/MMM_Team_Award.pdf',
-                    orientation: 'landscape'
-                },
-
-                // Research
                 {
                     id: 'research-paper',
                     title: 'Published Research Paper',
@@ -1070,6 +1029,64 @@
                     description: 'Research publication in International Journal of Engineering Research & Technology.',
                     file: 'assets/accolades/Research_Paper.pdf',
                     orientation: 'portrait'
+                },
+
+                // Internship (Main Page = 1)
+                {
+                    id: 'bdl-internship',
+                    title: 'BDL Internship',
+                    organization: 'Bharat Dynamics Limited',
+                    logo: 'assets/generic_logos/Bharat_Dynamics_Logo.png',
+                    description: 'Internship completion certificate from Bharat Dynamics Limited.',
+                    file: 'assets/internship/BDL_Internship.pdf',
+                    orientation: 'landscape'
+                },
+                {
+                    id: 'drdl-internship',
+                    title: 'DRDL Internship',
+                    organization: 'DRDL',
+                    logo: 'https://placehold.co/48x48/F8F7F4/2c3e50?text=D',
+                    description: 'Internship completion certificate from DRDL.',
+                    file: 'assets/internship/DRDL_Internship_Certificate.pdf',
+                    orientation: 'landscape'
+                },
+
+                // Courses (Main Page = 1)
+                {
+                    id: 'hbs-spreadsheet',
+                    title: 'Spreadsheet Modelling',
+                    organization: 'HBS Online',
+                    logo: 'assets/generic_logos/harvard_business_logo.png',
+                    description: 'Certificate in Spreadsheet Modelling from Harvard Business School Online.',
+                    file: 'assets/course_certificates/HBS - Spreadsheet Modelling Certificate.pdf',
+                    orientation: 'landscape'
+                },
+                {
+                    id: 'aws-genai',
+                    title: 'Generative AI with LLMs',
+                    organization: 'DeepLearning.ai',
+                    logo: 'assets/generic_logos/deeplearning_ai_logo.png',
+                    description: 'DeepLearning.ai & AWS course on Generative AI.',
+                    file: 'assets/course_certificates/aws_deeplearning_genai_llm.pdf',
+                    orientation: 'landscape'
+                },
+                {
+                    id: 'coursera-chatgpt',
+                    title: 'ChatGPT & Excel',
+                    organization: 'Coursera',
+                    logo: 'https://placehold.co/48x48/F8F7F4/2c3e50?text=C',
+                    description: 'Beginner course on ChatGPT and Excel integration.',
+                    file: 'assets/course_certificates/coursera_chatgpt_beginners_excel.pdf',
+                    orientation: 'landscape'
+                },
+                {
+                    id: 'ibm-data-science',
+                    title: 'Data Science Professional',
+                    organization: 'IBM',
+                    logo: 'https://placehold.co/48x48/F8F7F4/2c3e50?text=I',
+                    description: 'Professional Certificate in Data Science from IBM.',
+                    file: 'assets/course_certificates/IBM_data_science.pdf',
+                    orientation: 'landscape'
                 }
             ];
 
