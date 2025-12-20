@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Certificates | Anirudh Nanduri</title>
+    <link rel="icon" type="image/png" href="assets/mylogo/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .tab-btn {
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background-color: #2563eb;
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3);
+        }
+    </style>
+</head>
+
+<body class="text-gray-800 antialiased" oncontextmenu="return false;">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html"
+                class="flex items-center space-x-2 text-gray-700 hover:text-blue-600 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span class="font-bold">Back to Portfolio</span>
+            </a>
+            <h1 class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+                Certifications & Achievements
+            </h1>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-20 container mx-auto px-6">
+
+        <!-- Filter Tabs -->
+        <div class="flex flex-wrap justify-center gap-4 mb-12">
+            <button onclick="filterCertificates('all')"
+                class="tab-btn active px-6 py-2 rounded-full font-bold text-sm bg-white text-gray-600 border border-gray-200 hover:bg-gray-50">
+                All
+            </button>
+            <button onclick="filterCertificates('accolades')"
+                class="tab-btn px-6 py-2 rounded-full font-bold text-sm bg-white text-gray-600 border border-gray-200 hover:bg-gray-50">
+                Accolades
+            </button>
+            <button onclick="filterCertificates('internship')"
+                class="tab-btn px-6 py-2 rounded-full font-bold text-sm bg-white text-gray-600 border border-gray-200 hover:bg-gray-50">
+                Internships
+            </button>
+            <button onclick="filterCertificates('course')"
+                class="tab-btn px-6 py-2 rounded-full font-bold text-sm bg-white text-gray-600 border border-gray-200 hover:bg-gray-50">
+                Courses
+            </button>
+            <button onclick="filterCertificates('extra')"
+                class="tab-btn px-6 py-2 rounded-full font-bold text-sm bg-white text-gray-600 border border-gray-200 hover:bg-gray-50">
+                Extra Curricular
+            </button>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div id="certificate-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Items injected by JS -->
+        </div>
+
+    </main>
+
+    <script>
+        // FULL INVENTORY (Transcribed from Asset Info Collation)
+        const certificates = [
+            // --- ACCOLADES ---
+            { category: 'accolades', title: 'Merit List Certificate', org: 'BITS School of Management', logo: 'assets/generic_logos/bitsom_logo.png', file: 'assets/accolades/MERIT_LIST_CERTIFICATE.pdf', desc: 'Awarded for outstanding academic performance.' },
+            { category: 'accolades', title: 'Teaching & Mentoring', org: 'Accenture', logo: 'assets/generic_logos/acn_logo.png', file: 'assets/accolades/ACN_Teaching_Certificate.pdf', desc: 'Certificate of Appreciation for conducting training sessions.' },
+            { category: 'accolades', title: 'Actively Innovate', org: 'Accenture', logo: 'assets/generic_logos/acn_logo.png', file: 'assets/accolades/Actively_Innovate_Ruchik.pdf', desc: 'Recognition for innovative contributions.' },
+            { category: 'accolades', title: 'Care Deeply', org: 'Accenture', logo: 'assets/generic_logos/acn_logo.png', file: 'assets/accolades/care_deeply_ruchik.pdf', desc: 'Award for demonstrating empathy and care.' },
+            { category: 'accolades', title: 'Client Value Creation', org: 'Accenture', logo: 'assets/generic_logos/acn_logo.png', file: 'assets/accolades/Client_Value_Creation_Sanjeev.pdf', desc: 'Recognition for delivering significant client value.' },
+            { category: 'accolades', title: 'Cool Collaborator', org: 'Accenture', logo: 'assets/generic_logos/acn_logo.png', file: 'assets/accolades/cool_collaborator_star_award.pdf', desc: 'Exceptional collaboration and star performance.' },
+            { category: 'accolades', title: 'Senior Appreciation', org: 'Accenture', logo: 'assets/generic_logos/acn_logo.png', file: 'assets/accolades/Hemanshu_Senior_Appreciation_Award.pdf', desc: 'Special appreciation from senior leadership.' },
+            { category: 'accolades', title: 'IS Elite Certificate', org: 'Accenture', logo: 'assets/generic_logos/acn_logo.png', file: 'assets/accolades/IS Elite Certificate.pdf', desc: 'Recognized as an IS Elite Advocate.' },
+            { category: 'accolades', title: 'Stewardship Award', org: 'Accenture', logo: 'assets/generic_logos/acn_logo.png', file: 'assets/accolades/ashmita_stewardship.pdf', desc: 'Recognized for stewardship and support.' },
+            { category: 'accolades', title: 'Ai2i Icon Award', org: 'BRIDGEi2i', logo: 'assets/generic_logos/bridgei2i_logo.jpeg', file: 'assets/accolades/Ai2i_Letter.pdf', desc: 'Prestigious award for excellence in AI/ML.' },
+            { category: 'accolades', title: 'Torch Bearer Award', org: 'BRIDGEi2i', logo: 'assets/generic_logos/bridgei2i_logo.jpeg', file: 'assets/accolades/BU_Torch_Bearer.pdf', desc: 'Awarded for exemplary leadership.' },
+            { category: 'accolades', title: 'MMM Team Award', org: 'BRIDGEi2i', logo: 'assets/generic_logos/bridgei2i_logo.jpeg', file: 'assets/accolades/MMM_Team_Award.pdf', desc: 'Team award for successful project delivery.' },
+            { category: 'accolades', title: 'ScaLa Annual Award', org: 'BRIDGEi2i', logo: 'assets/generic_logos/bridgei2i_logo.jpeg', file: 'assets/accolades/ScaLa_Annual_Award.pdf', desc: 'Annual recognition for significant contributions.' },
+            { category: 'accolades', title: 'Spot Award', org: 'BRIDGEi2i', logo: 'assets/generic_logos/bridgei2i_logo.jpeg', file: 'assets/accolades/Spot Award.pdf', desc: 'Instant recognition for delivery excellence.' },
+            { category: 'accolades', title: 'Research Paper', org: 'DRDL', logo: 'https://placehold.co/48x48/F8F7F4/2c3e50?text=R', file: 'assets/accolades/Research_Paper.pdf', desc: 'Publication in IJMERT.' },
+
+            // --- INTERNSHIPS ---
+            { category: 'internship', title: 'BDL Internship', org: 'Bharat Dynamics Limited', logo: 'assets/generic_logos/Bharat_Dynamics_Logo.png', file: 'assets/internship/BDL_Internship.pdf', desc: 'Internship completion certificate.' },
+            { category: 'internship', title: 'DRDL Internship', org: 'DRDL', logo: 'https://placehold.co/48x48/F8F7F4/2c3e50?text=D', file: 'assets/internship/DRDL_Internship_Certificate.pdf', desc: 'Internship completion certificate.' },
+
+            // --- EXTRA CURRICULAR ---
+            { category: 'extra', title: 'GLF Certificates', org: 'PSG College of Technology', logo: 'assets/generic_logos/PSG_College_of_Technology_logo.png', file: 'assets/extra_curricular/GLF_Certificates.pdf', desc: 'Global Leaders Forum certificate.' },
+            { category: 'extra', title: 'MUN Awards', org: 'Model United Nations', logo: 'https://placehold.co/48x48/F8F7F4/2c3e50?text=M', file: 'assets/extra_curricular/MUN_Awards.pdf', desc: 'Awards won at Model United Nations.' },
+            { category: 'extra', title: 'MUN EB', org: 'Model United Nations', logo: 'https://placehold.co/48x48/F8F7F4/2c3e50?text=M', file: 'assets/extra_curricular/MUN_EB.pdf', desc: 'Executive Board member certificate.' },
+            { category: 'extra', title: 'Paathshaala', org: 'PSG College of Technology', logo: 'assets/generic_logos/PSG_College_of_Technology_logo.png', file: 'assets/extra_curricular/Paathshaala_Certificates.pdf', desc: 'Paathshaala club certificates.' },
+            { category: 'extra', title: 'The Bridge', org: 'PSG College of Technology', logo: 'assets/generic_logos/PSG_College_of_Technology_logo.png', file: 'assets/extra_curricular/THE BRIDGE Certificates.pdf', desc: 'The Bridge club certificates.' },
+
+            // --- COURSE CERTIFICATES ---
+            { category: 'course', title: 'Finance Certification', org: 'HBS Online', logo: 'assets/generic_logos/harvard_business_logo.png', file: 'assets/course_certificates/HBS - Finance Certificate - Exam 2.pdf', desc: 'Finance certificate from HBS.' },
+            { category: 'course', title: 'Math for Management', org: 'HBS Online', logo: 'assets/generic_logos/harvard_business_logo.png', file: 'assets/course_certificates/HBS - Mathematics for Management Certificate.pdf', desc: 'Mathematics certification.' },
+            { category: 'course', title: 'Quant Methods', org: 'HBS Online', logo: 'assets/generic_logos/harvard_business_logo.png', file: 'assets/course_certificates/HBS - Quant Methods Certificate.pdf', desc: 'Quantitative methods certification.' },
+            { category: 'course', title: 'Spreadsheet Modelling', org: 'HBS Online', logo: 'assets/generic_logos/harvard_business_logo.png', file: 'assets/course_certificates/HBS - Spreadsheet Modelling Certificate.pdf', desc: 'Spreadsheet modelling certification.' },
+            { category: 'course', title: 'Financial Accounting', org: 'HBS Online', logo: 'assets/generic_logos/harvard_business_logo.png', file: 'assets/course_certificates/HBS- Financial Accounting Certificate.pdf', desc: 'Financial accounting certification.' },
+            { category: 'course', title: 'Planning & Communication', org: 'HBS Online', logo: 'assets/generic_logos/harvard_business_logo.png', file: 'assets/course_certificates/HBS Planning Communication Certificate.pdf', desc: 'Planning and communication certification.' },
+            { category: 'course', title: 'Presenting in Business', org: 'HBS Online', logo: 'assets/generic_logos/harvard_business_logo.png', file: 'assets/course_certificates/HBS Presenting in Business Certificate.pdf', desc: 'Presenting skills certification.' },
+            { category: 'course', title: 'Pre-MBA Statistics', org: 'IIM Ahmedabad', logo: 'https://placehold.co/48x48/F8F7F4/2c3e50?text=I', file: 'assets/course_certificates/IIMA_premba_statistics.pdf', desc: 'Statistics course completion.' },
+            { category: 'course', title: 'Generative AI with LLMs', org: 'DeepLearning.ai', logo: 'assets/generic_logos/deeplearning_ai_logo.png', file: 'assets/course_certificates/aws_deeplearning_genai_llm.pdf', desc: 'GenAI with LLMs certification.' },
+            { category: 'course', title: 'ChatGPT & Excel', org: 'Coursera', logo: 'https://placehold.co/48x48/F8F7F4/2c3e50?text=C', file: 'assets/course_certificates/coursera_chatgpt_beginners_excel.pdf', desc: 'ChatGPT and Excel integration.' },
+            { category: 'course', title: 'GCP Introduction', org: 'Google Cloud Platform', logo: 'https://placehold.co/48x48/F8F7F4/2c3e50?text=G', file: 'assets/course_certificates/gcp_introduction_llm.pdf', desc: 'Intro to LLMs on GCP.' },
+            { category: 'course', title: 'Data Science Professional', org: 'IBM', logo: 'https://placehold.co/48x48/F8F7F4/2c3e50?text=I', file: 'assets/course_certificates/IBM_data_science.pdf', desc: 'Professional Data Science certificate.' },
+            { category: 'course', title: 'Spark Specialization', org: 'IBM', logo: 'https://placehold.co/48x48/F8F7F4/2c3e50?text=I', file: 'assets/course_certificates/IBM_spark_specialization.pdf', desc: 'Apache Spark specialization.' },
+            { category: 'course', title: 'Python Specialization', org: 'University of Michigan', logo: 'https://placehold.co/48x48/F8F7F4/2c3e50?text=M', file: 'assets/course_certificates/Michigan_Python_specialization.pdf', desc: 'Python for Everybody specialization.' },
+            { category: 'course', title: 'B2B COE', org: 'BRIDGEi2i', logo: 'assets/generic_logos/bridgei2i_logo.jpeg', file: 'assets/course_certificates/B2B COE.pdf', desc: 'Center of Excellence certification.' },
+            { category: 'course', title: 'Qliksense COE', org: 'BRIDGEi2i', logo: 'assets/generic_logos/bridgei2i_logo.jpeg', file: 'assets/course_certificates/qliksense COE.pdf', desc: 'Qliksense certification.' },
+            { category: 'course', title: 'SQL COE', org: 'BRIDGEi2i', logo: 'assets/generic_logos/bridgei2i_logo.jpeg', file: 'assets/course_certificates/SQL COE.pdf', desc: 'SQL certification.' },
+            { category: 'course', title: 'VBA COE', org: 'BRIDGEi2i', logo: 'assets/generic_logos/bridgei2i_logo.jpeg', file: 'assets/course_certificates/VBA COE.pdf', desc: 'VBA certification.' }
+        ];
+
+        const grid = document.getElementById('certificate-grid');
+
+        function filterCertificates(cat) {
+            // Update Tabs
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-blue-600', 'text-white');
+                btn.classList.add('bg-white', 'text-gray-600');
+                if (btn.textContent.trim().toLowerCase().includes(cat === 'extra' ? 'extra' : cat) || (cat === 'all' && btn.textContent.trim() === 'All')) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Filter Data
+            const filtered = cat === 'all' ? certificates : certificates.filter(c => c.category === cat);
+
+            // Render
+            grid.innerHTML = filtered.map(cert => `
+                <div class="glass-panel rounded-2xl overflow-hidden flex flex-col h-[500px] shadow-sm hover:shadow-xl transition-shadow duration-300">
+                    <!-- Head -->
+                    <div class="p-4 border-b border-gray-100 flex justify-between items-center bg-white/50">
+                        <div class="flex items-center overflow-hidden">
+                            <img src="${cert.logo}" alt="${cert.org}" class="w-10 h-10 rounded-full object-contain bg-white p-1 border border-gray-100 shadow-sm flex-shrink-0 mr-3">
+                            <div class="min-w-0">
+                                <h3 class="font-bold text-gray-800 text-lg leading-tight truncate pr-2" title="${cert.title}">${cert.title}</h3>
+                                <p class="text-xs text-stone-500 font-bold uppercase tracking-wider truncate">${cert.org}</p>
+                            </div>
+                        </div>
+                        <div class="text-xs px-2 py-1 rounded bg-blue-50 text-blue-600 font-bold border border-blue-100 flex-shrink-0 ml-2">PDF</div>
+                    </div>
+                    
+                    <!-- Body (PDF Embed) -->
+                    <div class="flex-grow bg-gray-50 relative group">
+                        <iframe 
+                            src="${cert.file}#toolbar=0&navpanes=0&scrollbar=0&view=FitH" 
+                            type="application/pdf"
+                            class="w-full h-full"
+                            loading="lazy"
+                            style="border:none;"
+                            oncontextmenu="return false;"
+                        ></iframe>
+                         <!-- Overlay to prevent interaction stealing (optional, usually good for scrolling) -->
+                        <div class="absolute inset-0 pointer-events-none group-hover:pointer-events-none"></div>
+                    </div>
+
+                    <!-- Foot -->
+                    <div class="p-3 bg-white/80 text-center border-t border-gray-100">
+                        <p class="text-xs text-gray-500 italic line-clamp-1">${cert.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            // Update Active Class styling explicitly because innerHTML rebuild wipes state if not handled carefully (though here we just swap classes on buttons)
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                const btnCat = btn.getAttribute('onclick').match(/'([^']+)'/)[1];
+                if (btnCat === cat) {
+                    btn.classList.remove('bg-white', 'text-gray-600');
+                    btn.classList.add('bg-blue-600', 'text-white', 'shadow-md');
+                } else {
+                    btn.classList.add('bg-white', 'text-gray-600');
+                    btn.classList.remove('bg-blue-600', 'text-white', 'shadow-md');
+                }
+            });
+        }
+
+        // Init
+        filterCertificates('all');
+
+        // Security
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.addEventListener('keydown', function (e) {
+            if ((e.ctrlKey || e.metaKey) && (e.key === 'p' || e.key === 'P')) {
+                e.preventDefault();
+                alert('Printing is disabled.');
+            }
+        });
+    </script>
+</body>
+
+</html>
