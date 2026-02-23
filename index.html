@@ -1,60 +1,409 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anirudh Nanduri | Portfolio</title>
+    <title>Anirudh Nanduri | Data Scientist & Product Strategist</title>
+    <meta name="description"
+        content="Anirudh Nanduri — Specialist Data Scientist, Product Strategist & GenAI Expert with 6+ years of enterprise experience. MBA 1st Rank, BITSoM.">
+    <meta name="author" content="Anirudh Nanduri">
+    <meta name="keywords"
+        content="Data Scientist, Product Manager, GenAI, LLM, RAG, Machine Learning, MBA, BITSoM, Accenture, Portfolio, Anirudh Nanduri">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Anirudh Nanduri | Data Scientist & Product Strategist">
+    <meta property="og:description"
+        content="6+ years driving enterprise impact — $10M counterfeit prevention, GenAI products, MBA 1st Rank.">
+    <meta property="og:image" content="assets/profile/pic.webp">
+    <meta property="og:type" content="website">
     <link rel="icon" type="image/png" href="assets/mylogo/logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Warm Neutrals -->
-    <!-- Application Structure Plan: The single-page narrative structure is refined to be more credible and visually compelling. The hero section now includes a profile photo for personalization. The skills section replaces generic charts with a scannable grid for technical skills and an icon-driven list for professional skills, which is more professional. A new 'Endorsements' section is added to provide powerful social proof from verified approvals. The navigation is now fully functional with smooth scrolling and dynamic active states, creating a seamless user experience. The overall goal is to combine a professional narrative with visual credibility and a strong call to action. -->
-    <!-- Visualization & Content Choices: 
-        - Hero Section: Goal: Personalize & Impact. Method: Profile picture placeholder, strong headline, concise bio. Interaction: Smooth-scrolling navigation. Justification: Builds immediate trust and guides the user.
-        - Experience & Projects: Goal: Show Impact & Growth. Method: Tabbed interface for roles and card-based layout for projects. Interaction: Clicking tabs and cards for detail. Justification: Organizes extensive information cleanly and allows for deep dives.
-        - Skills Matrix: Goal: Credibly Showcase Skills. Method: Grid of badges for technical skills, list with icons for professional skills. Interaction: Scannable layout. Justification: Avoids misleading numeric ratings and is more trustworthy and professional.
-        - Accolades & Endorsements: Goal: Build Credibility. Method: Grid with placeholder logos for accolades and card-based testimonials for endorsements. Justification: Provides strong social proof and third-party validation of achievements.
-        - NO SVG/Mermaid used. All visuals are achieved via Tailwind CSS and Unicode. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <style>
         :root {
-            --primary-gradient: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-            --glass-bg: rgba(255, 255, 255, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.5);
-            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            --bg: #07091a;
+            --bg2: #0c1124;
+            --card: rgba(255, 255, 255, 0.04);
+            --card-h: rgba(255, 255, 255, 0.07);
+            --bdr: rgba(255, 255, 255, 0.08);
+            --t1: #f0f4ff;
+            --t2: #8899bb;
+            --t3: #4a5880;
+            --acc: #3b82f6;
+            --vio: #8b5cf6;
+            --grad: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            --header-bg: rgba(7, 9, 26, .85);
+        }
+
+        [data-theme="light"] {
+            --bg: #f0f4ff;
+            --bg2: #e4eaf8;
+            --card: rgba(255, 255, 255, 0.85);
+            --card-h: rgba(255, 255, 255, 1);
+            --bdr: rgba(59, 130, 246, 0.2);
+            --t1: #0d1526;
+            --t2: #3a4a6b;
+            --t3: #6677aa;
+            --acc: #2563eb;
+            --header-bg: rgba(240, 244, 255, .95);
+        }
+
+        /* ── Light mode: Tailwind utility overrides ── */
+
+        /* Text colours */
+        [data-theme="light"] .text-white {
+            color: #0d1526 !important;
+        }
+
+        [data-theme="light"] .text-gray-300 {
+            color: #2d3a55 !important;
+        }
+
+        [data-theme="light"] .text-gray-400 {
+            color: #4a5778 !important;
+        }
+
+        [data-theme="light"] .text-gray-500 {
+            color: #6677aa !important;
+        }
+
+        [data-theme="light"] .text-gray-600 {
+            color: #6677aa !important;
+        }
+
+        [data-theme="light"] .text-gray-700 {
+            color: #8899bb !important;
+        }
+
+        [data-theme="light"] .hover\:text-white:hover {
+            color: #0d1526 !important;
+        }
+
+        [data-theme="light"] .block.py-2.text-gray-400 {
+            color: #4a5778 !important;
+        }
+
+        /* Keep accent/brand colours readable – slightly darken blues in light */
+        [data-theme="light"] .text-blue-400 {
+            color: #1d4ed8 !important;
+        }
+
+        [data-theme="light"] .text-blue-300 {
+            color: #1d4ed8 !important;
+        }
+
+        [data-theme="light"] .text-teal-400 {
+            color: #0f766e !important;
+        }
+
+        [data-theme="light"] .text-teal-300 {
+            color: #0f766e !important;
+        }
+
+        [data-theme="light"] .text-emerald-400 {
+            color: #047857 !important;
+        }
+
+        [data-theme="light"] .text-emerald-300 {
+            color: #047857 !important;
+        }
+
+        [data-theme="light"] .text-violet-400 {
+            color: #6d28d9 !important;
+        }
+
+        [data-theme="light"] .text-yellow-400 {
+            color: #b45309 !important;
+        }
+
+        /* Backgrounds */
+        [data-theme="light"] .glass {
+            background: rgba(255, 255, 255, .9);
+        }
+
+        [data-theme="light"] section[style*="background:var(--bg2)"] {
+            background: var(--bg2);
+        }
+
+        /* White/opacity borders → blue-tinted */
+        [data-theme="light"] .border-white\/10,
+        [data-theme="light"] .border-white\/8 {
+            border-color: rgba(59, 130, 246, .15) !important;
+        }
+
+        /* Mobile menu */
+        [data-theme="light"] #mobile-menu {
+            border-color: rgba(59, 130, 246, .15);
+            background: rgba(240, 244, 255, .98);
+        }
+
+        [data-theme="light"] #mobile-menu a {
+            color: #3a4a6b !important;
+        }
+
+        [data-theme="light"] #mobile-menu a:hover {
+            color: #1d4ed8 !important;
+        }
+
+        /* Skill badges */
+        [data-theme="light"] .skill-badge {
+            color: #2d3a55 !important;
+            border-color: rgba(59, 130, 246, .25) !important;
+            background: rgba(255, 255, 255, .7) !important;
+        }
+
+        [data-theme="light"] .skill-badge.expert {
+            color: #1d4ed8 !important;
+            border-color: rgba(37, 99, 235, .4) !important;
+            background: rgba(219, 234, 254, .5) !important;
+        }
+
+        /* Orbs – reduce brightness in light mode */
+        [data-theme="light"] .orb {
+            opacity: 0.06 !important;
+        }
+
+        /* Footer */
+        [data-theme="light"] footer {
+            background: #dde6f8 !important;
+            border-color: rgba(59, 130, 246, .15) !important;
+        }
+
+        [data-theme="light"] footer a {
+            color: #4a5778 !important;
+        }
+
+        [data-theme="light"] footer a:hover {
+            color: #1d4ed8 !important;
+        }
+
+        [data-theme="light"] footer p {
+            color: #8899bb !important;
+        }
+
+        /* Nav links */
+        [data-theme="light"] .nav-link {
+            color: #3a4a6b !important;
+        }
+
+        [data-theme="light"] .nav-link:hover,
+        [data-theme="light"] .nav-link.active {
+            color: #1d4ed8 !important;
+        }
+
+        /* Mobile menu button colour */
+        [data-theme="light"] #mobile-menu-button {
+            color: #0d1526 !important;
+        }
+
+        /* Scroll progress stays as gradient – no change needed */
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
-            color: #1e293b;
-            scroll-behavior: smooth;
+            background: var(--bg);
+            color: var(--t1);
+            overflow-x: hidden;
+            transition: background .3s, color .3s;
+        }
+
+        /* Scroll progress */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 0%;
+            background: var(--grad);
+            z-index: 9999;
+            transition: width .1s linear;
         }
 
         /* Utilities */
-        .glass-panel {
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--glass-shadow);
+        .glass {
+            background: var(--card);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--bdr);
         }
 
-        .gradient-text {
-            background: var(--primary-gradient);
+        .grad-text {
+            background: var(--grad);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
+        .no-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scroll {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Nav */
+        #header {
+            background: var(--header-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--bdr);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: background .3s, border-color .3s;
+        }
+
+        /* Theme toggle button */
+        #theme-toggle {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 1px solid var(--bdr);
+            background: var(--card);
+            color: var(--t2);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .3s;
+            flex-shrink: 0;
+        }
+
+        #theme-toggle:hover {
+            background: var(--card-h);
+            color: var(--acc);
+            border-color: var(--acc);
+            transform: rotate(20deg);
+        }
+
+        .nav-link {
+            color: var(--t2);
+            font-weight: 500;
+            font-size: .875rem;
+            position: relative;
+            transition: color .3s;
+            padding-bottom: 3px;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--grad);
+            transition: width .3s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--t1);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: var(--grad);
+            color: #fff;
+            font-weight: 700;
+            padding: 14px 28px;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all .3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(59, 130, 246, .4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--t1);
+            font-weight: 700;
+            padding: 13px 28px;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid var(--bdr);
+            transition: all .3s;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-outline:hover {
+            background: var(--card);
+            border-color: rgba(59, 130, 246, .5);
+            transform: translateY(-2px);
+        }
+
         /* Animations */
-        @keyframes fadeInUp {
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-18px);
+            }
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                opacity: .2;
+                transform: scale(.95);
+            }
+
+            50% {
+                opacity: .35;
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes fadeUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(28px);
             }
 
             to {
@@ -63,57 +412,434 @@
             }
         }
 
-        .animate-fade-in-up {
-            animation: fadeInUp 0.8s ease-out forwards;
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .animate-delay-100 {
-            animation-delay: 0.1s;
+        @keyframes countUp {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
-        .animate-delay-200 {
-            animation-delay: 0.2s;
+        /* Reveal on scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity .7s ease, transform .7s ease;
         }
 
-        .animate-delay-300 {
-            animation-delay: 0.3s;
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        /* Navigation */
-        .nav-link {
+        /* Hero */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: .12;
+            animation: float 9s ease-in-out infinite;
+        }
+
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(59, 130, 246, .04) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, .04) 1px, transparent 1px);
+            background-size: 64px 64px;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1em;
+            background: var(--acc);
+            margin-left: 3px;
+            vertical-align: middle;
+            animation: blink 1s step-end infinite;
+        }
+
+        .stat-card {
+            background: var(--card);
+            border: 1px solid var(--bdr);
+            border-radius: 14px;
+            padding: 16px 20px;
+            text-align: center;
+            transition: all .3s;
+        }
+
+        .stat-card:hover {
+            border-color: rgba(59, 130, 246, .4);
+            box-shadow: 0 0 30px rgba(59, 130, 246, .2);
+            transform: translateY(-4px);
+        }
+
+        .profile-glow {
+            position: absolute;
+            inset: -24px;
+            border-radius: 50%;
+            background: var(--grad);
+            opacity: .2;
+            filter: blur(35px);
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        /* Resume dropdown */
+        .r-wrap {
             position: relative;
-            font-weight: 500;
+            display: inline-block;
         }
 
-        .nav-link::after {
+        .r-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            min-width: 240px;
+            background: #111827;
+            border: 1px solid var(--bdr);
+            border-radius: 14px;
+            overflow: hidden;
+            z-index: 200;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, .6);
+        }
+
+        .r-menu.open {
+            display: block;
+            animation: slideDown .2s ease;
+        }
+
+        .r-menu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            color: var(--t2);
+            text-decoration: none;
+            font-size: .875rem;
+            border-bottom: 1px solid var(--bdr);
+            transition: all .2s;
+        }
+
+        .r-menu a:last-child {
+            border: none;
+        }
+
+        .r-menu a:hover {
+            background: rgba(59, 130, 246, .1);
+            color: var(--t1);
+        }
+
+        /* Section headers */
+        .sec-label {
+            display: inline-block;
+            font-size: .7rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--acc);
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid transparent;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6) bottom / 100% 2px no-repeat;
+        }
+
+        .sec-title {
+            font-size: clamp(26px, 5vw, 42px);
+            font-weight: 800;
+            color: var(--t1);
+            margin-bottom: 10px;
+        }
+
+        .sec-sub {
+            color: var(--t2);
+            font-size: 1rem;
+            max-width: 580px;
+            margin: 0 auto;
+        }
+
+        /* Toggle group */
+        .toggle-group {
+            display: inline-flex;
+            background: var(--card);
+            border: 1px solid var(--bdr);
+            border-radius: 12px;
+            padding: 4px;
+            gap: 4px;
+        }
+
+        .tgl-btn {
+            padding: 8px 22px;
+            border-radius: 8px;
+            font-size: .8rem;
+            font-weight: 600;
+            color: var(--t2);
+            cursor: pointer;
+            transition: all .3s;
+            border: none;
+            background: transparent;
+        }
+
+        .tgl-btn.active {
+            background: var(--grad);
+            color: #fff;
+        }
+
+        /* Experience tabs */
+        .exp-tab {
+            padding: 10px 22px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: .875rem;
+            color: var(--t2);
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: all .3s;
+            background: var(--card);
+        }
+
+        .exp-tab:hover {
+            color: var(--t1);
+            border-color: var(--bdr);
+        }
+
+        .exp-tab.active {
+            background: var(--grad);
+            color: #fff;
+            border-color: transparent;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, .3);
+        }
+
+        /* Bullet items */
+        .blt {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 9px 0;
+            border-bottom: 1px solid var(--bdr);
+        }
+
+        .blt:last-child {
+            border: none;
+        }
+
+        .blt-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--grad);
+            flex-shrink: 0;
+            margin-top: 6px;
+        }
+
+        /* Leadership */
+        .lead-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 14px;
+            border-radius: 12px;
+            background: var(--card);
+            border: 1px solid var(--bdr);
+            transition: all .3s;
+        }
+
+        .lead-item:hover {
+            border-color: rgba(59, 130, 246, .3);
+            transform: translateX(4px);
+        }
+
+        /* Skills */
+        .skill-badge {
+            padding: 7px 15px;
+            border-radius: 9px;
+            background: var(--card);
+            border: 1px solid var(--bdr);
+            color: var(--t2);
+            font-size: .8rem;
+            font-weight: 500;
+            transition: all .3s;
+            cursor: default;
+        }
+
+        .skill-badge:hover {
+            border-color: var(--acc);
+            color: var(--acc);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, .2);
+        }
+
+        .skill-badge.expert {
+            border-color: rgba(59, 130, 246, .35);
+            background: rgba(59, 130, 246, .08);
+            color: #93c5fd;
+        }
+
+        /* Projects */
+        .proj-card {
+            background: var(--card);
+            border: 1px solid var(--bdr);
+            border-radius: 16px;
+            padding: 22px;
+            transition: all .4s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .proj-card:hover {
+            border-color: rgba(59, 130, 246, .4);
+            transform: translateY(-6px);
+            box-shadow: 0 24px 48px rgba(0, 0, 0, .4), 0 0 0 1px rgba(59, 130, 246, .2);
+        }
+
+        .proj-impact {
+            font-size: 1.4rem;
+            font-weight: 900;
+            background: var(--grad);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Accolade cards */
+        .acc-card {
+            background: var(--card);
+            border: 1px solid var(--bdr);
+            border-radius: 16px;
+            padding: 22px;
+            cursor: pointer;
+            transition: all .4s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+        }
+
+        .acc-card::before {
             content: '';
             position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
+            top: 0;
             left: 0;
-            background: var(--primary-gradient);
-            transition: width 0.3s ease;
+            right: 0;
+            height: 2px;
+            background: var(--grad);
+            opacity: 0;
+            transition: .3s;
         }
 
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            width: 100%;
+        .acc-card:hover {
+            border-color: rgba(59, 130, 246, .5);
+            transform: translateY(-7px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, .4), 0 0 0 1px rgba(59, 130, 246, .25), 0 0 30px rgba(59, 130, 246, .15);
         }
 
-        .nav-link.active {
-            color: #1e3a8a;
+        .acc-card:hover::before {
+            opacity: 1;
         }
 
-        /* Components */
-        .cta-button {
-            background: var(--primary-gradient);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .acc-card img {
+            filter: grayscale(100%) brightness(0.8);
+            transition: filter .4s;
         }
 
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px -10px rgba(37, 99, 235, 0.5);
+        .acc-card:hover img {
+            filter: grayscale(0%) brightness(1);
+        }
+
+        /* Testimonials */
+        .test-card {
+            background: var(--card);
+            border: 1px solid var(--bdr);
+            border-radius: 20px;
+            padding: 28px;
+            position: relative;
+            transition: all .3s;
+        }
+
+        .test-card:hover {
+            border-color: rgba(59, 130, 246, .3);
+            transform: translateY(-4px);
+        }
+
+        .quote-mark {
+            font-size: 72px;
+            line-height: 1;
+            position: absolute;
+            top: 12px;
+            left: 20px;
+            background: var(--grad);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: .25;
+            font-family: Georgia, serif;
+            pointer-events: none;
+        }
+
+        .avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        /* Filter */
+        .flt-btn {
+            padding: 7px 18px;
+            border-radius: 9999px;
+            font-size: .8rem;
+            font-weight: 600;
+            border: 1px solid var(--bdr);
+            color: var(--t2);
+            background: var(--card);
+            cursor: pointer;
+            transition: all .3s;
+        }
+
+        .flt-btn:hover {
+            border-color: rgba(59, 130, 246, .5);
+            color: var(--t1);
+        }
+
+        .flt-btn.active {
+            background: var(--grad);
+            color: #fff;
+            border-color: transparent;
+            box-shadow: 0 4px 14px rgba(59, 130, 246, .3);
+        }
+
+        /* Hidden scrollbar for carousels */
+        .no-scroll {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .no-scroll::-webkit-scrollbar {
+            display: none;
         }
 
         /* Modal */
@@ -121,364 +847,682 @@
             display: none;
             position: fixed;
             z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(15, 23, 42, 0.6);
-            /* Slate-900 with opacity */
+            inset: 0;
+            background: rgba(0, 0, 0, .8);
             backdrop-filter: blur(4px);
             justify-content: center;
             align-items: center;
         }
 
         .modal-content {
-            background: rgba(255, 255, 255, 0.95);
-            margin: auto;
-            padding: 24px;
+            background: #0d1526;
+            border: 1px solid rgba(59, 130, 246, .3);
             border-radius: 16px;
-            position: relative;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            animation: fadeInUp 0.3s ease-out;
-        }
-
-        /* Experience Tabs (Pill Switcher) */
-
-        /* Experience Tabs (Pill Switcher) */
-        .tab {
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 10;
-        }
-
-        .tab-indicator {
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Filter Pills */
-        .filter-button {
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-        }
-
-        .filter-button:hover {
-            border-color: #cbd5e1;
-        }
-
-        .filter-button.active {
-            background: var(--primary-gradient);
-            color: white;
-            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
-        }
-
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
+            padding: 24px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, .7), 0 0 0 1px rgba(59, 130, 246, .1);
         }
 
         @media print {
             body {
                 visibility: hidden !important;
-                height: 100vh;
-                overflow: hidden;
-            }
-
-            .modal,
-            header,
-            main,
-            footer {
-                display: none !important;
             }
 
             body::after {
-                content: "Printing is disabled for this document.";
+                content: "Printing is disabled.";
                 visibility: visible !important;
                 position: fixed;
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
-                font-size: 24px;
+                font-size: 22px;
                 font-weight: bold;
                 color: #333;
-                background: white;
-                padding: 20px;
-                z-index: 9999;
+            }
+        }
+
+        /* -------- Mobile -------- */
+        @media (max-width: 480px) {
+            .stat-card {
+                padding: 12px 8px;
+            }
+
+            .stat-card .text-2xl {
+                font-size: 1.35rem;
+            }
+
+            #exp-acn,
+            #exp-b2i,
+            #exp-gld {
+                padding: 20px 16px !important;
+            }
+
+            .toggle-group {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 6px;
+            }
+
+            .tgl-btn {
+                font-size: .7rem;
+                padding: 7px 14px;
+            }
+
+            .skill-badge {
+                font-size: .72rem;
+                padding: 6px 10px;
+            }
+
+            .sec-title {
+                font-size: 1.65rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            #projects-container {
+                grid-auto-columns: min(290px, 85vw) !important;
+            }
+
+            #accolades-container {
+                grid-auto-columns: min(240px, 78vw) !important;
+            }
+        }
+
+        @supports (padding: max(0px)) {
+            header {
+                padding-left: max(0px, env(safe-area-inset-left));
+                padding-right: max(0px, env(safe-area-inset-right));
+            }
+
+            footer {
+                padding-bottom: max(8px, env(safe-area-inset-bottom));
             }
         }
     </style>
 </head>
 
-<body class="antialiased" oncontextmenu="return false;">
+<body class="overflow-x-hidden" oncontextmenu="return false;">
 
-    <header id="header"
-        class="glass-panel sticky top-4 mx-4 md:mx-auto max-w-7xl z-50 rounded-2xl transition-all duration-300">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold flex items-center space-x-2">
-                <img src="assets/mylogo/logo.png" alt="Personal Logo"
-                    class="h-10 w-10 object-contain hover:scale-110 transition-transform">
-                <span class="gradient-text font-extrabold tracking-tight">Anirudh Nanduri</span>
+    <!-- Scroll Progress -->
+    <div id="scroll-progress"></div>
+
+    <!-- ======== NAV ======== -->
+    <header id="header">
+        <nav class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-3">
+                <div class="relative">
+                    <div
+                        class="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500 to-violet-500 opacity-30 blur-md scale-125">
+                    </div>
+                    <img src="assets/mylogo/logo.png" alt="Logo"
+                        class="relative h-12 w-12 object-contain rounded-full hover:scale-110 transition-transform duration-300">
+                </div>
+                <span class="text-lg font-extrabold tracking-tight">Anirudh <span
+                        class="grad-text">Nanduri</span></span>
             </a>
-            <div class="hidden md:flex space-x-8">
-                <a href="#about" class="nav-link text-gray-600 pb-1">About</a>
-                <a href="#experience" class="nav-link text-gray-600 pb-1">Experience</a>
-                <a href="#skills" class="nav-link text-gray-600 pb-1">Skills</a>
-                <a href="#projects" class="nav-link text-gray-600 pb-1">Projects</a>
-                <a href="#accolades" class="nav-link text-gray-600 pb-1">Accolades</a>
-                <a href="#endorsements" class="nav-link text-gray-600 pb-1">Endorsements</a>
-                <a href="#contact" class="nav-link text-gray-600 pb-1">Contact</a>
+            <div class="hidden md:flex items-center gap-7">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#education" class="nav-link">Education</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#accolades" class="nav-link">Accolades</a>
+                <a href="#endorsements" class="nav-link">Endorsements</a>
+                <a href="#contact" class="nav-link">Contact</a>
             </div>
-            <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
-                    </path>
-                </svg>
-            </button>
+            <div class="flex items-center gap-3">
+                <button id="theme-toggle" aria-label="Toggle light/dark mode" title="Toggle theme">
+                    <!-- Moon icon (shown in dark mode) -->
+                    <svg id="icon-moon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+                    </svg>
+                    <!-- Sun icon (shown in light mode) -->
+                    <svg id="icon-sun" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
+                    </svg>
+                </button>
+                <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none" aria-label="Open menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
         </nav>
-        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
-            <a href="#about" class="block py-2 text-gray-600">About</a>
-            <a href="#experience" class="block py-2 text-gray-600">Experience</a>
-            <a href="#skills" class="block py-2 text-gray-600">Skills</a>
-            <a href="#projects" class="block py-2 text-gray-600">Projects</a>
-            <a href="#accolades" class="block py-2 text-gray-600">Accolades</a>
-            <a href="#endorsements" class="block py-2 text-gray-600">Endorsements</a>
-            <a href="#contact" class="block py-2 text-gray-600">Contact</a>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 border-t border-white/10">
+            <a href="#about" class="block py-2 text-gray-400 hover:text-white transition-colors">About</a>
+            <a href="#experience" class="block py-2 text-gray-400 hover:text-white transition-colors">Experience</a>
+            <a href="#education" class="block py-2 text-gray-400 hover:text-white transition-colors">Education</a>
+            <a href="#skills" class="block py-2 text-gray-400 hover:text-white transition-colors">Skills</a>
+            <a href="#projects" class="block py-2 text-gray-400 hover:text-white transition-colors">Projects</a>
+            <a href="#accolades" class="block py-2 text-gray-400 hover:text-white transition-colors">Accolades</a>
+            <a href="#endorsements" class="block py-2 text-gray-400 hover:text-white transition-colors">Endorsements</a>
+            <a href="#contact" class="block py-2 text-gray-400 hover:text-white transition-colors">Contact</a>
         </div>
     </header>
 
-    <main class="space-y-20 md:space-y-32 pb-20">
-        <!-- Hero Section -->
-        <section id="about" class="min-h-screen flex items-center pt-24 pb-12 relative overflow-hidden">
-            <!-- Background Elements -->
-            <div
-                class="absolute -top-20 -left-20 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob">
-            </div>
-            <div
-                class="absolute top-40 -right-20 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000">
-            </div>
-            <div
-                class="absolute -bottom-32 left-20 w-96 h-96 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000">
-            </div>
+    <main>
 
-            <div class="container mx-auto px-6 z-10">
+        <!-- ======== HERO ======== -->
+        <section id="about" class="min-h-screen flex items-center pt-20 pb-16 relative overflow-hidden">
+            <div class="orb w-[700px] h-[700px] bg-blue-600" style="top:-200px;left:-250px;animation-delay:0s;"></div>
+            <div class="orb w-[500px] h-[500px] bg-violet-600" style="top:50px;right:-200px;animation-delay:3s;"></div>
+            <div class="orb w-[400px] h-[400px] bg-blue-700" style="bottom:-100px;left:35%;animation-delay:5s;"></div>
+            <div class="hero-grid"></div>
+
+            <div class="container mx-auto px-6 z-10 relative">
                 <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-12">
 
-                    <!-- Text Content (Left) -->
-                    <div class="w-full md:w-1/2 text-center md:text-left space-y-6 animate-fade-in-up">
+                    <!-- Left -->
+                    <div class="w-full md:w-1/2 text-center md:text-left">
                         <div
-                            class="inline-block px-4 py-2 bg-blue-50 text-blue-600 font-bold rounded-full text-sm mb-2 shadow-sm border border-blue-100">
-                            🚀 Welcome to my portfolio
+                            class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold mb-6 tracking-wide">
+                            <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+                            OPEN TO NEW OPPORTUNITIES
                         </div>
-                        <h1 class="text-5xl md:text-7xl font-extrabold leading-tight text-gray-900">
-                            Hi, I'm <br>
-                            <span class="gradient-text">Anirudh Nanduri</span>
+                        <h1 class="text-5xl md:text-7xl font-black leading-tight mb-4">
+                            Hi, I'm<br><span class="grad-text">Anirudh Nanduri</span>
                         </h1>
-                        <p class="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-lg mx-auto md:mx-0">
-                            Specialist Data Scientist & Product Strategist transforming complex data into
-                            <span class="font-bold text-gray-800">business impact</span>.
+                        <div
+                            class="text-xl md:text-2xl text-gray-400 mb-6 flex items-center justify-center md:justify-start flex-wrap gap-1">
+                            <span id="typewriter-text" class="text-white font-bold"></span><span class="cursor"></span>
+                        </div>
+                        <!-- Bio -->
+                        <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-8 max-w-lg mx-auto md:mx-0">
+                            I build AI-powered products and analytics solutions that turn complex data into business
+                            value. With 6+ years across Accenture &amp; BRIDGEi2i, I bridge the gap between data science
+                            and product strategy — from PoC to production.
                         </p>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+                            <div class="stat-card">
+                                <div class="text-2xl font-black grad-text" data-target="6" data-suffix="+">0</div>
+                                <div class="text-xs text-gray-500 mt-1 font-semibold uppercase tracking-wide">Yrs Exp
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="text-2xl font-black grad-text" data-target="10" data-prefix="$"
+                                    data-suffix="M+">0</div>
+                                <div class="text-xs text-gray-500 mt-1 font-semibold uppercase tracking-wide">Impact
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="text-2xl font-black grad-text" data-target="20" data-suffix="+">0</div>
+                                <div class="text-xs text-gray-500 mt-1 font-semibold uppercase tracking-wide">Awards
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="text-2xl font-black grad-text" data-target="450" data-suffix="+">0</div>
+                                <div class="text-xs text-gray-500 mt-1 font-semibold uppercase tracking-wide">Mentored
+                                </div>
+                            </div>
+                        </div>
 
-                        <!-- Quick Stats Pills -->
-                        <div class="flex flex-wrap justify-center md:justify-start gap-3 py-2">
+                        <!-- CTAs -->
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start flex-wrap">
+                            <a href="https://www.linkedin.com/in/anirudh-nanduri/" target="_blank"
+                                rel="noopener noreferrer" class="btn-primary">
+                                Connect on LinkedIn
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
+                            </a>
+                            <div class="r-wrap" id="resume-wrap">
+                                <button class="btn-outline" id="resume-btn" onclick="toggleResume(event)">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                    </svg>
+                                    Download Resume ▾
+                                </button>
+                                <div class="r-menu" id="resume-menu">
+                                    <a href="assets/resume/Master_CV_New_PM.pdf" download="Anirudh_Nanduri_PM.pdf">
+                                        <span class="text-xl">📋</span>
+                                        <span>
+                                            <div class="font-semibold text-white text-sm">Product Management</div>
+                                            <div class="text-xs text-gray-500">Master_CV_New_PM.pdf</div>
+                                        </span>
+                                    </a>
+                                    <a href="assets/resume/Nanduri_Anirudh_Analytics.pdf"
+                                        download="Anirudh_Nanduri_Analytics.pdf">
+                                        <span class="text-xl">📊</span>
+                                        <span>
+                                            <div class="font-semibold text-white text-sm">Analytics &amp; Data Science
+                                            </div>
+                                            <div class="text-xs text-gray-500">Nanduri_Anirudh_Analytics.pdf</div>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tags -->
+                        <div class="flex flex-wrap gap-2 mt-6 justify-center md:justify-start">
                             <span
-                                class="px-4 py-2 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-lg text-sm font-semibold text-gray-700 shadow-sm">🎓
-                                MBA Candidate @ BITSoM</span>
+                                class="px-3 py-1 rounded-full text-xs font-bold bg-blue-500/10 border border-blue-500/20 text-blue-400">🎓
+                                MBA @ BITSoM · 1st Rank</span>
                             <span
-                                class="px-4 py-2 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-lg text-sm font-semibold text-gray-700 shadow-sm">💼
+                                class="px-3 py-1 rounded-full text-xs font-bold bg-violet-500/10 border border-violet-500/20 text-violet-400">💼
                                 Ex-Accenture Specialist</span>
                             <span
-                                class="px-4 py-2 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-lg text-sm font-semibold text-gray-700 shadow-sm">🏆
-                                Merit List Holder</span>
+                                class="px-3 py-1 rounded-full text-xs font-bold bg-blue-500/10 border border-blue-500/20 text-blue-400">🏆
+                                20+ Awards</span>
                             <span
-                                class="px-4 py-2 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-lg text-sm font-semibold text-gray-700 shadow-sm">🤖
+                                class="px-3 py-1 rounded-full text-xs font-bold bg-violet-500/10 border border-violet-500/20 text-violet-400">🤖
                                 GenAI Expert</span>
                         </div>
-
-                        <div class="flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start">
-                            <a href="https://www.linkedin.com/in/anirudh-nanduri/" target="_blank"
-                                class="cta-button text-white font-bold py-4 px-8 rounded-full shadow-xl hover:shadow-blue-500/30 flex items-center justify-center gap-2 group">
-                                <span>Connect on LinkedIn</span>
-                                <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none"
-                                    stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M17 8l4 4m0 0l-4 4m0-4H3"></path>
-                                </svg>
-                            </a>
-                            <a href="assets/resume/Nanduri_Anirudh.pdf" id="download-resume"
-                                download="Nanduri_Anirudh_Resume.pdf"
-                                class="bg-white text-gray-800 hover:bg-gray-50 border border-gray-200 font-bold py-4 px-8 rounded-full shadow-lg transition-all hover:-translate-y-1 flex items-center justify-center gap-2">
-                                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                                </svg>
-                                <span>Download Resume</span>
-                            </a>
-                        </div>
-
                     </div>
 
-                    <!-- Hero Image (Right) -->
-                    <div
-                        class="w-full md:w-1/2 flex flex-col items-center md:items-end relative animate-fade-in-up animation-delay-200">
-                        <div class="relative w-72 h-72 md:w-[500px] md:h-[500px]">
-                            <!-- Abstract Shapes -->
-                            <div
-                                class="absolute inset-0 bg-gradient-to-tr from-blue-100 to-purple-100 rounded-[3rem] transform transition-transform duration-500">
+                    <!-- Right: Profile -->
+                    <div class="w-full md:w-5/12 flex flex-col items-center">
+                        <div class="relative">
+                            <div class="profile-glow"></div>
+                            <div class="relative w-72 h-72 md:w-88 md:h-88 rounded-[2.5rem] overflow-hidden border-2 border-white/10 shadow-2xl"
+                                style="width:clamp(220px,70vw,360px);height:clamp(220px,70vw,360px);">
+                                <img src="assets/profile/pic.webp" alt="Anirudh Nanduri" loading="eager"
+                                    class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
                             </div>
-                            <div
-                                class="absolute inset-0 bg-white rounded-[2.5rem] shadow-2xl overflow-hidden transform transition-transform duration-500 border-4 border-white ml-2 mt-2">
-                                <img class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
-                                    src="assets/profile/pic.webp" alt="Anirudh Nanduri">
+                            <div class="absolute -bottom-4 left-0 sm:-left-6 glass rounded-2xl px-3 py-2 border border-white/10 flex items-center gap-2 shadow-xl text-sm"
+                                style="animation:float 3s ease-in-out infinite;">
+                                <span class="text-xl">🏆</span>
+                                <div>
+                                    <div class="text-xs text-gray-400 font-bold">ACCENTURE</div>
+                                    <div class="text-sm font-bold text-white">Top 20%</div>
+                                </div>
                             </div>
-
-                            <!-- Floating Badge -->
-                            <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl border border-gray-100 animate-bounce"
-                                style="animation-duration: 3s;">
-                                <div class="flex items-center gap-3">
-                                    <div class="bg-blue-100 p-2 rounded-full text-blue-600 font-bold text-xl">Top</div>
-                                    <div class="text-left">
-                                        <p class="text-xs text-gray-500 font-bold uppercase">Ranked</p>
-                                        <p class="font-bold text-gray-800">Top 20%*</p>
-                                    </div>
+                            <div class="absolute -top-4 right-0 sm:-right-6 glass rounded-2xl px-3 py-2 border border-white/10 flex items-center gap-2 shadow-xl text-sm"
+                                style="animation:float 3s ease-in-out infinite;animation-delay:1.5s;">
+                                <span class="text-xl">🥇</span>
+                                <div>
+                                    <div class="text-xs text-gray-400 font-bold">BITSOM</div>
+                                    <div class="text-sm font-bold text-white">1st Rank</div>
                                 </div>
                             </div>
                         </div>
-                        <!-- Asterisk Context -->
-                        <div class="w-72 md:w-[500px] mt-8 text-right">
-                            <p class="text-xs text-gray-400 text-center md:text-right w-full block">* Top 20% of Data
-                                Scientists at Accenture (as of 2022).</p>
-                        </div>
+                        <p class="text-xs text-gray-600 mt-8 text-center">*Top 20% of Data Scientists at Accenture
+                            (2022)</p>
                     </div>
 
                 </div>
             </div>
         </section>
 
-        <!-- Experience Section -->
-        <section id="experience" class="py-10">
+        <!-- ======== EXPERIENCE ======== -->
+        <section id="experience" class="py-24 relative" style="background:var(--bg2);">
             <div class="container mx-auto px-6 max-w-5xl">
-                <h2 class="text-4xl font-bold text-center mb-2"><span class="gradient-text">Professional Journey</span>
-                </h2>
-                <p class="text-center text-lg text-gray-500 font-medium mb-12">Total 6 Years of Professional Experience
-                </p>
 
-                <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
-                    <!-- Tabs -->
-                    <div class="flex border-b border-gray-100 bg-gray-50/50 p-2 gap-2">
-                        <button
-                            class="tab active flex-1 py-4 rounded-xl font-bold text-lg transition-all text-gray-500 hover:bg-white hover:shadow-sm data-[active=true]:bg-white data-[active=true]:text-blue-600 data-[active=true]:shadow-md"
-                            onclick="showTab('accenture')">
-                            Accenture
-                        </button>
-                        <button
-                            class="tab flex-1 py-4 rounded-xl font-bold text-lg transition-all text-gray-500 hover:bg-white hover:shadow-sm"
-                            onclick="showTab('bridgei2i')">
-                            BRIDGEi2i
-                        </button>
+                <div class="section-header text-center mb-12 reveal">
+                    <span class="sec-label">Career</span>
+                    <h2 class="sec-title">Professional <span class="grad-text">Journey</span></h2>
+                    <p class="sec-sub">6+ years delivering measurable impact across enterprise environments</p>
+                </div>
+
+                <!-- PM / DS Toggle -->
+                <div class="flex justify-center mb-8 reveal">
+                    <div class="toggle-group">
+                        <button class="tgl-btn active" id="exp-pm-btn" onclick="setExpView('pm')">📋 PM View</button>
+                        <button class="tgl-btn" id="exp-ds-btn" onclick="setExpView('ds')">📊 Analytics View</button>
                     </div>
+                </div>
 
-                    <!-- Content -->
-                    <div class="p-8 md:p-12 min-h-[500px]">
-                        <div id="accenture" class="tab-content animate-fade-in-up">
-                            <div
-                                class="flex flex-col md:flex-row justify-between items-start mb-8 border-b border-gray-100 pb-6">
-                                <div>
-                                    <h3 class="text-3xl font-bold text-gray-800 mb-2">Specialist Data Scientist</h3>
-                                    <p class="text-blue-600 font-medium">Accenture Solutions Pvt Ltd</p>
-                                </div>
-                                <span
-                                    class="bg-blue-100 text-blue-800 text-sm font-bold px-4 py-2 rounded-full mt-2 md:mt-0">May
-                                    2022 - May 2024</span>
+                <!-- Company Tabs -->
+                <div class="flex flex-wrap justify-center gap-3 mb-8 reveal">
+                    <button class="exp-tab active" id="etab-acn" onclick="showExpTab('acn')">Accenture</button>
+                    <button class="exp-tab" id="etab-b2i" onclick="showExpTab('b2i')">BRIDGEi2i</button>
+                    <button class="exp-tab" id="etab-gld" onclick="showExpTab('gld')">Galderma</button>
+                </div>
+
+                <!-- Cards -->
+                <div class="glass rounded-3xl border border-white/8 overflow-hidden reveal">
+
+                    <!-- ACCENTURE -->
+                    <div id="exp-acn" class="p-8 md:p-12">
+                        <div
+                            class="flex flex-col md:flex-row justify-between items-start mb-6 pb-6 border-b border-white/8">
+                            <div>
+                                <h3 class="text-2xl md:text-3xl font-bold text-white mb-1">Specialist Data Scientist
+                                </h3>
+                                <p class="text-blue-400 font-semibold">Accenture Solutions Pvt Ltd</p>
                             </div>
-
-                            <p
-                                class="text-lg text-gray-600 mb-8 leading-relaxed italic border-l-4 border-blue-500 pl-4">
-                                "Specialist Data Scientist recognized among the top 20% of data scientists globally."
-                            </p>
-
-                            <div class="space-y-6">
-                                <h4 class="text-sm uppercase tracking-wider text-gray-400 font-bold">Key Achievements
-                                </h4>
-                                <ul class="space-y-4">
-                                    <li class="flex items-start">
-                                        <span
-                                            class="flex-shrink-0 w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center mr-3 mt-1">✓</span>
-                                        <span class="text-gray-700"><strong>Counterfeit Detection:</strong> Led
-                                            development of AI-ML model preventing ~$1B+ business loss. Reduced manual ID
-                                            time by ~90%.</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <span
-                                            class="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mr-3 mt-1">✓</span>
-                                        <span class="text-gray-700"><strong>Product Rec Engine:</strong> Reduced product
-                                            selection time by ~65%, enhancing UX.</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <span
-                                            class="flex-shrink-0 w-6 h-6 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center mr-3 mt-1">✓</span>
-                                        <span class="text-gray-700"><strong>AI Chatbot:</strong> Improved response time
-                                            by ~85% with intelligent recommendations.</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <span
-                                            class="flex-shrink-0 w-6 h-6 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center mr-3 mt-1">🏆</span>
-                                        <span class="text-gray-700"><strong>Recognition:</strong> 11 awards including
-                                            STAR Award & IS Elite Advocate.</span>
-                                    </li>
-                                </ul>
+                            <span
+                                class="mt-3 md:mt-0 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-300 text-sm font-bold whitespace-nowrap">May
+                                2022 – May 2024</span>
+                        </div>
+                        <p class="text-gray-400 italic text-sm mb-6 pl-4 border-l-2 border-blue-500">"Recognised as Top
+                            Data Scientist — Top 20% globally — earning 11 awards including STAR Award &amp; IS Elite
+                            Advocate."</p>
+                        <!-- PM bullets -->
+                        <div class="exp-pm space-y-0">
+                            <div class="blt">
+                                <div class="blt-dot"></div>
+                                <p class="text-gray-300 text-sm leading-relaxed"><span
+                                        class="text-white font-semibold">Product Lifecycle:</span> Led lifecycle for
+                                    counterfeit detection product, preventing <span class="text-blue-400 font-bold">$10M
+                                        in losses</span> via hybrid rules engine.</p>
+                            </div>
+                            <div class="blt">
+                                <div class="blt-dot"></div>
+                                <p class="text-gray-300 text-sm leading-relaxed"><span
+                                        class="text-white font-semibold">Decision Tools:</span> Spearheaded requirements
+                                    &amp; rollout of decision-support tool, reducing manual review effort by <span
+                                        class="text-blue-400 font-bold">~90%</span>.</p>
+                            </div>
+                            <div class="blt">
+                                <div class="blt-dot"></div>
+                                <p class="text-gray-300 text-sm leading-relaxed"><span
+                                        class="text-white font-semibold">AI Chatbot:</span> Conceptualized requirements
+                                    for RAG-based chatbot, reducing user evaluation time by <span
+                                        class="text-blue-400 font-bold">~85%</span>.</p>
+                            </div>
+                            <div class="blt">
+                                <div class="blt-dot"></div>
+                                <p class="text-gray-300 text-sm leading-relaxed"><span
+                                        class="text-white font-semibold">Recommender Engine:</span> Delivered contextual
+                                    recommendation product reducing shortlisting time by <span
+                                        class="text-blue-400 font-bold">~65%</span>.</p>
+                            </div>
+                            <div class="blt">
+                                <div class="blt-dot"></div>
+                                <p class="text-gray-300 text-sm leading-relaxed"><span
+                                        class="text-white font-semibold">Product Adoption:</span> Improved newer product
+                                    adoption by <span class="text-blue-400 font-bold">~20%</span> via risk-based
+                                    signals.</p>
+                            </div>
+                            <div class="blt">
+                                <div class="blt-dot"></div>
+                                <p class="text-gray-300 text-sm leading-relaxed"><span
+                                        class="text-white font-semibold">Stakeholder Alignment:</span> Orchestrated
+                                    senior alignment &amp; prioritization, converting <span
+                                        class="text-blue-400 font-bold">4+ PoCs to ~$0.4M+ in revenue</span>.</p>
                             </div>
                         </div>
-
-                        <div id="bridgei2i" class="tab-content hidden animate-fade-in-up">
-                            <div
-                                class="flex flex-col md:flex-row justify-between items-start mb-8 border-b border-gray-100 pb-6">
-                                <div>
-                                    <h3 class="text-3xl font-bold text-gray-800 mb-2">Senior Analytics Consultant</h3>
-                                    <p class="text-teal-600 font-medium">BRIDGEi2i Analytics Solutions</p>
-                                </div>
-                                <span
-                                    class="bg-teal-100 text-teal-800 text-sm font-bold px-4 py-2 rounded-full mt-2 md:mt-0">Jun
-                                    2018 - Apr 2022</span>
+                        <!-- DS bullets -->
+                        <div class="exp-ds hidden space-y-0">
+                            <div class="blt">
+                                <div class="blt-dot"></div>
+                                <p class="text-gray-300 text-sm leading-relaxed"><span
+                                        class="text-white font-semibold">Counterfeit Detection:</span> Led AI/ML models
+                                    to predict counterfeits, preventing <span class="text-blue-400 font-bold">$10M in
+                                        business losses</span>.</p>
                             </div>
+                            <div class="blt">
+                                <div class="blt-dot"></div>
+                                <p class="text-gray-300 text-sm leading-relaxed"><span
+                                        class="text-white font-semibold">Operational Efficiency:</span> Built custom
+                                    rules engine reducing expert identification time by <span
+                                        class="text-blue-400 font-bold">~90%</span>.</p>
+                            </div>
+                            <div class="blt">
+                                <div class="blt-dot"></div>
+                                <p class="text-gray-300 text-sm leading-relaxed"><span
+                                        class="text-white font-semibold">Recommender Engine:</span> Owned algorithm
+                                    development reducing user product selection time by <span
+                                        class="text-blue-400 font-bold">~65%</span>.</p>
+                            </div>
+                            <div class="blt">
+                                <div class="blt-dot"></div>
+                                <p class="text-gray-300 text-sm leading-relaxed"><span
+                                        class="text-white font-semibold">AI Chatbot:</span> Owned delivery of AI-driven
+                                    recommendation chatbot, reducing decision time by <span
+                                        class="text-blue-400 font-bold">~85%</span>.</p>
+                            </div>
+                            <div class="blt">
+                                <div class="blt-dot"></div>
+                                <p class="text-gray-300 text-sm leading-relaxed"><span
+                                        class="text-white font-semibold">Product Adoption:</span> Increased newer
+                                    product adoption by <span class="text-blue-400 font-bold">~20%</span> using a
+                                    risk-based decision signal.</p>
+                            </div>
+                            <div class="blt">
+                                <div class="blt-dot"></div>
+                                <p class="text-gray-300 text-sm leading-relaxed"><span
+                                        class="text-white font-semibold">Commercial Growth:</span> Converted <span
+                                        class="text-blue-400 font-bold">4+ PoCs</span> by securing VP endorsement,
+                                    generating <span class="text-blue-400 font-bold">~$0.4M in projects</span>.</p>
+                            </div>
+                        </div>
+                    </div>
 
-                            <p
-                                class="text-lg text-gray-600 mb-8 leading-relaxed italic border-l-4 border-teal-500 pl-4">
-                                "Recognized as 'Ai2i Icon' for excellence in AI/ML skills and capability development."
-                            </p>
+                    <!-- BRIDGEI2I -->
+                    <div id="exp-b2i" class="p-8 md:p-12 hidden">
+                        <div
+                            class="flex flex-col md:flex-row justify-between items-start mb-6 pb-6 border-b border-white/8">
+                            <div>
+                                <h3 class="text-2xl md:text-3xl font-bold text-white mb-1">Senior Analytics Consultant
+                                </h3>
+                                <p class="text-teal-400 font-semibold">BRIDGEi2i Analytics Solutions Pvt Ltd</p>
+                            </div>
+                            <span
+                                class="mt-3 md:mt-0 px-4 py-2 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-300 text-sm font-bold whitespace-nowrap">Jun
+                                2018 – Apr 2022</span>
+                        </div>
+                        <p class="text-gray-400 italic text-sm mb-6 pl-4 border-l-2 border-teal-500">"Recognised as
+                            'Ai2i Icon' — one of 9 total awards — for excellence in AI/ML skills &amp; capability
+                            development."</p>
+                        <!-- PM bullets -->
+                        <div class="exp-pm space-y-0">
+                            <div class="blt">
+                                <div class="blt-dot"></div>
+                                <p class="text-gray-300 text-sm leading-relaxed"><span
+                                        class="text-white font-semibold">KPI Dashboards:</span> Translated unclear
+                                    business needs into dashboards, cutting reporting costs by <span
+                                        class="text-teal-400 font-bold">~$0.25M/year</span>.</p>
+                            </div>
+                            <div class="blt">
+                                <div class="blt-dot"></div>
+                                <p class="text-gray-300 text-sm leading-relaxed"><span
+                                        class="text-white font-semibold">Budget Optimization:</span> Defined product
+                                    specs for optimization &amp; simulation modules; halved decision-making time.</p>
+                            </div>
+                            <div class="blt">
+                                <div class="blt-dot"></div>
+                                <p class="text-gray-300 text-sm leading-relaxed"><span
+                                        class="text-white font-semibold">Decision Support:</span> Enabled country
+                                    leaders' <span class="text-teal-400 font-bold">$20M+ annual marketing spend</span>
+                                    decisions via decision-support products.</p>
+                            </div>
+                            <div class="blt">
+                                <div class="blt-dot"></div>
+                                <p class="text-gray-300 text-sm leading-relaxed"><span
+                                        class="text-white font-semibold">Revenue Protection:</span> Owned target &amp;
+                                    gap workflows, preventing <span class="text-teal-400 font-bold">~$1.5M projected
+                                        revenue shortfall</span>.</p>
+                            </div>
+                            <div class="blt">
+                                <div class="blt-dot"></div>
+                                <p class="text-gray-300 text-sm leading-relaxed"><span
+                                        class="text-white font-semibold">Campaign Insights:</span> Improved topline
+                                    performance by <span class="text-teal-400 font-bold">~25%</span> via funnel
+                                    diagnostics.</p>
+                            </div>
+                            <div class="blt">
+                                <div class="blt-dot"></div>
+                                <p class="text-gray-300 text-sm leading-relaxed"><span
+                                        class="text-white font-semibold">Marketing ROI:</span> Delivered spend decision
+                                    tool improving profitability by <span class="text-teal-400 font-bold">~6%</span>
+                                    across the marketing mix.</p>
+                            </div>
+                        </div>
+                        <!-- DS bullets -->
+                        <div class="exp-ds hidden space-y-0">
+                            <div class="blt">
+                                <div class="blt-dot"></div>
+                                <p class="text-gray-300 text-sm leading-relaxed"><span
+                                        class="text-white font-semibold">Team Efficiency:</span> Led 3-member team to
+                                    deliver 3 dashboards, saving <span
+                                        class="text-teal-400 font-bold">~$0.25M/year</span> in manpower.</p>
+                            </div>
+                            <div class="blt">
+                                <div class="blt-dot"></div>
+                                <p class="text-gray-300 text-sm leading-relaxed"><span
+                                        class="text-white font-semibold">Target Protection:</span> Prevented <span
+                                        class="text-teal-400 font-bold">~$1.5M target miss</span> by building a planning
+                                    &amp; sales behaviour dashboard.</p>
+                            </div>
+                            <div class="blt">
+                                <div class="blt-dot"></div>
+                                <p class="text-gray-300 text-sm leading-relaxed"><span
+                                        class="text-white font-semibold">Insight Generation:</span> Improved client
+                                    performance by <span class="text-teal-400 font-bold">~25%</span> through lead funnel
+                                    &amp; campaign analysis.</p>
+                            </div>
+                            <div class="blt">
+                                <div class="blt-dot"></div>
+                                <p class="text-gray-300 text-sm leading-relaxed"><span
+                                        class="text-white font-semibold">Target Estimation:</span> Reduced realised
+                                    revenue target gap by <span class="text-teal-400 font-bold">~30%</span> via product
+                                    life cycle analysis.</p>
+                            </div>
+                            <div class="blt">
+                                <div class="blt-dot"></div>
+                                <p class="text-gray-300 text-sm leading-relaxed"><span
+                                        class="text-white font-semibold">Budget Optimization:</span> Developed
+                                    optimization &amp; simulation algorithms, improving marketing decisions and boosting
+                                    profitability by <span class="text-teal-400 font-bold">~6%</span>.</p>
+                            </div>
+                            <div class="blt">
+                                <div class="blt-dot"></div>
+                                <p class="text-gray-300 text-sm leading-relaxed"><span
+                                        class="text-white font-semibold">Budget Justification:</span> Justified <span
+                                        class="text-teal-400 font-bold">~$20M</span> annual marketing spend by analysing
+                                    total contribution to sales.</p>
+                            </div>
+                        </div>
+                    </div>
 
-                            <div class="space-y-6">
-                                <h4 class="text-sm uppercase tracking-wider text-gray-400 font-bold">Key Achievements
-                                </h4>
-                                <ul class="space-y-4">
-                                    <li class="flex items-start">
-                                        <span
-                                            class="flex-shrink-0 w-6 h-6 rounded-full bg-teal-100 text-teal-600 flex items-center justify-center mr-3 mt-1">✓</span>
-                                        <span class="text-gray-700"><strong>Investment Optimizer:</strong> Boosted
-                                            marketing profits by ~6% for Fortune 500 client.</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <span
-                                            class="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mr-3 mt-1">✓</span>
-                                        <span class="text-gray-700"><strong>Sales Target Estimation:</strong> Reduced
-                                            target gap by ~30% via life cycle analysis.</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <span
-                                            class="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center mr-3 mt-1">✓</span>
-                                        <span class="text-gray-700"><strong>Market Mix Modelling:</strong> Justified
-                                            $20M+ marketing spend through attribution modeling.</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <span
-                                            class="flex-shrink-0 w-6 h-6 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center mr-3 mt-1">👥</span>
-                                        <span class="text-gray-700"><strong>Mentorship:</strong> Trained ~450+
-                                            individuals in AI/ML & SQL. Led SCaLa training.</span>
-                                    </li>
-                                </ul>
+                    <!-- GALDERMA -->
+                    <div id="exp-gld" class="p-8 md:p-12 hidden">
+                        <div
+                            class="flex flex-col md:flex-row justify-between items-start mb-6 pb-6 border-b border-white/8">
+                            <div>
+                                <h3 class="text-2xl md:text-3xl font-bold text-white mb-1">Business Analytics Intern
+                                </h3>
+                                <p class="text-emerald-400 font-semibold">Galderma India Pvt Ltd</p>
+                            </div>
+                            <span
+                                class="mt-3 md:mt-0 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-sm font-bold whitespace-nowrap">Apr
+                                2025 – May 2025</span>
+                        </div>
+                        <p class="text-gray-400 italic text-sm mb-6 pl-4 border-l-2 border-emerald-500">"Applied
+                            enterprise-grade data skills in a pharma context, building scalable automation and
+                            governance foundations."</p>
+                        <div class="space-y-0">
+                            <div class="blt">
+                                <div class="blt-dot"></div>
+                                <p class="text-gray-300 text-sm leading-relaxed"><span
+                                        class="text-white font-semibold">Sales Validation:</span> Accelerated sales data
+                                    validation <span class="text-emerald-400 font-bold">4–5×</span> via automated data
+                                    extraction &amp; SKU mapping.</p>
+                            </div>
+                            <div class="blt">
+                                <div class="blt-dot"></div>
+                                <p class="text-gray-300 text-sm leading-relaxed"><span
+                                        class="text-white font-semibold">Data Governance:</span> Built in-house
+                                    consolidation process, increasing control over data transformations.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!-- end glass card -->
+
+                <!-- Leadership & Community -->
+                <div class="mt-8 reveal">
+                    <div class="glass rounded-2xl border border-white/8 p-8 md:p-10">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-10 h-10 rounded-full flex items-center justify-center text-xl"
+                                style="background:rgba(139,92,246,.2);">🌟</div>
+                            <h3 class="text-xl font-bold text-white">Leadership &amp; Community</h3>
+                        </div>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div class="lead-item">
+                                <span class="text-2xl">👑</span>
+                                <div>
+                                    <div class="text-white font-semibold text-sm">VP Clubs — BITSoM</div>
+                                    <div class="text-gray-400 text-xs mt-1">Elected by 316 peers to govern 17 student
+                                        clubs with 260+ members.</div>
+                                </div>
+                            </div>
+                            <div class="lead-item">
+                                <span class="text-2xl">📋</span>
+                                <div>
+                                    <div class="text-white font-semibold text-sm">Process Excellence</div>
+                                    <div class="text-gray-400 text-xs mt-1">Institutionalized SOPs for event planning
+                                        &amp; execution to standardize processes.</div>
+                                </div>
+                            </div>
+                            <div class="lead-item">
+                                <span class="text-2xl">🎓</span>
+                                <div>
+                                    <div class="text-white font-semibold text-sm">SCaLa Lead — BRIDGEi2i</div>
+                                    <div class="text-gray-400 text-xs mt-1">Led multiple programs; upskilled 450+
+                                        individuals in AI/ML &amp; SQL.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ======== EDUCATION ======== -->
+        <section id="education" class="py-20" style="background:var(--bg2);">
+            <div class="container mx-auto px-6 max-w-5xl">
+                <div class="text-center mb-10 reveal">
+                    <span class="sec-label">Academic Excellence</span>
+                    <h2 class="sec-title">Education &amp; <span class="grad-text">Credentials</span></h2>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6 reveal">
+                    <!-- MBA -->
+                    <div class="glass rounded-2xl border border-white/8 p-8 flex gap-5 items-start relative overflow-hidden"
+                        style="border-color:rgba(59,130,246,.25);">
+                        <div
+                            class="absolute top-0 right-0 w-32 h-32 rounded-full bg-blue-500 opacity-5 -translate-y-8 translate-x-8">
+                        </div>
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl flex-shrink-0"
+                            style="background:rgba(59,130,246,.12)">🎓</div>
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <h3 class="text-white font-bold text-lg">MBA – E-commerce &amp; Digital Leadership ·
+                                    Leadership &amp; Strategy</h3>
+                            </div>
+                            <p class="text-blue-400 font-semibold text-sm mb-2">BITS School of Management (BITSoM),
+                                Mumbai</p>
+                            <p class="text-gray-500 text-xs mb-3">2023 &ndash; Mar 2026 (Expected)</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span
+                                    class="px-3 py-1 rounded-full text-xs font-bold bg-yellow-500/10 border border-yellow-500/25 text-yellow-400">🥇
+                                    1st Rank (Gold Medal)</span>
+                                <span
+                                    class="px-3 py-1 rounded-full text-xs font-bold bg-blue-500/10 border border-blue-500/25 text-blue-400">VP
+                                    – Student Clubs</span>
+                                <span
+                                    class="px-3 py-1 rounded-full text-xs font-bold bg-violet-500/10 border border-violet-500/25 text-violet-400">Merit
+                                    List</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- B.Tech -->
+                    <div
+                        class="glass rounded-2xl border border-white/8 p-8 flex gap-5 items-start relative overflow-hidden">
+                        <div
+                            class="absolute top-0 right-0 w-32 h-32 rounded-full bg-violet-500 opacity-5 -translate-y-8 translate-x-8">
+                        </div>
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl flex-shrink-0"
+                            style="background:rgba(139,92,246,.12)">⚡</div>
+                        <div>
+                            <h3 class="text-white font-bold text-lg mb-1">B.E. – Mechanical Engineering</h3>
+                            <p class="text-violet-400 font-semibold text-sm mb-2">PSG College of Technology, Coimbatore
+                                (Anna University)</p>
+                            <p class="text-gray-500 text-xs mb-3">2014 – 2018</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span
+                                    class="px-3 py-1 rounded-full text-xs font-bold bg-violet-500/10 border border-violet-500/25 text-violet-400">DRDL
+                                    Intern</span>
+                                <span
+                                    class="px-3 py-1 rounded-full text-xs font-bold bg-gray-500/10 border border-gray-500/25 text-gray-400">Published
+                                    Research</span>
                             </div>
                         </div>
                     </div>
@@ -486,769 +1530,530 @@
             </div>
         </section>
 
-        <section id="skills" class="py-20">
+        <!-- ======== SKILLS ======== -->
+        <section id="skills" class="py-24">
+            <div class="container mx-auto px-6 max-w-5xl">
+                <div class="text-center mb-12 reveal">
+                    <span class="sec-label">Capabilities</span>
+                    <h2 class="sec-title">Core <span class="grad-text">Competencies</span></h2>
+                    <p class="sec-sub">Toggle between PM and Analytics to see role-specific skill stacks.</p>
+                </div>
+                <div class="flex justify-center mb-10 reveal">
+                    <div class="toggle-group">
+                        <button class="tgl-btn active" id="sk-pm-btn" onclick="setSkillView('pm')">📋 PM Skills</button>
+                        <button class="tgl-btn" id="sk-ds-btn" onclick="setSkillView('ds')">📊 Data Science
+                            Skills</button>
+                    </div>
+                </div>
+                <!-- PM Skills -->
+                <div id="skills-pm" class="grid md:grid-cols-2 gap-8 reveal">
+                    <div class="glass rounded-2xl border border-white/8 p-8">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-10 h-10 rounded-full flex items-center justify-center text-xl"
+                                style="background:rgba(59,130,246,.15)">🛠️</div>
+                            <h3 class="text-lg font-bold text-white">Tools &amp; Technology</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-badge expert">Figma</span><span
+                                class="skill-badge expert">JIRA</span><span
+                                class="skill-badge expert">Confluence</span><span
+                                class="skill-badge expert">ClickUp</span><span class="skill-badge">Python</span><span
+                                class="skill-badge">SQL</span><span class="skill-badge">Excel</span><span
+                                class="skill-badge">Tableau</span><span class="skill-badge">LLMs</span><span
+                                class="skill-badge">RAG</span><span class="skill-badge">GitHub</span>
+                        </div>
+                    </div>
+                    <div class="glass rounded-2xl border border-white/8 p-8">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-10 h-10 rounded-full flex items-center justify-center text-xl"
+                                style="background:rgba(139,92,246,.15)">🚀</div>
+                            <h3 class="text-lg font-bold text-white">Methodologies</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-badge expert">Agile</span><span
+                                class="skill-badge expert">Scrum</span><span class="skill-badge expert">Sprint
+                                Planning</span><span class="skill-badge expert">Requirement Discovery</span><span
+                                class="skill-badge">Stakeholder Management</span><span class="skill-badge">Product
+                                Strategy</span><span class="skill-badge">Client Engagement</span><span
+                                class="skill-badge">Data Storytelling</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- DS Skills -->
+                <div id="skills-ds" class="grid md:grid-cols-2 gap-8 reveal hidden">
+                    <div class="glass rounded-2xl border border-white/8 p-8">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-10 h-10 rounded-full flex items-center justify-center text-xl"
+                                style="background:rgba(59,130,246,.15)">💻</div>
+                            <h3 class="text-lg font-bold text-white">Technical Arsenal</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-badge expert">Python</span><span
+                                class="skill-badge expert">SQL</span><span class="skill-badge expert">Machine
+                                Learning</span><span class="skill-badge expert">GenAI / LLMs</span><span
+                                class="skill-badge">RAG Chatbots</span><span class="skill-badge">AI Agents</span><span
+                                class="skill-badge">Excel</span><span class="skill-badge">Tableau</span><span
+                                class="skill-badge">Applied Analytics</span>
+                        </div>
+                    </div>
+                    <div class="glass rounded-2xl border border-white/8 p-8">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-10 h-10 rounded-full flex items-center justify-center text-xl"
+                                style="background:rgba(139,92,246,.15)">🧠</div>
+                            <h3 class="text-lg font-bold text-white">Analytics &amp; Leadership</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-badge expert">Statistical Modelling</span><span
+                                class="skill-badge expert">Explainable AI/ML</span><span class="skill-badge">Product
+                                Analytics</span><span class="skill-badge">Team Leadership</span><span
+                                class="skill-badge">Stakeholder Management</span><span class="skill-badge">Data
+                                Storytelling</span><span class="skill-badge">Problem Solving</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======== PROJECTS ======== -->
+        <section id="projects" class="py-24" style="background:var(--bg2);">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-center section-title mb-4">Core Competencies</h2>
-                <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">A blend of technical expertise and
-                    strategic thinking, enabling data-driven solutions and effective product management.</p>
-
-                <div class="grid lg:grid-cols-2 gap-12 items-stretch">
-                    <!-- Technical Skills -->
-                    <div class="glass-panel p-8 rounded-3xl animate-fade-in-up">
-                        <div class="flex items-center mb-8">
-                            <div
-                                class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-2xl mr-4">
-                                💻</div>
-                            <h3 class="text-2xl font-bold text-gray-800">Technical Arsenal</h3>
-                        </div>
-                        <div class="flex flex-wrap gap-3">
-                            <span
-                                class="px-4 py-2 rounded-xl bg-white border border-gray-200 text-gray-700 font-medium shadow-sm hover:shadow-md hover:border-blue-400 hover:text-blue-600 transition-all cursor-default transform hover:-translate-y-1">Python</span>
-                            <span
-                                class="px-4 py-2 rounded-xl bg-white border border-gray-200 text-gray-700 font-medium shadow-sm hover:shadow-md hover:border-blue-400 hover:text-blue-600 transition-all cursor-default transform hover:-translate-y-1">SQL</span>
-                            <span
-                                class="px-4 py-2 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-medium shadow-lg transform hover:scale-105 transition-all cursor-default">Machine
-                                Learning</span>
-                            <span
-                                class="px-4 py-2 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-medium shadow-lg transform hover:scale-105 transition-all cursor-default">GenAI</span>
-                            <span
-                                class="px-4 py-2 rounded-xl bg-white border border-gray-200 text-gray-700 font-medium shadow-sm hover:shadow-md hover:border-blue-400 hover:text-blue-600 transition-all cursor-default transform hover:-translate-y-1">Artificial
-                                Intelligence</span>
-                            <span
-                                class="px-4 py-2 rounded-xl bg-white border border-gray-200 text-gray-700 font-medium shadow-sm hover:shadow-md hover:border-blue-400 hover:text-blue-600 transition-all cursor-default transform hover:-translate-y-1">LLMs</span>
-                            <span
-                                class="px-4 py-2 rounded-xl bg-white border border-gray-200 text-gray-700 font-medium shadow-sm hover:shadow-md hover:border-blue-400 hover:text-blue-600 transition-all cursor-default transform hover:-translate-y-1">Tableau</span>
-                            <span
-                                class="px-4 py-2 rounded-xl bg-white border border-gray-200 text-gray-700 font-medium shadow-sm hover:shadow-md hover:border-blue-400 hover:text-blue-600 transition-all cursor-default transform hover:-translate-y-1">Excel</span>
-                            <span
-                                class="px-4 py-2 rounded-xl bg-white border border-gray-200 text-gray-700 font-medium shadow-sm hover:shadow-md hover:border-blue-400 hover:text-blue-600 transition-all cursor-default transform hover:-translate-y-1">Product
-                                Analytics</span>
-                            <span
-                                class="px-4 py-2 rounded-xl bg-white border border-gray-200 text-gray-700 font-medium shadow-sm hover:shadow-md hover:border-blue-400 hover:text-blue-600 transition-all cursor-default transform hover:-translate-y-1">Data
-                                Storytelling</span>
-                        </div>
-                    </div>
-
-                    <!-- Professional Skills -->
-                    <div class="glass-panel p-8 rounded-3xl animate-fade-in-up animation-delay-200">
-                        <div class="flex items-center mb-8">
-                            <div
-                                class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-2xl mr-4">
-                                🚀</div>
-                            <h3 class="text-2xl font-bold text-gray-800">Professional Superpowers</h3>
-                        </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div
-                                class="p-4 rounded-xl bg-white/50 border border-gray-100 hover:bg-white hover:shadow-lg transition-all group">
-                                <div class="flex items-center space-x-3 mb-1">
-                                    <span class="text-xl group-hover:scale-125 transition-transform">✨</span>
-                                    <span class="font-bold text-gray-800">Product Management</span>
-                                </div>
-                            </div>
-                            <div
-                                class="p-4 rounded-xl bg-white/50 border border-gray-100 hover:bg-white hover:shadow-lg transition-all group">
-                                <div class="flex items-center space-x-3 mb-1">
-                                    <span class="text-xl group-hover:scale-125 transition-transform">🤝</span>
-                                    <span class="font-bold text-gray-800">Client Engagement</span>
-                                </div>
-                            </div>
-                            <div
-                                class="p-4 rounded-xl bg-white/50 border border-gray-100 hover:bg-white hover:shadow-lg transition-all group">
-                                <div class="flex items-center space-x-3 mb-1">
-                                    <span class="text-xl group-hover:scale-125 transition-transform">📈</span>
-                                    <span class="font-bold text-gray-800">Strategic Planning</span>
-                                </div>
-                            </div>
-                            <div
-                                class="p-4 rounded-xl bg-white/50 border border-gray-100 hover:bg-white hover:shadow-lg transition-all group">
-                                <div class="flex items-center space-x-3 mb-1">
-                                    <span class="text-xl group-hover:scale-125 transition-transform">🧠</span>
-                                    <span class="font-bold text-gray-800">Problem Solving</span>
-                                </div>
-                            </div>
-                            <div
-                                class="p-4 rounded-xl bg-white/50 border border-gray-100 hover:bg-white hover:shadow-lg transition-all group">
-                                <div class="flex items-center space-x-3 mb-1">
-                                    <span class="text-xl group-hover:scale-125 transition-transform">🗣️</span>
-                                    <span class="font-bold text-gray-800">Communication</span>
-                                </div>
-                            </div>
-                            <div
-                                class="p-4 rounded-xl bg-white/50 border border-gray-100 hover:bg-white hover:shadow-lg transition-all group">
-                                <div class="flex items-center space-x-3 mb-1">
-                                    <span class="text-xl group-hover:scale-125 transition-transform">♔</span>
-                                    <span class="font-bold text-gray-800">Leadership</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="text-center mb-12 reveal">
+                    <span class="sec-label">Work</span>
+                    <h2 class="sec-title">Impactful <span class="grad-text">Projects</span></h2>
                 </div>
-            </div>
-        </section>
-
-        <section id="projects" class="py-20 bg-white">
-            <div class="container mx-auto px-6 relative">
-                <h2 class="text-3xl font-bold text-center section-title mb-12">Impactful Projects</h2>
-                <div class="flex flex-wrap justify-center gap-3 mb-12 animate-fade-in-up">
-                    <button data-tag="all"
-                        class="filter-button active px-6 py-2 rounded-full text-sm font-bold transition-all bg-white text-gray-600 hover:bg-blue-50 border border-gray-200">All</button>
-                    <button data-tag="AI"
-                        class="filter-button px-6 py-2 rounded-full text-sm font-bold transition-all bg-white text-gray-600 hover:bg-blue-50 border border-gray-200">AI</button>
-                    <button data-tag="ML"
-                        class="filter-button px-6 py-2 rounded-full text-sm font-bold transition-all bg-white text-gray-600 hover:bg-blue-50 border border-gray-200">ML</button>
-                    <button data-tag="Product"
-                        class="filter-button px-6 py-2 rounded-full text-sm font-bold transition-all bg-white text-gray-600 hover:bg-blue-50 border border-gray-200">Product</button>
-                    <button data-tag="Training"
-                        class="filter-button px-6 py-2 rounded-full text-sm font-bold transition-all bg-white text-gray-600 hover:bg-blue-50 border border-gray-200">Training</button>
-                    <button data-tag="Analytics"
-                        class="filter-button px-6 py-2 rounded-full text-sm font-bold transition-all bg-white text-gray-600 hover:bg-blue-50 border border-gray-200">Analytics</button>
+                <div class="flex flex-wrap justify-center gap-3 mb-10 reveal">
+                    <button data-tag="all" class="flt-btn active">All</button>
+                    <button data-tag="AI" class="flt-btn">AI</button>
+                    <button data-tag="ML" class="flt-btn">ML</button>
+                    <button data-tag="Product" class="flt-btn">Product</button>
+                    <button data-tag="Training" class="flt-btn">Training</button>
+                    <button data-tag="Analytics" class="flt-btn">Analytics</button>
                 </div>
-
-                <div class="relative group px-4 md:px-12">
-                    <!-- Project Nav Buttons -->
+                <div class="relative group px-4 md:px-14">
                     <button id="prev-project"
-                        class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg z-20 transition-all opacity-0 group-hover:opacity-100 disabled:opacity-0 focus:outline-none border border-gray-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
+                        class="absolute left-0 top-1/2 -translate-y-1/2 glass hover:bg-white/10 text-white p-3 rounded-full shadow-lg z-20 transition-all opacity-0 group-hover:opacity-100 focus:outline-none border border-white/10">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                         </svg>
                     </button>
                     <button id="next-project"
-                        class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg z-20 transition-all opacity-0 group-hover:opacity-100 disabled:opacity-0 focus:outline-none border border-gray-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
+                        class="absolute right-0 top-1/2 -translate-y-1/2 glass hover:bg-white/10 text-white p-3 rounded-full shadow-lg z-20 transition-all opacity-0 group-hover:opacity-100 focus:outline-none border border-white/10">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                         </svg>
                     </button>
-
                     <div id="projects-container"
-                        class="grid grid-flow-col auto-cols-[320px] gap-6 px-4 pb-8 pt-2 no-scrollbar scroll-smooth snap-x snap-mandatory items-stretch overflow-x-auto">
+                        class="grid grid-flow-col auto-cols-[300px] gap-6 px-2 pb-6 pt-2 no-scroll scroll-smooth snap-x snap-mandatory items-stretch overflow-x-auto">
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="accolades" class="py-20 bg-gray-50">
-            <div class="container mx-auto px-6 relative">
-                <div class="flex flex-col items-center mb-12 relative">
-                    <h2 class="text-3xl font-bold text-center section-title">Recognition & Achievements</h2>
-                    <a href="certificates.html"
-                        class="mt-4 text-blue-600 font-bold hover:text-blue-700 hover:underline flex items-center transition-colors">
-                        View All Certificates <span class="ml-1">→</span>
-                    </a>
+        <!-- ======== ACCOLADES ======== -->
+        <section id="accolades" class="py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-4 reveal">
+                    <span class="sec-label">Recognition</span>
+                    <h2 class="sec-title">Achievements &amp; <span class="grad-text">Accolades</span></h2>
                 </div>
-
-                <div class="relative group px-4 md:px-12">
-                    <!-- Navigation Buttons -->
+                <div class="text-center mb-10 reveal">
+                    <a href="certificates.html"
+                        class="inline-flex items-center gap-2 text-blue-400 font-bold hover:text-blue-300 transition-colors">View
+                        All Certificates <span>→</span></a>
+                </div>
+                <div class="relative group px-4 md:px-14">
                     <button id="prev-accolade"
-                        class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg z-20 transition-all opacity-0 group-hover:opacity-100 disabled:opacity-0 focus:outline-none border border-gray-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
+                        class="absolute left-0 top-1/2 -translate-y-1/2 glass hover:bg-white/10 text-white p-3 rounded-full shadow-lg z-20 transition-all opacity-0 group-hover:opacity-100 focus:outline-none border border-white/10">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                         </svg>
                     </button>
                     <button id="next-accolade"
-                        class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg z-20 transition-all opacity-0 group-hover:opacity-100 disabled:opacity-0 focus:outline-none border border-gray-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
+                        class="absolute right-0 top-1/2 -translate-y-1/2 glass hover:bg-white/10 text-white p-3 rounded-full shadow-lg z-20 transition-all opacity-0 group-hover:opacity-100 focus:outline-none border border-white/10">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                         </svg>
                     </button>
-
                     <div id="accolades-container"
-                        class="grid grid-flow-col auto-cols-[280px] gap-6 px-4 pb-8 pt-2 no-scrollbar scroll-smooth snap-x snap-mandatory items-stretch overflow-x-auto">
-                        <!-- Dynamically populated via JS -->
+                        class="grid grid-flow-col auto-cols-[260px] gap-6 px-2 pb-6 pt-2 no-scroll scroll-smooth snap-x snap-mandatory items-stretch overflow-x-auto">
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="endorsements" class="py-20 bg-white">
+        <!-- ======== ENDORSEMENTS ======== -->
+        <section id="endorsements" class="py-24" style="background:var(--bg2);">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-center section-title mb-12">Endorsements & Testimonials</h2>
-                <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border-l-4 border-blue-500">
-                        <p class="text-gray-700 mb-4 italic">"Anirudh is an excellent collaborator and communicator...
-                            he has consistently demonstrated a strong sense of teamwork, actively contributing to a
-                            positive and collaborative work environment."</p>
-                        <p class="text-gray-900 font-bold">- Akanksha Jain, Manager - Infosys</p>
+                <div class="text-center mb-12 reveal">
+                    <span class="sec-label">Social Proof</span>
+                    <h2 class="sec-title">Endorsements &amp; <span class="grad-text">Testimonials</span></h2>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto reveal">
+                    <div class="test-card">
+                        <div class="quote-mark">"</div>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-6 mt-8">"Anirudh is an excellent collaborator
+                            and communicator… he has consistently demonstrated a strong sense of teamwork, actively
+                            contributing to a positive and collaborative work environment."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="avatar" style="background:linear-gradient(135deg,#3b82f6,#8b5cf6)">AJ</div>
+                            <div>
+                                <div class="text-white font-bold text-sm">Akanksha Jain</div>
+                                <div class="text-gray-500 text-xs">Manager · Infosys</div>
+                            </div>
+                            <div class="ml-auto text-yellow-400 text-xs">★★★★★</div>
+                        </div>
                     </div>
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border-l-4 border-blue-500">
-                        <p class="text-gray-700 mb-4 italic">"He is a highly skilled data scientist at asking pertinent
-                            questions and eliminating noise. He excels in detail and oriented explanation of any problem
-                            and its solution. He has an exceptional grasp of applied mathematics..."</p>
-                        <p class="text-gray-900 font-bold">- Hemanshu Saraf, Data Scientist - EPAM</p>
+                    <div class="test-card">
+                        <div class="quote-mark">"</div>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-6 mt-8">"He is a highly skilled data
+                            scientist at asking pertinent questions and eliminating noise. He excels in detail-oriented
+                            explanation of any problem and its solution. He has an exceptional grasp of applied
+                            mathematics…"</p>
+                        <div class="flex items-center gap-3">
+                            <div class="avatar" style="background:linear-gradient(135deg,#10b981,#3b82f6)">HS</div>
+                            <div>
+                                <div class="text-white font-bold text-sm">Hemanshu Saraf</div>
+                                <div class="text-gray-500 text-xs">Data Scientist · EPAM</div>
+                            </div>
+                            <div class="ml-auto text-yellow-400 text-xs">★★★★★</div>
+                        </div>
                     </div>
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border-l-4 border-blue-500">
-                        <p class="text-gray-700 mb-4 italic">"I admire his thought leadership and structured approach
-                            towards any business problem. He is equally well-equipped with technical excellence, which
-                            has helped him prove himself to be a very big asset to the company."</p>
-                        <p class="text-gray-900 font-bold">- Ashmita Sen Gupta, Associate Manager Data Science -
-                            Accenture</p>
+                    <div class="test-card">
+                        <div class="quote-mark">"</div>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-6 mt-8">"I admire his thought leadership and
+                            structured approach towards any business problem. He is equally well-equipped with technical
+                            excellence, which has helped him prove himself to be a very big asset to the company."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="avatar" style="background:linear-gradient(135deg,#8b5cf6,#ec4899)">AG</div>
+                            <div>
+                                <div class="text-white font-bold text-sm">Ashmita Sen Gupta</div>
+                                <div class="text-gray-500 text-xs">Assoc. Manager Data Science · Accenture</div>
+                            </div>
+                            <div class="ml-auto text-yellow-400 text-xs">★★★★★</div>
+                        </div>
                     </div>
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border-l-4 border-blue-500">
-                        <p class="text-gray-700 mb-4 italic">"I've teamed up with Aniruddh for over 2 years... he's
-                            consistently wowed the senior leadership with his relentless pursuit of client satisfaction
-                            and top-tier delivery... he's the ultimate team player."</p>
-                        <p class="text-gray-900 font-bold">- Subhajit Debnath, Project Manager - Munich Re</p>
+                    <div class="test-card">
+                        <div class="quote-mark">"</div>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-6 mt-8">"I've teamed up with Aniruddh for
+                            over 2 years… he's consistently wowed senior leadership with his relentless pursuit of
+                            client satisfaction and top-tier delivery… he's the ultimate team player."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="avatar" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">SD</div>
+                            <div>
+                                <div class="text-white font-bold text-sm">Subhajit Debnath</div>
+                                <div class="text-gray-500 text-xs">Project Manager · Munich Re</div>
+                            </div>
+                            <div class="ml-auto text-yellow-400 text-xs">★★★★★</div>
+                        </div>
                     </div>
                 </div>
-                <div class="mt-8 text-center">
-                    <a href="https://www.linkedin.com/in/anirudh-nanduri/details/recommendations/?detailScreenTabIndex=0"
-                        target="_blank"
-                        class="cta-button inline-block bg-gray-700 hover:bg-gray-800 text-white font-bold py-3 px-6 rounded-lg shadow-lg">View
-                        All Recommendations on LinkedIn</a>
+                <div class="text-center mt-10 reveal">
+                    <a href="https://www.linkedin.com/in/anirudh-nanduri/details/recommendations/" target="_blank"
+                        rel="noopener noreferrer" class="btn-outline">View All on LinkedIn →</a>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="py-20 bg-gray-800 text-white">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl font-bold mb-4">Let's Connect</h2>
-                <p class="text-lg text-gray-300 max-w-xl mx-auto mb-8">I'm always open to discussing new projects,
-                    creative ideas, or opportunities to be part of an ambitious team. Feel free to reach out directly or
-                    connect with me on LinkedIn.</p>
-                <div class="flex justify-center space-x-4">
-                    <a href="mailto:nvpsani@gmail.com"
-                        class="cta-button bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-8 rounded-lg text-lg shadow-lg">Direct
-                        Email</a>
-                    <a href="https://www.linkedin.com/in/anirudh-nanduri/" target="_blank"
-                        class="cta-button bg-gray-700 hover:bg-gray-800 text-white font-bold py-4 px-8 rounded-lg text-lg shadow-lg">LinkedIn</a>
+        <!-- ======== CONTACT ======== -->
+        <section id="contact" class="py-24 relative overflow-hidden">
+            <div class="orb w-[600px] h-[600px] bg-blue-600" style="top:-100px;left:-200px;opacity:.08;"></div>
+            <div class="orb w-[500px] h-[500px] bg-violet-600"
+                style="bottom:-100px;right:-200px;opacity:.08;animation-delay:2s;"></div>
+            <div class="container mx-auto px-6 text-center z-10 relative reveal">
+                <span class="sec-label">Get In Touch</span>
+                <h2 class="sec-title mb-4">Let's <span class="grad-text">Connect</span></h2>
+                <p class="text-gray-400 max-w-xl mx-auto mb-10">I'm always open to discussing new projects, creative
+                    ideas, or opportunities to be part of an ambitious team. Feel free to reach out directly.</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4 flex-wrap">
+                    <a href="mailto:nvpsani@gmail.com" class="btn-primary text-lg">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        Send Email
+                    </a>
+                    <a href="https://www.linkedin.com/in/anirudh-nanduri/" target="_blank" rel="noopener noreferrer"
+                        class="btn-outline text-lg">LinkedIn Profile →</a>
+                </div>
+                <!-- Footer resume links -->
+                <div class="flex justify-center gap-4 mt-8 flex-wrap">
+                    <a href="assets/resume/Master_CV_New_PM.pdf" download="Anirudh_Nanduri_PM.pdf"
+                        class="text-xs text-gray-500 hover:text-blue-400 transition-colors font-semibold">↓ PM
+                        Resume</a>
+                    <span class="text-gray-700">·</span>
+                    <a href="assets/resume/Nanduri_Anirudh_Analytics.pdf" download="Anirudh_Nanduri_Analytics.pdf"
+                        class="text-xs text-gray-500 hover:text-blue-400 transition-colors font-semibold">↓ Analytics
+                        Resume</a>
                 </div>
             </div>
         </section>
+
     </main>
 
-    <footer class="bg-gray-900 text-gray-400 py-6">
-        <div class="container mx-auto px-6 text-center">
-            <p>&copy; 2025 Anirudh Nanduri. All Rights Reserved.</p>
+    <!-- ======== FOOTER ======== -->
+    <footer style="background:#050813;border-top:1px solid var(--bdr);">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <div class="flex justify-center gap-5 mb-4">
+                <a href="https://www.linkedin.com/in/anirudh-nanduri/" target="_blank" rel="noopener noreferrer"
+                    class="text-gray-500 hover:text-blue-400 transition-colors text-sm font-semibold">LinkedIn</a>
+                <span class="text-gray-700">·</span>
+                <a href="mailto:nvpsani@gmail.com"
+                    class="text-gray-500 hover:text-blue-400 transition-colors text-sm font-semibold">Email</a>
+                <span class="text-gray-700">·</span>
+                <a href="certificates.html"
+                    class="text-gray-500 hover:text-blue-400 transition-colors text-sm font-semibold">Certificates</a>
+            </div>
+            <p class="text-gray-600 text-xs">© 2026 Anirudh Nanduri · Built with passion &amp; precision</p>
         </div>
     </footer>
 
+    <!-- ======== MODAL ======== -->
     <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <h3 id="modal-title" class="text-2xl font-bold mb-4"></h3>
-            <p id="modal-text" class="text-gray-700 mb-4"></p>
-            <div id="modal-link"></div>
+        <div class="modal-content" style="width:90vw;max-width:1000px;height:85vh;display:flex;flex-direction:column;">
+            <div id="modal-header"></div>
+            <div id="modal-link" style="flex:1;overflow:hidden;border-radius:8px;border:1px solid var(--bdr);"></div>
         </div>
     </div>
 
+    <!-- ======== SCRIPTS ======== -->
     <script>
-        // Disable Right Click Globally
-        document.addEventListener('contextmenu', event => event.preventDefault());
-
-        // Disable Ctrl+P / Cmd+P
+        // Disable right-click & print
+        document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('keydown', function (e) {
-            if ((e.ctrlKey || e.metaKey) && (e.key === 'p' || e.key === 'P')) {
-                e.preventDefault();
-                alert('Printing is disabled for this website.');
-            }
+            if ((e.ctrlKey || e.metaKey) && (e.key === 'p' || e.key === 'P')) { e.preventDefault(); alert('Printing is disabled.'); }
         });
 
         document.addEventListener('DOMContentLoaded', function () {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const modal = document.getElementById('modal');
-            const closeButton = document.querySelector('.close-button');
-            const modalTitle = document.getElementById('modal-title');
-            const modalText = document.getElementById('modal-text');
-            const modalLink = document.getElementById('modal-link');
-            const projectsContainer = document.getElementById('projects-container');
-            const filterButtons = document.querySelectorAll('.filter-button');
 
-            const projects = [
-                {
-                    title: "Counterfeit Detection System",
-                    description: "Led development of AI/ML model preventing ~$1B+ business loss. Created rules engine reducing identification time by Experts by ~90%.",
-                    tags: ["AI", "ML", "Product"]
-                },
-                {
-                    title: "Product Recommendation Engine",
-                    description: "Owned development of recommender algorithm reducing user product selection time by ~65% and enhancing customer satisfaction.",
-                    tags: ["AI", "ML", "Product"]
-                },
-                {
-                    title: "Investment Budget Optimizer",
-                    description: "Developed B2B budget optimization algorithms boosting marketing profits by ~6% and halving decision-making time for a Fortune 500 client.",
-                    tags: ["ML", "Analytics"]
-                },
-                {
-                    title: "ESG Power Savings Model",
-                    description: "Built high-accuracy (~90%) ML model to predict switch user count, directly supporting ESG initiatives and identifying substantial power savings.",
-                    tags: ["ML", "Analytics"]
-                },
-                {
-                    title: "Commercial Excellence Automation",
-                    description: "Accelerated secondary sales validation by 4–5x by automating ERP data extraction, reducing vendor reliance and strengthening governance.",
-                    tags: ["Analytics", "Product"]
-                },
-                {
-                    title: "AI-Powered Chatbot",
-                    description: "Built an intelligent chatbot for instant product recommendations, improving response time and user experience by ~85%.",
-                    tags: ["AI", "Product"]
-                },
-                {
-                    title: "Sales Target Estimation",
-                    description: "Analyzed product life cycle for revenue prediction, reducing target gap by ~30%. Developed VBA tool reducing support manpower by ~95%.",
-                    tags: ["Analytics", "Product"]
-                },
-                {
-                    title: "Lead Generation Propensity",
-                    description: "Engineered a propensity model increasing qualified lead generation by 35% for a top technology client.",
-                    tags: ["ML", "Analytics"]
-                },
-                {
-                    title: "Training & Mentorship",
-                    description: "Led company-wide training initiatives (SCaLa Lead), upskilling over 450+ individuals in AI/ML, Excel, and SQL.",
-                    tags: ["Training", "Leadership"]
-                }
-            ];
+            // ---- Scroll progress bar ----
+            window.addEventListener('scroll', () => {
+                const el = document.getElementById('scroll-progress');
+                const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+                el.style.width = pct + '%';
+            });
 
-            function renderProjects(projectsToRender) {
-                projectsContainer.innerHTML = '';
-                projectsToRender.forEach((project, index) => {
-                    const card = document.createElement('div');
-                    // Reformatted for Grid Carousel: Height handled by Grid, Width handled by auto-cols
-                    card.className = `glass-panel p-6 rounded-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl opacity-0 animate-fade-in-up h-full snap-center flex flex-col`;
-                    card.style.animationDelay = `${index * 100}ms`;
-
-                    const tagColors = {
-                        'AI': 'text-purple-600 bg-purple-100',
-                        'ML': 'text-blue-600 bg-blue-100',
-                        'Product': 'text-orange-600 bg-orange-100',
-                        'Analytics': 'text-green-600 bg-green-100',
-                        'Training': 'text-teal-600 bg-teal-100',
-                        'Leadership': 'text-red-600 bg-red-100'
-                    };
-
-                    const defaultColor = 'text-gray-600 bg-gray-100';
-
-                    card.innerHTML = `
-                        <div class="flex flex-col h-full">
-                            <h3 class="text-lg font-bold mb-2 text-gray-800">${project.title}</h3>
-                            <p class="text-sm text-gray-600 mb-4 flex-grow leading-relaxed">${project.description}</p>
-                            <div class="flex flex-wrap gap-2 mt-auto">
-                                ${project.tags.map(tag => `
-                                    <span data-tag="${tag}" class="project-tag ${tagColors[tag] || defaultColor} text-[10px] font-bold px-2 py-1 rounded-full cursor-pointer hover:opacity-80 transition-opacity">
-                                        ${tag}
-                                    </span>
-                                `).join('')}
-                            </div>
-                        </div>
-                    `;
-                    projectsContainer.appendChild(card);
-                });
-
-                document.querySelectorAll('.project-tag').forEach(tagEl => {
-                    tagEl.addEventListener('click', (e) => {
-                        filterProjects(e.target.dataset.tag);
-                    });
-                });
-            }
-
-            function filterProjects(tag) {
-                let filtered = [];
-                if (tag === 'all') {
-                    filtered = projects;
+            // ---- Typewriter ----
+            const roles = ['Specialist Data Scientist', 'Product Strategist', 'GenAI Expert', 'MBA Candidate @ BITSoM'];
+            let ri = 0, ci = 0, del = false;
+            const tw = document.getElementById('typewriter-text');
+            function type() {
+                const word = roles[ri];
+                if (!del) {
+                    tw.textContent = word.slice(0, ++ci);
+                    if (ci === word.length) { del = true; setTimeout(type, 1800); return; }
                 } else {
-                    filtered = projects.filter(project => project.tags.includes(tag));
+                    tw.textContent = word.slice(0, --ci);
+                    if (ci === 0) { del = false; ri = (ri + 1) % roles.length; }
                 }
-                renderProjects(filtered);
-                filterButtons.forEach(btn => {
-                    btn.classList.remove('active');
-                    if (btn.dataset.tag === tag) {
-                        btn.classList.add('active');
-                    }
-                });
+                setTimeout(type, del ? 60 : 90);
             }
+            type();
 
-            filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    filterProjects(button.dataset.tag);
-                });
-            });
+            // ---- Stats Counter ----
+            function animateCounter(el) {
+                const target = +el.dataset.target;
+                const prefix = el.dataset.prefix || '';
+                const suffix = el.dataset.suffix || '';
+                let cur = 0; const step = Math.ceil(target / 40);
+                const t = setInterval(() => {
+                    cur = Math.min(cur + step, target);
+                    el.textContent = prefix + cur + suffix;
+                    if (cur >= target) clearInterval(t);
+                }, 40);
+            }
+            const counterObs = new IntersectionObserver(entries => {
+                entries.forEach(e => { if (e.isIntersecting) { animateCounter(e.target); counterObs.unobserve(e.target); } });
+            }, { threshold: .5 });
+            document.querySelectorAll('[data-target]').forEach(el => counterObs.observe(el));
 
-            renderProjects(projects);
+            // ---- Scroll reveal ----
+            const revObs = new IntersectionObserver(entries => {
+                entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 80); revObs.unobserve(e.target); } });
+            }, { threshold: .1 });
+            document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
 
-            // Project Scroll Logic
-            const prevProjectBtn = document.getElementById('prev-project');
-            const nextProjectBtn = document.getElementById('next-project');
-
-            prevProjectBtn.addEventListener('click', () => {
-                projectsContainer.scrollBy({ left: -340, behavior: 'smooth' });
-            });
-            nextProjectBtn.addEventListener('click', () => {
-                projectsContainer.scrollBy({ left: 340, behavior: 'smooth' });
-            });
-
-
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-
+            // ---- Nav active state ----
             const navLinks = document.querySelectorAll('#header a[href^="#"]');
-
-            navLinks.forEach(link => {
-                link.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href').substring(1);
-                    const targetElement = document.getElementById(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 60,
-                            behavior: 'smooth'
-                        });
-                        if (mobileMenu.classList.contains('flex')) {
-                            mobileMenu.classList.add('hidden');
-                        }
+            const sections = document.querySelectorAll('main section[id]');
+            const secObs = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        navLinks.forEach(l => { l.classList.remove('active'); if (l.getAttribute('href').slice(1) === e.target.id) l.classList.add('active'); });
                     }
                 });
-            });
+            }, { rootMargin: '-10% 0px -80% 0px', threshold: 0 });
+            sections.forEach(s => secObs.observe(s));
 
-            const sections = document.querySelectorAll('main section');
-            const observerOptions = {
-                root: null,
-                rootMargin: "-10% 0px -80% 0px",
-                threshold: 0
+            // ---- Mobile menu ----
+            document.getElementById('mobile-menu-button').addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.toggle('hidden');
+            });
+            navLinks.forEach(l => l.addEventListener('click', function (e) {
+                e.preventDefault();
+                const t = document.getElementById(this.getAttribute('href').slice(1));
+                if (t) window.scrollTo({ top: t.offsetTop - 64, behavior: 'smooth' });
+                document.getElementById('mobile-menu').classList.add('hidden');
+            }));
+
+            // ---- Experience tabs ----
+            window.showExpTab = function (id) {
+                ['acn', 'b2i', 'gld'].forEach(t => {
+                    document.getElementById('exp-' + t).classList.add('hidden');
+                    document.getElementById('etab-' + t).classList.remove('active');
+                });
+                document.getElementById('exp-' + id).classList.remove('hidden');
+                document.getElementById('etab-' + id).classList.add('active');
             };
 
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        navLinks.forEach(link => {
-                            link.classList.remove('active');
-                            if (link.getAttribute('href').substring(1) === entry.target.id) {
-                                link.classList.add('active');
-                            }
-                        });
-                    }
-                });
-            }, observerOptions);
+            // ---- Experience PM/DS view ----
+            window.setExpView = function (view) {
+                document.querySelectorAll('.exp-pm,.exp-ds').forEach(el => { el.classList.add('hidden'); });
+                document.querySelectorAll('.exp-' + view).forEach(el => { el.classList.remove('hidden'); });
+                document.getElementById('exp-pm-btn').classList.toggle('active', view === 'pm');
+                document.getElementById('exp-ds-btn').classList.toggle('active', view === 'ds');
+            };
 
-            sections.forEach(section => {
-                observer.observe(section);
-            });
+            // ---- Skills view ----
+            window.setSkillView = function (view) {
+                document.getElementById('skills-pm').classList.toggle('hidden', view !== 'pm');
+                document.getElementById('skills-ds').classList.toggle('hidden', view !== 'ds');
+                document.getElementById('sk-pm-btn').classList.toggle('active', view === 'pm');
+                document.getElementById('sk-ds-btn').classList.toggle('active', view === 'ds');
+            };
 
+            // ---- Resume dropdown ----
+            window.toggleResume = function (e) {
+                e.stopPropagation();
+                document.getElementById('resume-menu').classList.toggle('open');
+            };
+            document.addEventListener('click', () => document.getElementById('resume-menu').classList.remove('open'));
 
-
-            const accoladesContainer = document.getElementById('accolades-container');
-            const prevButton = document.getElementById('prev-accolade');
-            const nextButton = document.getElementById('next-accolade');
-
-            // Order: BITSoM -> Accenture -> BRIDGEi2i -> IJMERT
-            // Order: BITSoM -> Accenture -> BRIDGEi2i -> IJMERT
-            const accoladesData = [
-                // Accolades (Main Page = 1)
-                {
-                    id: 'merit-list',
-                    title: 'Merit List Certificate',
-                    organization: 'BITS School of Management',
-                    logo: 'assets/generic_logos/bitsom_logo.png',
-                    description: 'Awarded for outstanding academic performance (Top Rank).',
-                    file: 'assets/accolades/MERIT_LIST_CERTIFICATE.pdf',
-                    orientation: 'landscape'
-                },
-                {
-                    id: 'acn-teaching',
-                    title: 'Teaching & Mentoring',
-                    organization: 'Accenture',
-                    logo: 'assets/generic_logos/acn_logo.png',
-                    description: 'Certificate of Appreciation for conducting training sessions.',
-                    file: 'assets/accolades/ACN_Teaching_Certificate.pdf',
-                    orientation: 'landscape'
-                },
-                {
-                    id: 'innovate-ruchik',
-                    title: 'Actively Innovate Award',
-                    organization: 'Accenture',
-                    logo: 'assets/generic_logos/acn_logo.png',
-                    description: 'Recognition for innovative contributions to projects.',
-                    file: 'assets/accolades/Actively_Innovate_Ruchik.pdf',
-                    orientation: 'landscape'
-                },
-                {
-                    id: 'cool-collaborator',
-                    title: 'Cool Collaborator & Star',
-                    organization: 'Accenture',
-                    logo: 'assets/generic_logos/acn_logo.png',
-                    description: 'Dual recognition for exceptional collaboration and star performance.',
-                    file: 'assets/accolades/cool_collaborator_star_award.pdf',
-                    orientation: 'landscape'
-                },
-                {
-                    id: 'ai2i-icon',
-                    title: 'Ai2i Icon Award',
-                    organization: 'BRIDGEi2i',
-                    logo: 'assets/generic_logos/bridgei2i_logo.jpeg',
-                    description: 'Prestigious award for excellence in AI/ML capabilities.',
-                    file: 'assets/accolades/Ai2i_Letter.pdf',
-                    orientation: 'portrait'
-                },
-                {
-                    id: 'bu-torch-bearer',
-                    title: 'Torch Bearer Award',
-                    organization: 'BRIDGEi2i',
-                    logo: 'assets/generic_logos/bridgei2i_logo.jpeg',
-                    description: 'Awarded for exemplary leadership and guidance.',
-                    file: 'assets/accolades/BU_Torch_Bearer.pdf',
-                    orientation: 'landscape'
-                },
-                {
-                    id: 'mmm-team',
-                    title: 'MMM Team Award',
-                    organization: 'BRIDGEi2i',
-                    logo: 'assets/generic_logos/bridgei2i_logo.jpeg',
-                    description: 'Team award for successful project delivery and collaboration.',
-                    file: 'assets/accolades/MMM_Team_Award.pdf',
-                    orientation: 'landscape'
-                },
-                {
-                    id: 'scala-annual',
-                    title: 'ScaLa Annual Award',
-                    organization: 'BRIDGEi2i',
-                    logo: 'assets/generic_logos/bridgei2i_logo.jpeg',
-                    description: 'Annual recognition for significant contributions.',
-                    file: 'assets/accolades/ScaLa_Annual_Award.pdf',
-                    orientation: 'landscape'
-                },
-                {
-                    id: 'spot-award',
-                    title: 'Spot Award',
-                    organization: 'BRIDGEi2i',
-                    logo: 'assets/generic_logos/bridgei2i_logo.jpeg',
-                    description: 'Instant recognition for going above and beyond in delivery.',
-                    file: 'assets/accolades/Spot Award.pdf',
-                    orientation: 'landscape'
-                },
-                {
-                    id: 'research-paper',
-                    title: 'Published Research Paper',
-                    organization: 'IJMERT',
-                    logo: 'https://placehold.co/48x48/F8F7F4/2c3e50?text=I',
-                    description: 'Research publication in International Journal of Engineering Research & Technology.',
-                    file: 'assets/accolades/Research_Paper.pdf',
-                    orientation: 'portrait'
-                },
-
-                // Internship (Main Page = 1)
-                {
-                    id: 'bdl-internship',
-                    title: 'BDL Internship',
-                    organization: 'Bharat Dynamics Limited',
-                    logo: 'assets/generic_logos/Bharat_Dynamics_Logo.png',
-                    description: 'Internship completion certificate from Bharat Dynamics Limited.',
-                    file: 'assets/internship/BDL_Internship.pdf',
-                    orientation: 'landscape'
-                },
-                {
-                    id: 'drdl-internship',
-                    title: 'DRDL Internship',
-                    organization: 'DRDL',
-                    logo: 'https://placehold.co/48x48/F8F7F4/2c3e50?text=D',
-                    description: 'Internship completion certificate from DRDL.',
-                    file: 'assets/internship/DRDL_Internship_Certificate.pdf',
-                    orientation: 'landscape'
-                },
-
-                // Courses (Main Page = 1)
-                {
-                    id: 'hbs-spreadsheet',
-                    title: 'Spreadsheet Modelling',
-                    organization: 'HBS Online',
-                    logo: 'assets/generic_logos/harvard_business_logo.png',
-                    description: 'Certificate in Spreadsheet Modelling from Harvard Business School Online.',
-                    file: 'assets/course_certificates/HBS - Spreadsheet Modelling Certificate.pdf',
-                    orientation: 'landscape'
-                },
-                {
-                    id: 'aws-genai',
-                    title: 'Generative AI with LLMs',
-                    organization: 'DeepLearning.ai',
-                    logo: 'assets/generic_logos/deeplearning_ai_logo.png',
-                    description: 'DeepLearning.ai & AWS course on Generative AI.',
-                    file: 'assets/course_certificates/aws_deeplearning_genai_llm.pdf',
-                    orientation: 'landscape'
-                },
-                {
-                    id: 'coursera-chatgpt',
-                    title: 'ChatGPT & Excel',
-                    organization: 'Coursera',
-                    logo: 'https://placehold.co/48x48/F8F7F4/2c3e50?text=C',
-                    description: 'Beginner course on ChatGPT and Excel integration.',
-                    file: 'assets/course_certificates/coursera_chatgpt_beginners_excel.pdf',
-                    orientation: 'landscape'
-                },
-                {
-                    id: 'ibm-data-science',
-                    title: 'Data Science Professional',
-                    organization: 'IBM',
-                    logo: 'https://placehold.co/48x48/F8F7F4/2c3e50?text=I',
-                    description: 'Professional Certificate in Data Science from IBM.',
-                    file: 'assets/course_certificates/IBM_data_science.pdf',
-                    orientation: 'landscape'
-                }
+            // ---- Projects ----
+            const projectsData = [
+                { title: "Counterfeit Detection System", impact: "$10M Saved", description: "Led AI/ML models to detect counterfeits, preventing $10M in business losses. Built hybrid rules engine cutting expert review time by ~90%.", tags: ["AI", "ML", "Product"] },
+                { title: "Product Recommendation Engine", impact: "65% Faster", description: "Owned recommender algorithm development, reducing user product selection time by ~65% and enhancing customer satisfaction.", tags: ["AI", "ML", "Product"] },
+                { title: "Decision-Support Tool", impact: "90% Less Effort", description: "Spearheaded requirements & rollout of a decision-support tool, reducing manual review effort by ~90%.", tags: ["Product", "Analytics"] },
+                { title: "AI-Powered RAG Chatbot", impact: "85% Faster", description: "Conceptualized & owned delivery of an AI-driven RAG chatbot, reducing user evaluation time by ~85%.", tags: ["AI", "Product"] },
+                { title: "Investment Budget Optimizer", impact: "6% Profit ↑", description: "Developed budget optimization & simulation algorithms; boosted marketing profits by ~6% and halved decision-making time for Fortune 500 client.", tags: ["ML", "Analytics"] },
+                { title: "KPI Dashboard Suite", impact: "$0.25M/yr Saved", description: "Led 3-member team to deliver 3 enterprise dashboards, saving ~$0.25M per year in manpower costs.", tags: ["Analytics", "Product"] },
+                { title: "Revenue Target Protection", impact: "$1.5M Protected", description: "Owned target & gap analysis workflows, preventing ~$1.5M in projected revenue shortfall via planning & sales behaviour dashboards.", tags: ["Analytics", "ML"] },
+                { title: "ESG Power Savings Model", impact: "~90% Accuracy", description: "Built high-accuracy (~90%) ML model predicting switch user count, supporting ESG initiatives and identifying substantial power savings.", tags: ["ML", "Analytics"] },
+                { title: "PoC to Revenue Pipeline", impact: "$0.4M+ Revenue", description: "Orchestrated senior stakeholder alignment & prioritization, converting 4+ PoCs into ~$0.4M+ in revenue.", tags: ["Product"] },
+                { title: "Training & Mentorship", impact: "450+ Upskilled", description: "Led company-wide training initiative (SCaLa Lead), upskilling 450+ individuals in AI/ML, Excel, and SQL.", tags: ["Training"] }
             ];
+            const tagColors = { AI: 'text-purple-400 bg-purple-500/10 border-purple-500/20', ML: 'text-blue-400 bg-blue-500/10 border-blue-500/20', Product: 'text-orange-400 bg-orange-500/10 border-orange-500/20', Analytics: 'text-green-400 bg-green-500/10 border-green-500/20', Training: 'text-teal-400 bg-teal-500/10 border-teal-500/20' };
+            const pc = document.getElementById('projects-container');
+            const fbtns = document.querySelectorAll('.flt-btn');
 
-
-
-            function renderAccolades() {
-                accoladesContainer.innerHTML = '';
-                // Render ALL items for carousel
-                accoladesData.forEach((item, index) => {
-                    const card = document.createElement('div');
-                    // Reformatted for Grid Carousel: Width handled by auto-cols
-                    card.className = 'glass-panel p-6 rounded-2xl cursor-pointer hover:shadow-2xl hover:bg-white transition-all duration-500 transform hover:-translate-y-2 flex flex-col items-center justify-between h-full group relative overflow-hidden snap-center';
-                    card.style.animation = `fadeInUp 0.5s ease-out forwards ${index * 100}ms`;
-                    card.onclick = () => showModal(item.id);
-
-                    // Glossy overlay
-                    const gloss = document.createElement('div');
-                    gloss.className = 'absolute inset-0 bg-gradient-to-tr from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none duration-500';
-                    card.appendChild(gloss);
-
-                    const logoImg = item.logo ? `<img src="${item.logo}" alt="${item.organization} Logo" class="h-10 w-auto object-contain mb-4 filter grayscale group-hover:grayscale-0 transition-all duration-300">` : '';
-
-                    card.innerHTML += `
-                        <div class="flex flex-col items-center text-center w-full z-10">
-                            <div class="h-12 flex items-center justify-center mb-2 w-full">
-                                ${logoImg}
-                            </div>
-                            <h3 class="font-bold text-lg text-gray-800 mb-2 leading-tight group-hover:text-blue-600 transition-colors">${item.title}</h3>
-                            <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">${item.organization}</p>
-                            <p class="text-sm text-gray-500 line-clamp-3 leading-relaxed">${item.description}</p>
-                        </div>
-                        <div class="mt-4 inline-flex items-center text-blue-600 text-sm font-bold opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-10">
-                            View Proof <span class="ml-1">→</span>
-                        </div>
-                    `;
-                    accoladesContainer.appendChild(card);
+            function renderProjects(arr) {
+                pc.innerHTML = '';
+                arr.forEach((p, i) => {
+                    const d = document.createElement('div');
+                    d.className = 'proj-card snap-center opacity-0';
+                    d.style.animation = `fadeUp .5s ease forwards ${i * 80}ms`;
+                    d.innerHTML = `<div class="proj-impact mb-1">${p.impact}</div><h3 class="text-base font-bold text-white mb-2">${p.title}</h3><p class="text-gray-400 text-xs leading-relaxed flex-grow">${p.description}</p><div class="flex flex-wrap gap-2 mt-4">${p.tags.map(t => `<span class="px-2 py-1 rounded-full text-[10px] font-bold border ${tagColors[t] || 'text-gray-400 bg-gray-500/10 border-gray-500/20'}">${t}</span>`).join('')}</div>`;
+                    pc.appendChild(d);
                 });
             }
+            function filterProjects(tag) {
+                renderProjects(tag === 'all' ? projectsData : projectsData.filter(p => p.tags.includes(tag)));
+                fbtns.forEach(b => { b.classList.remove('active'); if (b.dataset.tag === tag) b.classList.add('active'); });
+            }
+            fbtns.forEach(b => b.addEventListener('click', () => filterProjects(b.dataset.tag)));
+            document.getElementById('prev-project').addEventListener('click', () => pc.scrollBy({ left: -320, behavior: 'smooth' }));
+            document.getElementById('next-project').addEventListener('click', () => pc.scrollBy({ left: 320, behavior: 'smooth' }));
+            filterProjects('all');
 
-            prevButton.addEventListener('click', () => {
-                accoladesContainer.scrollBy({ left: -300, behavior: 'smooth' });
+            // ---- Accolades ----
+            const accoladesData = [
+                { id: 'merit-list', title: 'Merit List Certificate', organization: 'BITS School of Management', logo: 'assets/generic_logos/bitsom_logo.png', description: 'Awarded for outstanding academic performance (Top Rank).', file: 'assets/accolades/MERIT_LIST_CERTIFICATE.pdf' },
+                { id: 'acn-teaching', title: 'Teaching & Mentoring', organization: 'Accenture', logo: 'assets/generic_logos/acn_logo.png', description: 'Certificate of Appreciation for conducting training sessions.', file: 'assets/accolades/ACN_Teaching_Certificate.pdf' },
+                { id: 'innovate-ruchik', title: 'Actively Innovate Award', organization: 'Accenture', logo: 'assets/generic_logos/acn_logo.png', description: 'Recognition for innovative contributions to projects.', file: 'assets/accolades/Actively_Innovate_Ruchik.pdf' },
+                { id: 'cool-collaborator', title: 'Cool Collaborator & Star', organization: 'Accenture', logo: 'assets/generic_logos/acn_logo.png', description: 'Dual recognition for exceptional collaboration and star performance.', file: 'assets/accolades/cool_collaborator_star_award.pdf' },
+                { id: 'ai2i-icon', title: 'Ai2i Icon Award', organization: 'BRIDGEi2i', logo: 'assets/generic_logos/bridgei2i_logo.jpeg', description: 'Prestigious award for excellence in AI/ML capabilities.', file: 'assets/accolades/Ai2i_Letter.pdf' },
+                { id: 'bu-torch-bearer', title: 'Torch Bearer Award', organization: 'BRIDGEi2i', logo: 'assets/generic_logos/bridgei2i_logo.jpeg', description: 'Awarded for exemplary leadership and guidance.', file: 'assets/accolades/BU_Torch_Bearer.pdf' },
+                { id: 'mmm-team', title: 'MMM Team Award', organization: 'BRIDGEi2i', logo: 'assets/generic_logos/bridgei2i_logo.jpeg', description: 'Team award for successful project delivery and collaboration.', file: 'assets/accolades/MMM_Team_Award.pdf' },
+                { id: 'scala-annual', title: 'ScaLa Annual Award', organization: 'BRIDGEi2i', logo: 'assets/generic_logos/bridgei2i_logo.jpeg', description: 'Annual recognition for significant contributions.', file: 'assets/accolades/ScaLa_Annual_Award.pdf' },
+                { id: 'spot-award', title: 'Spot Award', organization: 'BRIDGEi2i', logo: 'assets/generic_logos/bridgei2i_logo.jpeg', description: 'Instant recognition for going above and beyond in delivery.', file: 'assets/accolades/Spot Award.pdf' },
+                { id: 'research-paper', title: 'Published Research Paper', organization: 'IJMERT', logo: '', description: 'Research publication in International Journal of Engineering Research & Technology.', file: 'assets/accolades/Research_Paper.pdf' },
+                { id: 'bdl-internship', title: 'BDL Internship', organization: 'Bharat Dynamics Ltd', logo: 'assets/generic_logos/Bharat_Dynamics_Logo.png', description: 'Internship completion certificate from Bharat Dynamics Limited.', file: 'assets/internship/BDL_Internship.pdf' },
+                { id: 'drdl-internship', title: 'DRDL Internship', organization: 'DRDL', logo: '', description: 'Internship completion certificate from DRDL.', file: 'assets/internship/DRDL_Internship_Certificate.pdf' },
+                { id: 'hbs-spreadsheet', title: 'Spreadsheet Modelling', organization: 'HBS Online', logo: 'assets/generic_logos/harvard_business_logo.png', description: 'Certificate in Spreadsheet Modelling from Harvard Business School Online.', file: 'assets/course_certificates/HBS - Spreadsheet Modelling Certificate.pdf' },
+                { id: 'aws-genai', title: 'Generative AI with LLMs', organization: 'DeepLearning.ai', logo: 'assets/generic_logos/deeplearning_ai_logo.png', description: 'DeepLearning.ai & AWS course on Generative AI with LLMs.', file: 'assets/course_certificates/aws_deeplearning_genai_llm.pdf' },
+                { id: 'ibm-data-science', title: 'Data Science Professional', organization: 'IBM', logo: '', description: 'Professional Certificate in Data Science from IBM.', file: 'assets/course_certificates/IBM_data_science.pdf' }
+            ];
+            const ac = document.getElementById('accolades-container');
+            accoladesData.forEach((item, i) => {
+                const d = document.createElement('div');
+                d.className = 'acc-card snap-center';
+                d.style.animation = `fadeUp .5s ease forwards ${i * 60}ms`;
+                d.onclick = () => openModal(item);
+                const logo = item.logo ? `<img src="${item.logo}" alt="${item.organization}" class="h-9 w-auto object-contain mb-3 filter grayscale hover:grayscale-0 transition-all">` : `<div class="h-9 w-9 rounded-full flex items-center justify-center text-white font-bold text-sm mb-3" style="background:var(--grad)">${item.organization.charAt(0)}</div>`;
+                d.innerHTML = `<div class="flex flex-col items-center text-center w-full z-10">${logo}<h3 class="font-bold text-sm text-white mb-1 leading-tight">${item.title}</h3><p class="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-2">${item.organization}</p><p class="text-xs text-gray-400 line-clamp-3 leading-relaxed">${item.description}</p></div><div class="mt-4 text-blue-400 text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity z-10">View Proof →</div>`;
+                ac.appendChild(d);
             });
+            document.getElementById('prev-accolade').addEventListener('click', () => ac.scrollBy({ left: -280, behavior: 'smooth' }));
+            document.getElementById('next-accolade').addEventListener('click', () => ac.scrollBy({ left: 280, behavior: 'smooth' }));
 
-            nextButton.addEventListener('click', () => {
-                accoladesContainer.scrollBy({ left: 300, behavior: 'smooth' });
-            });
-
-            window.showModal = function (id) {
-                const item = accoladesData.find(d => d.id === id);
-                if (!item) return;
-
-                modalTitle.textContent = item.title;
-                modalText.textContent = item.description;
-
-                // Consistent Sizing with Compact Layout
-                const isMobile = window.innerWidth < 768;
-                const modalContent = document.querySelector('.modal-content');
-                modalContent.style.width = isMobile ? '95vw' : '80vw'; // 95% on mobile, 80% on desktop
-                modalContent.style.maxWidth = '1000px';
-                modalContent.style.height = isMobile ? '90vh' : '80vh'; // More height on mobile
-                modalContent.style.maxHeight = isMobile ? '90vh' : '80vh';
-                modalContent.style.display = 'flex';
-                modalContent.style.flexDirection = 'column';
-                modalContent.style.padding = '1.5rem';
-                modalContent.style.borderRadius = '1rem';
-                modalContent.style.overflow = 'hidden';
-
-                // Standard, Clean Header with Prominent Close Button
-                const headerHTML = `
-                    <div class="flex justify-between items-center mb-4">
-                        <div class="pr-8">
-                            <h3 id="modal-title" class="text-xl font-bold text-gray-800 leading-tight">${item.title}</h3>
-                            <p id="modal-text" class="text-sm text-gray-600 mt-1">${item.description}</p>
-                        </div>
-                        <button class="modal-close-btn flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-500 hover:bg-red-100 hover:text-red-600 transition-all focus:outline-none shadow-sm hover:shadow-md" aria-label="Close Modal">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-                    </div>
-                `;
-
-                // Clear existing content and set new structure
-                modalContent.innerHTML = headerHTML + '<div id="modal-link"></div>';
-
-                // Re-bind close button
-                modalContent.querySelector('.modal-close-btn').onclick = function () {
-                    modal.style.display = "none";
-                };
-
-                const modalLinkDiv = modalContent.querySelector('#modal-link');
-                modalLinkDiv.style.flex = '1';
-                modalLinkDiv.style.display = 'flex';
-                modalLinkDiv.style.flexDirection = 'column';
-                modalLinkDiv.style.overflow = 'hidden';
-                modalLinkDiv.style.margin = '0'; // No margin for iframe container
-                modalLinkDiv.style.borderRadius = '0.5rem'; // Slight rounding for the viewer
-                modalLinkDiv.style.border = '1px solid #e5e7eb'; // Subtle border
-                modalLinkDiv.style.backgroundColor = 'white'; // White bg to reduce 'grey space' perception
-
-                // Use #view=FitH to fill width and reduce grey bars
-                modalLinkDiv.innerHTML = `
-                    <div class="relative w-full h-full">
-                         <iframe 
-                            src="${item.file}#toolbar=0&navpanes=0&scrollbar=0&view=FitH" 
-                            type="application/pdf"
-                            width="100%" 
-                            height="100%" 
-                            style="border:none;"
-                            oncontextmenu="return false;"
-                        >
-                        </iframe>
-                        <div 
-                            class="absolute inset-0 z-20 bg-transparent" 
-                            style="pointer-events: none;" 
-                            oncontextmenu="return false;"
-                        ></div> 
-                    </div>
-                `;
-
-                const note = document.createElement('p');
-                note.className = 'text-xs text-center text-gray-400 mt-2 italic';
-                note.textContent = 'Document is in view-only mode.';
-                modalLinkDiv.appendChild(note);
-
-
-
-                modal.style.display = "flex";
+            // ---- Modal ----
+            const modal = document.getElementById('modal');
+            window.openModal = function (item) {
+                const hdr = document.getElementById('modal-header');
+                hdr.innerHTML = `<div class="flex justify-between items-center mb-4"><div><h3 class="text-lg font-bold text-white">${item.title}</h3><p class="text-xs text-gray-400 mt-1">${item.description}</p></div><button onclick="document.getElementById('modal').style.display='none'" class="ml-4 w-9 h-9 rounded-full flex items-center justify-center bg-white/10 hover:bg-red-500/20 text-gray-400 hover:text-red-400 transition-all"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button></div>`;
+                const ml = document.getElementById('modal-link');
+                ml.innerHTML = `<iframe src="${item.file}#toolbar=0&navpanes=0&scrollbar=0&view=FitH" width="100%" height="100%" style="border:none;border-radius:8px;" oncontextmenu="return false;"></iframe>`;
+                modal.style.display = 'flex';
             };
+            window.onclick = e => { if (e.target === modal) modal.style.display = 'none'; };
 
-            // Initial component rendering
-            renderAccolades();
-
-
-
-            // Re-attached inside showModal
-            // closeButton.onclick = function () {
-            //     modal.style.display = "none";
-            // };
-
-            window.onclick = function (event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            };
         });
-
-        function showTab(tabName) {
-            const tabs = document.querySelectorAll('.tab');
-            const tabContents = document.querySelectorAll('.tab-content');
-
-            tabs.forEach(tab => {
-                tab.classList.remove('active');
-            });
-            event.target.classList.add('active');
-
-            tabContents.forEach(content => {
-                content.classList.add('hidden');
-            });
-            document.getElementById(tabName).classList.remove('hidden');
-        }
     </script>
+
+    <!-- Back to Top -->
+    <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top"
+        aria-label="Back to top"
+        style="position:fixed;bottom:28px;right:24px;z-index:200;width:44px;height:44px;border-radius:50%;display:none;align-items:center;justify-content:center;cursor:pointer;background:linear-gradient(135deg,#3b82f6,#8b5cf6);border:none;box-shadow:0 4px 20px rgba(59,130,246,.4);transition:all .3s;">
+        <svg width="18" height="18" fill="none" stroke="white" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+    <script>
+        const btt = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            btt.style.display = window.scrollY > 400 ? 'flex' : 'none';
+        });
+        btt.addEventListener('mouseenter', () => btt.style.transform = 'scale(1.12) translateY(-2px)');
+        btt.addEventListener('mouseleave', () => btt.style.transform = '');
+    </script>
+
+    <!-- Theme Toggle JS -->
+    <script>
+        (function () {
+            const html = document.documentElement;
+            const moon = document.getElementById('icon-moon');
+            const sun = document.getElementById('icon-sun');
+            function applyTheme(t) {
+                html.setAttribute('data-theme', t);
+                if (t === 'light') {
+                    moon.classList.add('hidden');
+                    sun.classList.remove('hidden');
+                } else {
+                    sun.classList.add('hidden');
+                    moon.classList.remove('hidden');
+                }
+            }
+            // Apply saved theme on load
+            const saved = localStorage.getItem('theme') || 'dark';
+            applyTheme(saved);
+            // Toggle on click
+            document.getElementById('theme-toggle').addEventListener('click', function () {
+                const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                localStorage.setItem('theme', next);
+                applyTheme(next);
+            });
+        })();
+    </script>
+
 </body>
 
 </html>
