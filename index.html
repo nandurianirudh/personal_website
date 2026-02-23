@@ -201,6 +201,37 @@
 
         /* Scroll progress stays as gradient – no change needed */
 
+        /* Resume dropdown */
+        [data-theme="light"] .r-menu {
+            background: #ffffff !important;
+            box-shadow: 0 12px 40px rgba(59, 130, 246, .12) !important;
+        }
+
+        [data-theme="light"] .r-menu a {
+            color: #3a4a6b !important;
+            border-color: rgba(59, 130, 246, .12) !important;
+        }
+
+        [data-theme="light"] .r-menu a:hover {
+            background: rgba(59, 130, 246, .08) !important;
+            color: #1d4ed8 !important;
+        }
+
+        /* Hero grid – lighten in light mode */
+        [data-theme="light"] .hero-grid {
+            opacity: 0.4;
+        }
+
+        /* Modal */
+        [data-theme="light"] .modal {
+            background: rgba(0, 0, 0, .45);
+        }
+
+        [data-theme="light"] .modal-content {
+            background: #ffffff !important;
+            box-shadow: 0 20px 50px rgba(59, 130, 246, .15) !important;
+        }
+
         html {
             scroll-behavior: smooth;
         }
@@ -509,12 +540,13 @@
             top: calc(100% + 8px);
             left: 0;
             min-width: 240px;
-            background: #111827;
+            background: var(--bg2);
             border: 1px solid var(--bdr);
             border-radius: 14px;
             overflow: hidden;
             z-index: 200;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, .6);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, .25);
+            transition: background .3s;
         }
 
         .r-menu.open {
@@ -855,11 +887,12 @@
         }
 
         .modal-content {
-            background: #0d1526;
+            background: var(--bg2);
             border: 1px solid rgba(59, 130, 246, .3);
             border-radius: 16px;
             padding: 24px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, .7), 0 0 0 1px rgba(59, 130, 246, .1);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, .4), 0 0 0 1px rgba(59, 130, 246, .1);
+            transition: background .3s;
         }
 
         @media print {
@@ -1016,18 +1049,17 @@
 
                     <!-- Left -->
                     <div class="w-full md:w-1/2 text-center md:text-left">
-                        <div
-                            class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold mb-6 tracking-wide">
-                            <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
-                            OPEN TO NEW OPPORTUNITIES
-                        </div>
                         <h1 class="text-5xl md:text-7xl font-black leading-tight mb-4">
                             Hi, I'm<br><span class="grad-text">Anirudh Nanduri</span>
                         </h1>
                         <div
-                            class="text-xl md:text-2xl text-gray-400 mb-6 flex items-center justify-center md:justify-start flex-wrap gap-1">
+                            class="text-lg md:text-xl text-gray-400 mb-2 flex items-center justify-center md:justify-start flex-wrap gap-1">
                             <span id="typewriter-text" class="text-white font-bold"></span><span class="cursor"></span>
                         </div>
+                        <!-- Positioning tagline -->
+                        <p class="text-base md:text-lg font-semibold mb-6 max-w-lg mx-auto md:mx-0 leading-snug"
+                            style="background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">
+                            I turn data into decisions &mdash; and decisions into shipped products.</p>
                         <!-- Bio -->
                         <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-8 max-w-lg mx-auto md:mx-0">
                             I build AI-powered products and analytics solutions that turn complex data into business
@@ -1060,9 +1092,8 @@
 
                         <!-- CTAs -->
                         <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start flex-wrap">
-                            <a href="https://www.linkedin.com/in/anirudh-nanduri/" target="_blank"
-                                rel="noopener noreferrer" class="btn-primary">
-                                Connect on LinkedIn
+                            <a href="#projects" class="btn-primary">
+                                Explore My Work
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -1533,81 +1564,130 @@
         <!-- ======== SKILLS ======== -->
         <section id="skills" class="py-24">
             <div class="container mx-auto px-6 max-w-5xl">
-                <div class="text-center mb-12 reveal">
+                <div class="text-center mb-4 reveal">
                     <span class="sec-label">Capabilities</span>
-                    <h2 class="sec-title">Core <span class="grad-text">Competencies</span></h2>
-                    <p class="sec-sub">Toggle between PM and Analytics to see role-specific skill stacks.</p>
+                    <h2 class="sec-title">T-Shaped <span class="grad-text">Skill Profile</span></h2>
+                    <p class="sec-sub">Broad strategic expertise — with deep technical roots. Built for PM and Analytics
+                        roles alike.</p>
                 </div>
-                <div class="flex justify-center mb-10 reveal">
-                    <div class="toggle-group">
-                        <button class="tgl-btn active" id="sk-pm-btn" onclick="setSkillView('pm')">📋 PM Skills</button>
-                        <button class="tgl-btn" id="sk-ds-btn" onclick="setSkillView('ds')">📊 Data Science
-                            Skills</button>
+
+                <!-- T-shape legend -->
+                <div class="flex justify-center gap-6 mb-10 reveal">
+                    <span class="inline-flex items-center gap-2 text-xs font-bold text-blue-400"><span
+                            class="w-3 h-3 rounded bg-blue-500/40 inline-block"></span>Strategic Breadth</span>
+                    <span class="inline-flex items-center gap-2 text-xs font-bold text-violet-400"><span
+                            class="w-3 h-3 rounded bg-violet-500/40 inline-block"></span>Technical Depth</span>
+                    <span class="inline-flex items-center gap-2 text-xs font-bold text-gray-400"><span
+                            class="skill-badge expert inline-block" style="padding:1px 6px;font-size:9px;">Expert</span>
+                        = core strength</span>
+                </div>
+
+                <!-- Strategic Breadth row -->
+                <div class="mb-3 reveal">
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="h-px flex-1 bg-blue-500/20"></div>
+                        <span class="text-xs font-bold text-blue-400 uppercase tracking-widest">Strategic Breadth — PM
+                            &amp; Leadership</span>
+                        <div class="h-px flex-1 bg-blue-500/20"></div>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-5">
+                        <div class="glass rounded-2xl border border-white/8 p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-9 h-9 rounded-full flex items-center justify-center text-lg"
+                                    style="background:rgba(59,130,246,.15)">🛠️</div>
+                                <h3 class="text-sm font-bold text-white">PM Tooling</h3>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-badge expert">Figma</span>
+                                <span class="skill-badge expert">JIRA</span>
+                                <span class="skill-badge expert">Confluence</span>
+                                <span class="skill-badge">ClickUp</span>
+                                <span class="skill-badge">Product Strategy</span>
+                                <span class="skill-badge">Requirement Discovery</span>
+                            </div>
+                        </div>
+                        <div class="glass rounded-2xl border border-white/8 p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-9 h-9 rounded-full flex items-center justify-center text-lg"
+                                    style="background:rgba(59,130,246,.15)">🚀</div>
+                                <h3 class="text-sm font-bold text-white">Execution &amp; Process</h3>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-badge expert">Agile / Scrum</span>
+                                <span class="skill-badge expert">Sprint Planning</span>
+                                <span class="skill-badge">Stakeholder Management</span>
+                                <span class="skill-badge">Client Engagement</span>
+                                <span class="skill-badge">Data Storytelling</span>
+                            </div>
+                        </div>
+                        <div class="glass rounded-2xl border border-white/8 p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-9 h-9 rounded-full flex items-center justify-center text-lg"
+                                    style="background:rgba(59,130,246,.15)">🎯</div>
+                                <h3 class="text-sm font-bold text-white">Strategy &amp; Insight</h3>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-badge expert">Product Analytics</span>
+                                <span class="skill-badge expert">Team Leadership</span>
+                                <span class="skill-badge">Problem Solving</span>
+                                <span class="skill-badge">Go-to-Market</span>
+                                <span class="skill-badge">E-commerce Strategy</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <!-- PM Skills -->
-                <div id="skills-pm" class="grid md:grid-cols-2 gap-8 reveal">
-                    <div class="glass rounded-2xl border border-white/8 p-8">
-                        <div class="flex items-center gap-3 mb-6">
-                            <div class="w-10 h-10 rounded-full flex items-center justify-center text-xl"
-                                style="background:rgba(59,130,246,.15)">🛠️</div>
-                            <h3 class="text-lg font-bold text-white">Tools &amp; Technology</h3>
-                        </div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="skill-badge expert">Figma</span><span
-                                class="skill-badge expert">JIRA</span><span
-                                class="skill-badge expert">Confluence</span><span
-                                class="skill-badge expert">ClickUp</span><span class="skill-badge">Python</span><span
-                                class="skill-badge">SQL</span><span class="skill-badge">Excel</span><span
-                                class="skill-badge">Tableau</span><span class="skill-badge">LLMs</span><span
-                                class="skill-badge">RAG</span><span class="skill-badge">GitHub</span>
-                        </div>
+
+                <!-- Technical Depth row -->
+                <div class="reveal">
+                    <div class="flex items-center gap-2 mb-3 mt-5">
+                        <div class="h-px flex-1 bg-violet-500/20"></div>
+                        <span class="text-xs font-bold text-violet-400 uppercase tracking-widest">Technical Depth — Data
+                            Science &amp; AI</span>
+                        <div class="h-px flex-1 bg-violet-500/20"></div>
                     </div>
-                    <div class="glass rounded-2xl border border-white/8 p-8">
-                        <div class="flex items-center gap-3 mb-6">
-                            <div class="w-10 h-10 rounded-full flex items-center justify-center text-xl"
-                                style="background:rgba(139,92,246,.15)">🚀</div>
-                            <h3 class="text-lg font-bold text-white">Methodologies</h3>
+                    <div class="grid md:grid-cols-3 gap-5">
+                        <div class="glass rounded-2xl border border-white/8 p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-9 h-9 rounded-full flex items-center justify-center text-lg"
+                                    style="background:rgba(139,92,246,.15)">💻</div>
+                                <h3 class="text-sm font-bold text-white">Programming &amp; Data</h3>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-badge expert">Python</span>
+                                <span class="skill-badge expert">SQL</span>
+                                <span class="skill-badge expert">Excel</span>
+                                <span class="skill-badge">Tableau</span>
+                                <span class="skill-badge">Applied Analytics</span>
+                                <span class="skill-badge">GitHub</span>
+                            </div>
                         </div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="skill-badge expert">Agile</span><span
-                                class="skill-badge expert">Scrum</span><span class="skill-badge expert">Sprint
-                                Planning</span><span class="skill-badge expert">Requirement Discovery</span><span
-                                class="skill-badge">Stakeholder Management</span><span class="skill-badge">Product
-                                Strategy</span><span class="skill-badge">Client Engagement</span><span
-                                class="skill-badge">Data Storytelling</span>
+                        <div class="glass rounded-2xl border border-white/8 p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-9 h-9 rounded-full flex items-center justify-center text-lg"
+                                    style="background:rgba(139,92,246,.15)">🤖</div>
+                                <h3 class="text-sm font-bold text-white">AI &amp; GenAI</h3>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-badge expert">LLMs / GenAI</span>
+                                <span class="skill-badge expert">RAG Chatbots</span>
+                                <span class="skill-badge">AI Agents</span>
+                                <span class="skill-badge">Prompt Engineering</span>
+                                <span class="skill-badge">Machine Learning</span>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <!-- DS Skills -->
-                <div id="skills-ds" class="grid md:grid-cols-2 gap-8 reveal hidden">
-                    <div class="glass rounded-2xl border border-white/8 p-8">
-                        <div class="flex items-center gap-3 mb-6">
-                            <div class="w-10 h-10 rounded-full flex items-center justify-center text-xl"
-                                style="background:rgba(59,130,246,.15)">💻</div>
-                            <h3 class="text-lg font-bold text-white">Technical Arsenal</h3>
-                        </div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="skill-badge expert">Python</span><span
-                                class="skill-badge expert">SQL</span><span class="skill-badge expert">Machine
-                                Learning</span><span class="skill-badge expert">GenAI / LLMs</span><span
-                                class="skill-badge">RAG Chatbots</span><span class="skill-badge">AI Agents</span><span
-                                class="skill-badge">Excel</span><span class="skill-badge">Tableau</span><span
-                                class="skill-badge">Applied Analytics</span>
-                        </div>
-                    </div>
-                    <div class="glass rounded-2xl border border-white/8 p-8">
-                        <div class="flex items-center gap-3 mb-6">
-                            <div class="w-10 h-10 rounded-full flex items-center justify-center text-xl"
-                                style="background:rgba(139,92,246,.15)">🧠</div>
-                            <h3 class="text-lg font-bold text-white">Analytics &amp; Leadership</h3>
-                        </div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="skill-badge expert">Statistical Modelling</span><span
-                                class="skill-badge expert">Explainable AI/ML</span><span class="skill-badge">Product
-                                Analytics</span><span class="skill-badge">Team Leadership</span><span
-                                class="skill-badge">Stakeholder Management</span><span class="skill-badge">Data
-                                Storytelling</span><span class="skill-badge">Problem Solving</span>
+                        <div class="glass rounded-2xl border border-white/8 p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-9 h-9 rounded-full flex items-center justify-center text-lg"
+                                    style="background:rgba(139,92,246,.15)">🧠</div>
+                                <h3 class="text-sm font-bold text-white">ML &amp; Modelling</h3>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-badge expert">Statistical Modelling</span>
+                                <span class="skill-badge expert">Explainable AI / ML</span>
+                                <span class="skill-badge">Computer Vision</span>
+                                <span class="skill-badge">NLP</span>
+                                <span class="skill-badge">A/B Testing</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1761,9 +1841,31 @@
                 style="bottom:-100px;right:-200px;opacity:.08;animation-delay:2s;"></div>
             <div class="container mx-auto px-6 text-center z-10 relative reveal">
                 <span class="sec-label">Get In Touch</span>
-                <h2 class="sec-title mb-4">Let's <span class="grad-text">Connect</span></h2>
-                <p class="text-gray-400 max-w-xl mx-auto mb-10">I'm always open to discussing new projects, creative
-                    ideas, or opportunities to be part of an ambitious team. Feel free to reach out directly.</p>
+                <h2 class="sec-title mb-4">Let's <span class="grad-text">Build Together</span></h2>
+                <p class="text-gray-400 max-w-xl mx-auto mb-10">I'm actively seeking full-time roles in <strong
+                        class="text-white">Product Management</strong> or <strong class="text-white">Data Science &amp;
+                        Analytics</strong>. If you're building something meaningful and need someone who can bridge
+                    strategy with execution — let's talk.</p>
+                <!-- What I'm Looking For -->
+                <div class="max-w-2xl mx-auto mb-10 glass rounded-2xl border border-white/8 p-6">
+                    <h3 class="text-white font-bold text-sm mb-4 flex items-center gap-2">🎯 What I'm Looking For</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
+                        <div>
+                            <p class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Target Roles</p>
+                            <p class="text-sm text-gray-300">Product Manager · Senior Data Scientist · Analytics Lead
+                            </p>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Preferred Locations
+                            </p>
+                            <p class="text-sm text-gray-300">Hyderabad · Remote</p>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Available From</p>
+                            <p class="text-sm text-emerald-400 font-semibold">May 2026</p>
+                        </div>
+                    </div>
+                </div>
                 <div class="flex flex-col sm:flex-row justify-center gap-4 flex-wrap">
                     <a href="mailto:nvpsani@gmail.com" class="btn-primary text-lg">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1833,7 +1935,7 @@
             });
 
             // ---- Typewriter ----
-            const roles = ['Specialist Data Scientist', 'Product Strategist', 'GenAI Expert', 'MBA Candidate @ BITSoM'];
+            const roles = ['Product Manager · Data Science', 'GenAI Product Builder', 'Analytics Strategist', 'MBA · BITSoM (1st Rank)'];
             let ri = 0, ci = 0, del = false;
             const tw = document.getElementById('typewriter-text');
             function type() {
